@@ -1,3 +1,4 @@
+import TrustSection from "@/components/home/TrustSection";
 import FaqArea from "../components/home/FaqArea";
 import HeroSection from "../components/home/HeroSection";
 import HowItWorks from "../components/home/HowItWorks";
@@ -12,6 +13,7 @@ const Home = () => {
       <HowItWorks/>
       <TestimonialArea/>
       <FaqArea/>
+      <TrustSection/>
     </div>
   );
 };

@@ -2,6 +2,7 @@ import CommonButton from "../common/CommonButton";
 import CommonWrapper from "../common/CommonWrapper";
 import usersimg from "../../assets/users.png";
 import HeroIcon from "../../assets/Icons/HeroIcon";
+import PlaneIcon from "@/assets/Icons/PlaneIcon";
 const HeroSection = () => {
   return (
     <CommonWrapper>
@@ -16,7 +17,7 @@ const HeroSection = () => {
             and affordable.
           </p>
           <div className="mt-[60px]">
-            <CommonButton>Get a quote now</CommonButton>
+          <CommonButton icon={<PlaneIcon />}>Get a quote now</CommonButton>
           </div>
           {/* user img */}
           <div className="mt-[147px] flex gap-[60px]">

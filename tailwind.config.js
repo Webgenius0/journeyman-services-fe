@@ -10,7 +10,7 @@ export default {
   			sm: 'calc(var(--radius) - 4px)'
   		},
   		colors: {
-  			textGray: '#161C24DB',
+  			textGray: '#242A33',
   			textGrayV2: '#F5F5F5',
   			textBlack: '#1A1511',
   			textBlackV2: '#484441',

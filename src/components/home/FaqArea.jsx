@@ -8,6 +8,7 @@ import {
 import CommonWrapper from "../common/CommonWrapper";
 import CommonTitle from "../common/CommonTitle";
 import CommonButton from "../common/CommonButton";
+import PlaneIcon from "@/assets/Icons/PlaneIcon";
 
 const FaqArea = () => {
   const faqList = [
@@ -36,9 +37,9 @@ const FaqArea = () => {
   return (
     <section>
       <CommonWrapper>
-        <div className="flex flex-col items-start gap-10 xlg:flex-row xl:gap-[120px]">
+        <div className="flex gap-[120px]">
           <div>
-            <div className="w-full space-y-8 xlg:flex-1">
+            <div className="w-full space-y-8 flex-1">
               <CommonTitle>
                 Frequently <br className="hidden xlg:inline" /> Asked Questions
               </CommonTitle>
@@ -63,10 +64,10 @@ const FaqArea = () => {
               </div>
             </div>
             <div className="mt-[60px]">
-              <CommonButton>Get a quote now</CommonButton>
+              <CommonButton icon={<PlaneIcon />}>Get a quote now</CommonButton>
             </div>
           </div>
-          <div className="mx-auto h-full w-[70%] md:h-[450px] lg:h-[600px] xlg:w-full xlg:flex-1">
+          <div className="mx-auto h-full w-[637px] lg:h-[600px] xlg:w-full xlg:flex-1">
             <img
               src={bannerImg}
               alt="faq-banner-image"
