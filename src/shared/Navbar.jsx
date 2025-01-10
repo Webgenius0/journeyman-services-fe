@@ -1,47 +1,67 @@
 import { Link, NavLink } from "react-router-dom";
+import { useState, useEffect } from "react";
 import logo from "../assets/logo.png";
 
 const Navbar = () => {
+  const [scrolled, setScrolled] = useState(false);
+
   const navLinks = [
     {
       pathName: "Home",
       linkUrl: "/",
     },
     {
-      pathName: "Checklist",
-      linkUrl: "/checklist",
-    },
-    {
-      pathName: "Live Break",
-      linkUrl: "/live-break",
-    },
-    {
-      pathName: "About Us",
+      pathName: "About us",
       linkUrl: "/about-us",
+    },
+    {
+      pathName: "Contact us",
+      linkUrl: "/contact",
+    },
+    {
+      pathName: "Sign in",
+      linkUrl: "/signin",
     },
   ];
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 60) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className="flex justify-between container py-[26px]">
+    <div
+      className={`flex justify-between container py-[26px] transition-all ${
+        scrolled ? "bg-white" : "bg-transparent"
+      }`}
+    >
       <Link to="/">
         <div>
           <img src={logo} alt="logo" />
         </div>
       </Link>
-      <div className="hidden items-center gap-[30px] text-lg xl:flex">
-        <nav className="flex items-center gap-4 text-textBlack">
+      <div className="hidden xl:flex items-center gap-4">
+        <nav className="flex items-center w-full justify-between text-textBlack">
           {navLinks.map((item, index) => (
-            <div key={index}>
+            <div key={index} className="flex items-center">
               <NavLink
                 to={item.linkUrl}
                 className={({ isActive }) =>
-                  isActive ? "font-bold lg:text-lg" : "lg:text-lg"
+                  isActive ? "font-bold text-textBlack" : "text-[#8CA2B4]"
                 }
               >
                 {item.pathName}
               </NavLink>
               {index !== navLinks.length - 1 && (
-                <span className="bg-black w-2 h-2 rounded-full"></span>
+                <div className="w-[2px] h-[8px] bg-[#8CA2B4] mx-8"></div>
               )}
             </div>
           ))}

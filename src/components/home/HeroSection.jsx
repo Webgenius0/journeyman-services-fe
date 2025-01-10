@@ -3,10 +3,15 @@ import CommonWrapper from "../common/CommonWrapper";
 import usersimg from "../../assets/users.png";
 import HeroIcon from "../../assets/Icons/HeroIcon";
 import PlaneIcon from "@/assets/Icons/PlaneIcon";
+import heroimg1 from "../../assets/hero-img-1.png";
+import heroimg2 from "../../assets/hero-img-2.png";
+import heroimg3 from "../../assets/hero-img-3.png";
+import EarthIcon from "@/assets/Icons/EarthIcon";
+
 const HeroSection = () => {
   return (
     <CommonWrapper>
-      <div className="flex justify-between">
+      <div className="flex gap-[202px]">
         {/* left side area with content */}
         <div className="max-w-[546px]">
           <div className="flex gap-4 items-center">
@@ -44,7 +49,28 @@ const HeroSection = () => {
         </div>
 
         {/* right side img */}
-        <div></div>
+        <div className="flex items-center gap-6">
+          {/* left imgs */}
+          <div>
+            {/* first and second */}
+            <div>
+              <img src={heroimg1} alt="" className="rounded-2xl" />
+            </div>
+            <div className="mt-6">
+              <img src={heroimg2} alt="" className="rounded-2xl" />
+            </div>
+          </div>
+          {/* right img */}
+          <div>
+            <div className="bg-[#E6EBEF] flex justify-center gap-2 items-center px-7 py-3 rounded-3xl mb-6">
+              <EarthIcon />
+              <p className="text-[12px] text-[#4B586B]">Alabama - Miami</p>
+            </div>
+            <div>
+              <img src={heroimg3} alt="" className="rounded-2xl" />
+            </div>
+          </div>
+        </div>
       </div>
     </CommonWrapper>
   );
