@@ -29,39 +29,37 @@ const HowItWorks = () => {
   return (
     <section>
       <CommonWrapper>
-        <div className="mx-auto ">
-          <div className="mt-14 flex flex-row gap-[150px]">
-            {/* img */}
-            <div className="xlg:h-[600px] flex-1 overflow-hidden rounded-[24px]">
-              <img
-                src={howitworksimg}
-                alt="person-example"
-                className=" xl:h-full w-full object-cover"
+        <div className="mt-14 flex flex-row gap-[150px]">
+          {/* img */}
+          <div className="xlg:h-[600px] flex-1 overflow-hidden">
+            <img
+              src={howitworksimg}
+              alt="person-example"
+              className=" xl:h-full w-full object-cover"
+            />
+          </div>
+          {/* steps */}
+          <div className="flex-1">
+            {instructions.map((item, index) => (
+              <StepCard
+                key={index}
+                title={item.title}
+                subtitle={item.subtitle}
+                isLastItem={index === instructions.length - 1}
+                widthClass="max-w-[308px]"
               />
-            </div>
-            {/* steps */}
-            <div className="flex-1">
-              {instructions.map((item, index) => (
-                <StepCard
-                  key={index}
-                  title={item.title}
-                  subtitle={item.subtitle}
-                  isLastItem={index === instructions.length - 1}
-                  widthClass=""
-                />
-              ))}
-            </div>
+            ))}
+          </div>
 
           <div className="flex gap-6 items-center">
-              {/* video player */}
-              <div className="relative bg-primaryBlue flex items-center justify-center h-[100px] w-[100px] rounded-full">
+            {/* video player */}
+            <div className="relative bg-primaryBlue flex items-center justify-center h-[100px] w-[100px] rounded-full">
               <VideoPlayerIcon className="absolute" />
             </div>
             {/* text */}
             <div>
-              <h3 className="mt-2 text-textBlack font-bold">Watch Video</h3>
+              <h3 className="mt-2 text-textBlack font-bold">Watch a Video</h3>
             </div>
-          </div>
           </div>
         </div>
       </CommonWrapper>

@@ -17,49 +17,42 @@ const ReviewComponent = ({ info }) => {
 const Services = () => {
   const reviews = [
     {
-      title:
-        "Whether you have a team of 2 or 200, our shared team inboxes keep everyone ",
+      title: "Affordable Plans for Individuals, Couples, and Families",
     },
     {
-      title:
-        "Whether you have a team of 2 or 200, our shared team inboxes keep everyone ",
+      title: "Instant Policy Confirmation",
     },
     {
-      title:
-        "Whether you have a team of 2 or 200, our shared team inboxes keep everyone ",
+      title: "Peace of Mind While Traveling",
     },
     {
-      title:
-        "Whether you have a team of 2 or 200, our shared team inboxes keep everyone ",
+      title: "Instant Policy Confirmation",
     },
     {
-      title:
-        "Whether you have a team of 2 or 200, our shared team inboxes keep everyone ",
+      title: "Affordable Plans for Individuals, Couples, and Families",
     },
     {
-      title:
-        "Whether you have a team of 2 or 200, our shared team inboxes keep everyone ",
+      title: "Peace of Mind While Traveling",
     },
     {
-      title:
-        "Whether you have a team of 2 or 200, our shared team inboxes keep everyone ",
+      title: "Instant Policy Confirmation",
     },
   ];
 
   return (
-      <CommonWrapper noContainer>
-        <div className="bg-primaryBlue bg-cover bg-center">
-          <div className="my-14 space-y-7">
-            <Marquee>
-              <div className="mx-6 flex items-center gap-6">
-                {reviews.map((item, index) => (
-                  <ReviewComponent key={index} info={item} />
-                ))}
-              </div>
-            </Marquee>
-          </div>
+    <CommonWrapper noContainer>
+      <div className="bg-primaryBlue bg-cover bg-center">
+        <div className="my-14 space-y-7">
+          <Marquee>
+            <div className="mx-6 flex items-center gap-6">
+              {reviews.map((item, index) => (
+                <ReviewComponent key={index} info={item} />
+              ))}
+            </div>
+          </Marquee>
         </div>
-      </CommonWrapper>
+      </div>
+    </CommonWrapper>
   );
 };
 

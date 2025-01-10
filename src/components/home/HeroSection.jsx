@@ -9,6 +9,13 @@ const HeroSection = () => {
       <div className="flex justify-between">
         {/* left side area with content */}
         <div className="max-w-[546px]">
+          <div className="flex gap-4 items-center">
+            <h3 className="font-medium text-textBlack">Fast</h3>
+            <span className="w-2 h-2 bg-[#1A1511] rounded-full"></span>
+            <h3 className="font-medium text-textBlack">Reliable</h3>
+            <span className="w-2 h-2 bg-[#1A1511] rounded-full"></span>
+            <h3 className="font-medium text-textBlack">Affordable</h3>
+          </div>
           <h3 className="text-6xl text-textBlack font-bold leading-[85px] mb-4">
             Travel Insurance Instantly
           </h3>
@@ -17,10 +24,10 @@ const HeroSection = () => {
             and affordable.
           </p>
           <div className="mt-[60px]">
-          <CommonButton icon={<PlaneIcon />}>Get a quote now</CommonButton>
+            <CommonButton icon={<PlaneIcon />}>Get a quote now</CommonButton>
           </div>
           {/* user img */}
-          <div className="mt-[147px] flex gap-[60px]">
+          <div className="mt-[147px] flex items-center gap-[60px]">
             <div className="min-w-[312px]">
               <div>
                 <img src={usersimg} alt="users" />

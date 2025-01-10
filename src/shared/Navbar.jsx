@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 
 const Navbar = () => {
@@ -23,24 +23,27 @@ const Navbar = () => {
 
   return (
     <div className="flex justify-between container py-[26px]">
-      <div>
-        <img src={logo} alt="logo" />
-      </div>
+      <Link to="/">
+        <div>
+          <img src={logo} alt="logo" />
+        </div>
+      </Link>
       <div className="hidden items-center gap-[30px] text-lg xl:flex">
-        <nav className="flex gap-4 text-textBlack">
+        <nav className="flex items-center gap-4 text-textBlack">
           {navLinks.map((item, index) => (
-            <NavLink
-              key={index}
-              to={item.linkUrl}
-              className={({ isActive }) =>
-                isActive ? "font-bold lg:text-lg" : "lg:text-lg"
-              }
-            >
-              {item.pathName}
+            <div key={index}>
+              <NavLink
+                to={item.linkUrl}
+                className={({ isActive }) =>
+                  isActive ? "font-bold lg:text-lg" : "lg:text-lg"
+                }
+              >
+                {item.pathName}
+              </NavLink>
               {index !== navLinks.length - 1 && (
-                <span className="border-r-2 border[#8CA2B4] mx-2 border h-2" />
+                <span className="bg-black w-2 h-2 rounded-full"></span>
               )}
-            </NavLink>
+            </div>
           ))}
         </nav>
       </div>
