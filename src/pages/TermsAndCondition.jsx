@@ -18,7 +18,6 @@ const TermsAndCondition = () => {
   return (
     <CommonWrapper>
       <div>
-        {/* Pass title and sections array */}
         <TextContentPage
           title={termsContent.title}
           sections={termsContent.sections}
