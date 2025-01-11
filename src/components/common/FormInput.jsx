@@ -27,7 +27,7 @@ const FormInput = ({
           type={type}
           name={name}
           placeholder={placeholder}
-          className={`w-full rounded-md border border-[#B8B6B5] px-4 py-2 text-sm text-textGrayV2 focus:outline-none xlg:px-6 xlg:py-[11px] xlg:text-base ${bgColor}`}
+          className={`w-full rounded-[10px] border border-[#B8B6B5] px-4 py-2 text-sm text-textGrayV2 focus:outline-none xlg:px-6 xlg:py-[11px] xlg:text-base ${bgColor}`}
         />
         {icon && (
           <div className="absolute right-3 top-1/2 -translate-y-1/2 transform">

@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import InformationInput from "@/pages/InformationInput";
 import AboutUs from "@/pages/AboutUs";
 import ContactUs from "@/pages/ContactPage";
+import Profile from "@/pages/Profile";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: "contact",
         element: <ContactUs />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
       },
       {
         path: "/information-input",
