@@ -13,7 +13,7 @@ export default {
   			textGray: '#242A33',
   			textGrayV2: '#B8B6B5',
   			textBlack: '#1A1511',
-  			textBlackV2: '#484441',
+  			textBlackV2: '#0E0C09',
   			primary: {
   				DEFAULT: 'hsl(var(--primary))',
   				foreground: 'hsl(var(--primary-foreground))'

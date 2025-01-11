@@ -26,7 +26,7 @@ const PasswordContainer = () => {
     <div className="mt-10">
       <h3 className="text-lg font-semibold mb-4">Change Password</h3>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 xlg:grid-cols-3 gap-4">
           {/* New Password */}
           <FormInput
             label="New Password"
@@ -61,7 +61,6 @@ const PasswordContainer = () => {
               </button>
             }
             containerClass="flex-1"
-            required
           />
 
           {/* Confirm Password */}
@@ -87,7 +86,6 @@ const PasswordContainer = () => {
               </button>
             }
             containerClass="flex-1"
-            required
           />
         </div>
 
