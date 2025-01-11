@@ -7,6 +7,7 @@ import ContactUs from "@/pages/ContactPage";
 import Profile from "@/pages/Profile";
 import TermsAndCondition from "@/pages/TermsAndCondition";
 import PrivacyStatement from "@/pages/PrivacyStatement";
+import Signin from "@/pages/Signin";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: "privacy",
         element: <PrivacyStatement />,
+      },
+      {
+        path: "signin",
+        element: <Signin />,
       },
       {
         path: "/information-input",

@@ -7,17 +7,16 @@ const Footer = () => {
       title: "Quick links",
       children: [
         { name: "Home", link: "/" },
-        { name: "Find Doctors", link: "/about" },
-        { name: "Sign up as a Doctor", link: "/categories" },
-        { name: "FAQ", link: "/faq" },
-        { name: "Support", link: "/support" },
+        { name: "About us", link: "/about-us" },
+        { name: "Contact us", link: "/contact" },
+        { name: "Sign in", link: "/signin" },
       ],
     },
     {
       title: "Policies",
       children: [
-        { name: "Terms & Conditions", link: "/terms-and-condition" },
-        { name: "Privacy Policy", link: "/privacy-policy" },
+        { name: "Terms & Conditions", link: "/terms" },
+        { name: "Privacy Policy", link: "/privacy" },
       ],
     },
   ];
