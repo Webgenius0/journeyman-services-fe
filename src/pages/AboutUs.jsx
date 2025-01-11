@@ -2,20 +2,28 @@ import CommonWrapper from "@/components/common/CommonWrapper";
 import OurStory from "@/components/aboutus/OurStory";
 import Topsection from "@/components/aboutus/topsection";
 import MissionVission from "@/components/aboutus/MissionVission";
+import TestimonialArea from "@/components/home/TestimonialArea";
+import FaqArea from "@/components/home/FaqArea";
+import TrustSection from "@/components/home/TrustSection";
 
 const AboutUs = () => {
   return (
-    <CommonWrapper>
-      {/* top section */}
-     <Topsection/>
-      {/* our story section */}
-    <div className="mt-[87px]">
-    <OurStory/>
+    <div>
+      <CommonWrapper>
+        {/* top section */}
+        <Topsection />
+        {/* our story section */}
+        <div className="mt-[87px]">
+          <OurStory />
+        </div>
+        <div className="py-[100px]">
+          <MissionVission />
+        </div>
+      </CommonWrapper>
+      <TestimonialArea />
+      <FaqArea />
+      <TrustSection />
     </div>
-    <div className="py-[100px]">
-        <MissionVission/>
-    </div>
-    </CommonWrapper>
   );
 };
 

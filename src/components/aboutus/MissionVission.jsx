@@ -3,7 +3,7 @@ const MissionVission = () => {
     <div className="flex gap-[130px]">
       {/* mission */}
       <div>
-        <h3 className="text-[36px] text-textGray leading-[44px] mb-[15px]">
+        <h3 className="text-[36px] text-textGray leading-[44px] mb-[15px] font-bold">
           Our Mission
         </h3>
         <p className="text-lg leading-[30px] text-textGrayV3">
@@ -14,7 +14,7 @@ const MissionVission = () => {
       </div>
       {/* vission */}
       <div>
-        <h3 className="text-[36px] text-textGray leading-[44px] mb-[15px]">
+        <h3 className="text-[36px] text-textGray leading-[44px] mb-[15px] font-bold">
           Our Vision
         </h3>
         <p className="text-lg leading-[30px] text-textGrayV3">
