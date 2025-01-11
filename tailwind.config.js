@@ -12,6 +12,7 @@ export default {
   		colors: {
   			textGray: '#242A33',
   			textGrayV2: '#B8B6B5',
+  			textGrayV3: '#4B586B',
   			textBlack: '#1A1511',
   			textBlackV2: '#0E0C09',
   			primary: {
