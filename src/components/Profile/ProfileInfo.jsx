@@ -1,19 +1,16 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import EditProfileIcon from "@/assets/Icons/EditProfileIcon";
 import profilepic from "../../assets/dp.png";
 import FormInput from "../common/FormInput";
 import { useForm } from "react-hook-form";
-import { FaEyeSlash, FaEye } from "react-icons/fa";
 import CommonDropdownSelect from "@/components/common/CommonDropdownSelect";
-import CommonWrapper from "../common/CommonWrapper";
-// import EyeIcon from "@/assets/Icons/EyeIcon";
 import toast from "react-hot-toast";
+import PasswordContainer from "./PasswordContainer";
 const ProfileInfo = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
   } = useForm();
 
   const onSubmit = (data) => {
@@ -32,14 +29,7 @@ const ProfileInfo = () => {
     fileInputRef.current.click();
   };
 
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
-  const password = watch("newPassword");
-
-  const togglePasswordVisibility = () => setShowPassword((prev) => !prev);
-  const toggleConfirmPasswordVisibility = () =>
-    setShowConfirmPassword((prev) => !prev);
+  
 
   return (
     <div className="">
@@ -176,89 +166,7 @@ const ProfileInfo = () => {
         </form>
       </div>
 
-      <CommonWrapper noContainer>
-        {/* Change password section */}
-        <div className="grid gap-2 xlg:grid-cols-2 xlg:gap-8 xl:grid-cols-3 xl:gap-[60px]">
-          {/* New Password */}
-          <div>
-            <FormInput
-              label="New Password"
-              type={showPassword ? "text" : "password"}
-              name="newPassword"
-              placeholder="Enter new password"
-              register={register}
-              required="Password is required"
-              error={errors.newPassword}
-              validation={{
-                required: "New password is required",
-                minLength: {
-                  value: 6,
-                  message: "Password must be at least 6 characters",
-                },
-                maxLength: {
-                  value: 20,
-                  message: "Password cannot exceed 20 characters",
-                },
-                pattern: {
-                  value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
-                  message:
-                    "Password must include uppercase, lowercase, number, and special character",
-                },
-              }}
-              icon={
-                <button
-                  type="button"
-                  onClick={togglePasswordVisibility}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 transform text-gray-500"
-                >
-                  {showPassword ? <FaEyeSlash size={24} /> : "<EyeIcon />"}
-                </button>
-              }
-              containerClass="relative"
-              bgColor="bg-transparent"
-            />
-          </div>
-
-          {/* Confirm Password */}
-          <div>
-            <FormInput
-              label="Confirm Password"
-              type={showConfirmPassword ? "text" : "password"}
-              name="confirmPassword"
-              placeholder="Confirm your password"
-              register={register}
-              required="Please confirm your password"
-              error={errors.confirmPassword}
-              validation={{
-                required: "Confirm password is required",
-                validate: (value) =>
-                  value === password || "Passwords do not match",
-              }}
-              icon={
-                <button
-                  type="button"
-                  onClick={toggleConfirmPasswordVisibility}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 transform text-gray-500"
-                >
-                  {showConfirmPassword ? <FaEyeSlash size={24} /> : ""}
-                </button>
-              }
-              containerClass="relative"
-              bgColor="bg-transparent"
-            />
-          </div>
-        </div>
-
-        {/* Submit button for password change */}
-        <div className="mt-10 flex justify-center xlg:mt-[60px]">
-          <button
-            type="submit"
-            className="rounded-[32px] bg-[#101111] px-5 py-4 text-white"
-          >
-            Save Changes
-          </button>
-        </div>
-      </CommonWrapper>
+     <PasswordContainer/>
     </div>
   );
 };
