@@ -38,34 +38,32 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div
-      className={`flex justify-between container py-[26px] transition-all ${
-        scrolled ? "bg-white" : "bg-transparent"
-      }`}
-    >
-      <Link to="/">
-        <div>
-          <img src={logo} alt="logo" />
+    <div className={` ${scrolled ? "bg-white" : "bg-transparent"}`}>
+      <div className="flex justify-between container py-[26px] transition-all">
+        <Link to="/">
+          <div>
+            <img src={logo} alt="logo" />
+          </div>
+        </Link>
+        <div className="hidden xl:flex items-center gap-4">
+          <nav className="flex items-center w-full justify-between text-textBlack">
+            {navLinks.map((item, index) => (
+              <div key={index} className="flex items-center">
+                <NavLink
+                  to={item.linkUrl}
+                  className={({ isActive }) =>
+                    isActive ? "font-bold text-textBlack" : "text-[#8CA2B4]"
+                  }
+                >
+                  {item.pathName}
+                </NavLink>
+                {index !== navLinks.length - 1 && (
+                  <div className="w-[2px] h-[8px] bg-[#8CA2B4] mx-8"></div>
+                )}
+              </div>
+            ))}
+          </nav>
         </div>
-      </Link>
-      <div className="hidden xl:flex items-center gap-4">
-        <nav className="flex items-center w-full justify-between text-textBlack">
-          {navLinks.map((item, index) => (
-            <div key={index} className="flex items-center">
-              <NavLink
-                to={item.linkUrl}
-                className={({ isActive }) =>
-                  isActive ? "font-bold text-textBlack" : "text-[#8CA2B4]"
-                }
-              >
-                {item.pathName}
-              </NavLink>
-              {index !== navLinks.length - 1 && (
-                <div className="w-[2px] h-[8px] bg-[#8CA2B4] mx-8"></div>
-              )}
-            </div>
-          ))}
-        </nav>
       </div>
     </div>
   );
