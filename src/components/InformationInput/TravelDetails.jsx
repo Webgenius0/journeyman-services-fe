@@ -142,15 +142,6 @@ const TravelDetails = () => {
             defaultValue="light"
           />
         </div>
-        {/* Submit Button */}
-        <div className="mt-6">
-          <button
-            type="submit"
-            className="w-full rounded-md bg-primaryBlue py-2 text-white hover:bg-blue-700"
-          >
-            Submit
-          </button>
-        </div>
       </form>
       <div className="flex gap-3 mt-7">
         <p className="text-textBlackV2 leading-[25px]">
