@@ -11,7 +11,7 @@ export default {
   		},
   		colors: {
   			textGray: '#242A33',
-  			textGrayV2: '#F5F5F5',
+  			textGrayV2: '#B8B6B5',
   			textBlack: '#1A1511',
   			textBlackV2: '#484441',
   			primary: {

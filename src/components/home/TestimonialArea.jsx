@@ -1,4 +1,3 @@
-
 import Marquee from "react-fast-marquee";
 import PropTypes from "prop-types";
 import mapBg from "../../assets/dot-map-purple-bg.svg";
