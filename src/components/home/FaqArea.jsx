@@ -38,7 +38,7 @@ const FaqArea = () => {
     <section>
       <CommonWrapper>
         <div className="flex gap-[120px]">
-          <div>
+          <div className="min-w-[725px]">
             <div className="w-full space-y-8 flex-1">
               <CommonTitle>
                 Frequently <br className="hidden xlg:inline" /> Asked Questions
@@ -64,10 +64,16 @@ const FaqArea = () => {
               </div>
             </div>
             <div className="mt-[60px]">
-              <CommonButton linkUrl="/information-input" className="py-3 px-7" icon={<PlaneIcon />}>Get a quote now</CommonButton>
+              <CommonButton
+                linkUrl="/information-input"
+                className="py-3 px-7"
+                icon={<PlaneIcon />}
+              >
+                Get a quote now
+              </CommonButton>
             </div>
           </div>
-          <div className="mx-auto h-full w-[637px] lg:h-[600px] xlg:w-full xlg:flex-1">
+          <div className="mx-auto h-full min-w-[500px] lg:h-[600px] xlg:w-full xlg:flex-1">
             <img
               src={bannerImg}
               alt="faq-banner-image"
