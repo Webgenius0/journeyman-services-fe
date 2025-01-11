@@ -5,6 +5,7 @@ import MissionVission from "@/components/aboutus/MissionVission";
 import TestimonialArea from "@/components/home/TestimonialArea";
 import FaqArea from "@/components/home/FaqArea";
 import TrustSection from "@/components/home/TrustSection";
+import CoreValues from "@/components/aboutus/CoreValues";
 
 const AboutUs = () => {
   return (
@@ -19,6 +20,7 @@ const AboutUs = () => {
         <div className="py-[100px]">
           <MissionVission />
         </div>
+        <CoreValues/>
       </CommonWrapper>
       <TestimonialArea />
       <FaqArea />

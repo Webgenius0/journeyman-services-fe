@@ -29,7 +29,7 @@ const HeroSection = () => {
             and affordable.
           </p>
           <div className="mt-[60px]">
-            <CommonButton icon={<PlaneIcon />}>Get a quote now</CommonButton>
+            <CommonButton linkUrl="/information-input" className="py-3 px-7" icon={<PlaneIcon />}>Get a quote now</CommonButton>
           </div>
           {/* user img */}
           <div className="mt-[147px] flex items-center gap-[60px]">

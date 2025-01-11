@@ -64,7 +64,7 @@ const FaqArea = () => {
               </div>
             </div>
             <div className="mt-[60px]">
-              <CommonButton icon={<PlaneIcon />}>Get a quote now</CommonButton>
+              <CommonButton linkUrl="/information-input" className="py-3 px-7" icon={<PlaneIcon />}>Get a quote now</CommonButton>
             </div>
           </div>
           <div className="mx-auto h-full w-[637px] lg:h-[600px] xlg:w-full xlg:flex-1">

@@ -6,6 +6,7 @@ import AboutUs from "@/pages/AboutUs";
 import ContactUs from "@/pages/ContactPage";
 import Profile from "@/pages/Profile";
 import TermsAndCondition from "@/pages/TermsAndCondition";
+import PrivacyStatement from "@/pages/PrivacyStatement";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "terms",
         element: <TermsAndCondition />,
+      },
+      {
+        path: "privacy",
+        element: <PrivacyStatement />,
       },
       {
         path: "/information-input",

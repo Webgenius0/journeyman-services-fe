@@ -5,10 +5,10 @@ import CommonWrapper from "../common/CommonWrapper";
 const TrustSection = () => {
   return (
     <CommonWrapper version="lg">
-      <div className="relative h-[388px] rounded-tl-md">
+      <div className="relative h-[388px]">
         {/* Background */}
         <div
-          className="absolute inset-0 bg-[#B2C0CD]"
+          className="absolute inset-0 bg-[#B2C0CD] rounded-tl-[150px]"
           style={{ opacity: 0.2 }}
         ></div>
         {/* Content */}
@@ -24,8 +24,14 @@ const TrustSection = () => {
             needs!&quot;
           </p>
           <div className="mt-[60px]">
-              <CommonButton icon={<PlaneIcon />}>Get a quote now</CommonButton>
-            </div>
+            <CommonButton
+              linkUrl="/information-input"
+              className="py-3 px-7"
+              icon={<PlaneIcon />}
+            >
+              Get a quote now
+            </CommonButton>
+          </div>
         </div>
       </div>
     </CommonWrapper>
