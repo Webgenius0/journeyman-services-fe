@@ -8,7 +8,7 @@ const ReviewComponent = ({ info }) => {
         <FlowerIcon />
       </div>
       <div>
-        <h3 className="text-[20px] leading-6 text-white">{info.title}</h3>
+        <h3 className="text-sm xl:text-[20px] leading-6 text-white">{info.title}</h3>
       </div>
     </div>
   );
@@ -42,7 +42,6 @@ const Services = () => {
   return (
     <CommonWrapper noContainer>
       <div className="bg-primaryBlue bg-cover bg-center">
-        <div className="my-14 space-y-7">
           <Marquee>
             <div className="mx-6 flex items-center gap-6">
               {reviews.map((item, index) => (
@@ -50,7 +49,6 @@ const Services = () => {
               ))}
             </div>
           </Marquee>
-        </div>
       </div>
     </CommonWrapper>
   );

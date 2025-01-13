@@ -1,6 +1,6 @@
 const FlowerIcon = () => {
   return (
-    <div className="w-10 h-10">
+    <div className="w-6 h-6 xl:w-10 xl:h-10">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 61 61"

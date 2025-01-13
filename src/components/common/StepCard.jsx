@@ -2,7 +2,7 @@ const StepCard = ({
     title,
     subtitle,
     isLastItem,
-    widthClass = "max-w-[256px]",
+    widthClass 
   }) => {
     return (
       <div

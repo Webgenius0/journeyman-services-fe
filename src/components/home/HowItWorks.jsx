@@ -28,12 +28,12 @@ const HowItWorks = () => {
 
   return (
     <section>
-      <CommonWrapper>
+      <CommonWrapper >
         <div className="mt-4 flex flex-col xl:flex-row items-center gap-[60px] xl:gap-[150px]">
           {/* img */}
           <div>
             <CommonTitle>How it works?</CommonTitle>
-            <div className="w-full xlg:h-[600px] flex-1 overflow-hidden">
+            <div className=" xlg:h-[600px] flex-1 overflow-hidden">
               <img
                 src={howitworksimg}
                 alt="person-example"
@@ -49,7 +49,7 @@ const HowItWorks = () => {
                 title={item.title}
                 subtitle={item.subtitle}
                 isLastItem={index === instructions.length - 1}
-                widthClass="max-w-[308px]"
+                widthClass="xl:max-w-[308px]"
               />
             ))}
           </div>

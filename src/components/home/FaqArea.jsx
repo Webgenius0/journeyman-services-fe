@@ -37,7 +37,7 @@ const FaqArea = () => {
   return (
     <section>
       <CommonWrapper>
-        <div className="flex flex-col xl:flex-row gap-[120px]">
+        <div className="flex flex-col xl:flex-row gap-[60px] xl:gap-[120px]">
           <div className="xl:min-w-[725px]">
             <div className="w-full space-y-8 flex-1">
               <CommonTitle>
@@ -52,7 +52,7 @@ const FaqArea = () => {
                       key={index}
                       className="border-b-0"
                     >
-                      <AccordionTrigger className="rounded-[6px] bg-[#E6EBEF] px-4 xlg:px-6 py-3 xlg:py-4 xlg:text-lg font-semibold leading-6 hover:no-underline">
+                      <AccordionTrigger className="rounded-[6px] bg-[#E6EBEF] px-3 xlg:px-6 py-2 xlg:py-4 text-sm xlg:text-lg font-semibold leading-6 hover:no-underline">
                         {item.question}
                       </AccordionTrigger>
                       <AccordionContent className="mt-4 rounded-[6px] bg-white p-7 text-base leading-6 text-textGray">
@@ -63,7 +63,7 @@ const FaqArea = () => {
                 </Accordion>
               </div>
             </div>
-            <div className="mt-[60px]">
+            <div className="mt-6 xl:mt-[60px] flex justify-center xl:justify-normal">
               <CommonButton
                 linkUrl="/information-input"
                 className="py-3 px-7"

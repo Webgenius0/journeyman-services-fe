@@ -9,7 +9,7 @@ const CommonButton = ({
   return (
     <Link
       to={linkUrl}
-      className={`inline-flex items-center rounded-3xl bg-primaryBlue font-bold leading-6 text-white xlg:text-base ${className}`}
+      className={`inline-flex items-center rounded-3xl bg-primaryBlue font-bold leading-6 text-white text-sm xlg:text-base ${className}`}
     >
       {children}
       {icon && <span className="ml-[10px]">{icon}</span>}
