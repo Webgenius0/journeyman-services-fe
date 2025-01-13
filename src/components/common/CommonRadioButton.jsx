@@ -5,7 +5,7 @@ const CommonRadioButton = ({ name, options, defaultValue }) => {
     <RadioGroup defaultValue={defaultValue} name={name}>
       {options.map((option) => (
         <div key={option.value} className="flex items-center space-x-2">
-          <label className="flex items-center space-x-2">
+          <label className="flex items-center space-x-2 text-sm xl:text-base">
             <RadioGroupItem value={option.value} id={option.id} />
             <span>{option.label}</span>
           </label>

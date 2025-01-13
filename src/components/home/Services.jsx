@@ -8,7 +8,7 @@ const ReviewComponent = ({ info }) => {
         <FlowerIcon />
       </div>
       <div>
-        <h3 className="text-sm xl:text-[20px] leading-6 text-white">{info.title}</h3>
+        <h3 className="text-sm md:text-base xlg:text-[20px] leading-6 text-white">{info.title}</h3>
       </div>
     </div>
   );

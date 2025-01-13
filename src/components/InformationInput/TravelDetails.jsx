@@ -43,7 +43,7 @@ const TravelDetails = () => {
 
   return (
     <div className="mt-[14px]">
-      <form onSubmit={handleSubmit(onSubmit)} className="w-[565px] space-y-5">
+      <form onSubmit={handleSubmit(onSubmit)} className="xl:w-[565px] space-y-5">
         <h3 className="mb-6 text-lg font-semibold">Travel Details</h3>
 
         {/* Country of Residence */}
@@ -112,7 +112,7 @@ const TravelDetails = () => {
             validation={{
               required: "Start date is required",
             }}
-            width="w-[300px]"
+            width="xl:w-[300px]"
             required
           />
         </div>
@@ -127,7 +127,7 @@ const TravelDetails = () => {
             validation={{
               required: "Number of adults is required",
             }}
-            width="w-[100px]"
+            width="xl:w-[100px]"
             required
             underText="(18-79 years)"
           />
@@ -144,7 +144,7 @@ const TravelDetails = () => {
             validation={{
               required: "End date is required",
             }}
-            width="w-1/2"
+            width="xl:w-1/2"
             required
             underText="(How old is the eldest person being insured on this policy on the proposed start date above?)"
           />
@@ -160,7 +160,7 @@ const TravelDetails = () => {
             validation={{
               required: "Number of children is required",
             }}
-            width="w-[100px]"
+            width="xl:w-[100px]"
             required
             underText="(Dependent children up to 21 years of age and still in full time education)"
           />
@@ -177,8 +177,8 @@ const TravelDetails = () => {
           />
         </div>
       </form>
-      <div className="flex gap-3 mt-7">
-        <p className="text-textBlackV2 leading-[25px]">
+      <div className="flex gap-2 xl:gap-3 mt-7">
+        <p className="text-textBlackV2 text-sm xl:text-base xl:leading-[25px]">
           Click here to view activities covered in the &apos;standard&apos;
           policy{" "}
         </p>
@@ -190,7 +190,7 @@ const TravelDetails = () => {
         </div>
       </div>
       <div className="flex gap-3 mt-7">
-        <p className="text-textBlackV2 leading-[25px]">
+        <p className="text-textBlackV2 text-sm xl:text-base xl:leading-[25px]">
           Click here to view activities covered in the &apos;Adventure
           sports&apos; policy{" "}
         </p>

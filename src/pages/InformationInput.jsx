@@ -8,7 +8,7 @@ const InformationInput = () => {
   return (
     <CommonWrapper>
       <CommonPageTitle>Online travel insurance</CommonPageTitle>
-      <div className="max-w-[1047px] flex justify-between">
+      <div className="xl:max-w-[1047px] flex flex-col xl:flex-row justify-between">
         <TravelDetails />
         <PriceDetails />
       </div>

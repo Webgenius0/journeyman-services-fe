@@ -2,7 +2,7 @@ import aboutusimg2 from "@/assets/about-us-img-2.png";
 const OurStory = () => {
   return (
     <div
-      className="flex flex-col items-center gap-8 bg-[#F5F7F9] rounded-3xl p-4 
+      className="flex flex-col xlg:flex-row items-center gap-8 bg-[#F5F7F9] rounded-3xl p-4 
  xl:pt-[56px] xl:pr-[42px] xl:pb-[39px] xl:pl-[47px]"
     >
       {/* content */}

@@ -11,7 +11,7 @@ import EarthIcon from "@/assets/Icons/EarthIcon";
 const HeroSection = () => {
   return (
     <CommonWrapper>
-      <div className="flex flex-col xl:flex-row gap-[60px] xl:gap-[202px]">
+      <div className="flex flex-col xlg:flex-row xlg:items-center 2xl:items-start gap-[60px] 2xl:gap-[202px]">
         {/* left side area with content */}
         <div className="max-w-[546px]">
           <div className="flex justify-center xl:justify-start gap-4 items-center">
