@@ -8,6 +8,7 @@ import Profile from "@/pages/Profile";
 import TermsAndCondition from "@/pages/TermsAndCondition";
 import PrivacyStatement from "@/pages/PrivacyStatement";
 import Signin from "@/pages/Signin";
+import PartyDetails from "@/pages/PartyDetails";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: "/information-input",
         element: <InformationInput />,
+      },
+      {
+        path: "/party-details",
+        element: <PartyDetails />,
       },
     ],
   },

@@ -7,7 +7,7 @@ import {
     SelectValue,
   } from "@/components/ui/select";
   
-  export default function ReusableSelect({
+  export default function CommonDropdownSelect({
     options,
     label,
     placeholder,
