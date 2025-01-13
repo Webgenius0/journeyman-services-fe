@@ -29,19 +29,18 @@ const HowItWorks = () => {
   return (
     <section>
       <CommonWrapper>
-       
-        <div className="mt-4 flex items-center gap-[150px]">
+        <div className="mt-4 flex flex-col xl:flex-row items-center gap-[150px]">
           {/* img */}
-      <div>
-      <CommonTitle>How it works?</CommonTitle>
-      <div className="w-full xlg:h-[600px] flex-1 overflow-hidden">
-            <img
-              src={howitworksimg}
-              alt="person-example"
-              className=" xl:h-full w-full object-cover"
-            />
+          <div>
+            <CommonTitle>How it works?</CommonTitle>
+            <div className="w-full xlg:h-[600px] flex-1 overflow-hidden">
+              <img
+                src={howitworksimg}
+                alt="person-example"
+                className=" xl:h-full w-full object-cover"
+              />
+            </div>
           </div>
-      </div>
           {/* steps */}
           <div className="flex-1">
             {instructions.map((item, index) => (
@@ -54,8 +53,6 @@ const HowItWorks = () => {
               />
             ))}
           </div>
-
-       
         </div>
       </CommonWrapper>
     </section>

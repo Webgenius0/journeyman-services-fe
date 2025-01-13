@@ -11,34 +11,34 @@ import EarthIcon from "@/assets/Icons/EarthIcon";
 const HeroSection = () => {
   return (
     <CommonWrapper>
-      <div className="flex gap-[202px]">
+      <div className="flex flex-col xl:flex-row gap-[60px] xl:gap-[202px]">
         {/* left side area with content */}
         <div className="max-w-[546px]">
-          <div className="flex gap-4 items-center">
+          <div className="flex justify-center xl:justify-start gap-4 items-center">
             <h3 className="font-medium text-textBlack">Fast</h3>
             <span className="w-2 h-2 bg-[#1A1511] rounded-full"></span>
             <h3 className="font-medium text-textBlack">Reliable</h3>
             <span className="w-2 h-2 bg-[#1A1511] rounded-full"></span>
             <h3 className="font-medium text-textBlack">Affordable</h3>
           </div>
-          <h3 className="text-6xl text-textBlack font-bold leading-[85px] mb-4">
+          <h3 className="mt-4 xl:mt-0 text-2xl xl:text-6xl text-center xl:text-left text-textBlack font-bold xl:leading-[85px] mb-4">
             Travel Insurance Instantly
           </h3>
-          <p className="text-textBlackV2 max-w-[330px]">
+          <p className="text-textBlackV2 text-center xl:text-left xl:max-w-[330px]">
             Protect your journey with comprehensive coverage. Fast, reliable,
             and affordable.
           </p>
-          <div className="mt-[60px]">
+          <div className="mt-4 xl:mt-[60px] flex justify-center xl:block">
             <CommonButton linkUrl="/information-input" className="py-3 px-7" icon={<PlaneIcon />}>Get a quote now</CommonButton>
           </div>
           {/* user img */}
-          <div className="mt-[147px] flex items-center gap-[60px]">
-            <div className="min-w-[312px]">
+          <div className="mt-6 xl:mt-[147px] flex flex-col xl:flex-row items-center gap-6 xl:gap-[60px]">
+            <div className="xl:min-w-[312px]">
               <div>
                 <img src={usersimg} alt="users" />
               </div>
               <p className="text-textBlack mt-4 font-medium">
-                300+ Booking Confirmed <br /> for this Week
+                300+ Booking Confirmed <br className="hidden xl:block" /> for this Week
               </p>
             </div>
             {/* icon */}

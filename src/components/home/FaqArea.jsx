@@ -37,8 +37,8 @@ const FaqArea = () => {
   return (
     <section>
       <CommonWrapper>
-        <div className="flex gap-[120px]">
-          <div className="min-w-[725px]">
+        <div className="flex flex-col xl:flex-row gap-[120px]">
+          <div className="xl:min-w-[725px]">
             <div className="w-full space-y-8 flex-1">
               <CommonTitle>
                 Frequently <br className="hidden xlg:inline" /> Asked Questions
@@ -73,7 +73,7 @@ const FaqArea = () => {
               </CommonButton>
             </div>
           </div>
-          <div className="mx-auto h-full min-w-[500px] lg:h-[600px] xlg:w-full xlg:flex-1">
+          <div className="mx-auto h-full xl:min-w-[500px] lg:h-[600px] xlg:w-full xlg:flex-1">
             <img
               src={bannerImg}
               alt="faq-banner-image"
