@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import CommonDropdownSelect from "@/components/common/CommonDropdownSelect";
 import toast from "react-hot-toast";
 import PasswordContainer from "./PasswordContainer";
-const ProfileInfo = () => {
+const  ProfileInfo = () => {
   const {
     register,
     handleSubmit,
@@ -33,7 +33,7 @@ const ProfileInfo = () => {
 
   return (
     <div className="">
-      <div className="flex flex-col">
+      <div className="flex flex-col items-center xl:items-start">
         {/* Profile picture */}
         <img
           src={profilepic}
@@ -42,7 +42,6 @@ const ProfileInfo = () => {
           onClick={handleFileInputClick}
         />
 
-        {/* Hidden file input */}
         <input
           ref={fileInputRef}
           type="file"
@@ -155,7 +154,7 @@ const ProfileInfo = () => {
           </div>
 
           {/* Submit button for basic info */}
-          <div className="flex justify-center xlg:mt-10 xl:mt-[60px]">
+          <div className="flex justify-center mt-6 xlg:mt-10 xl:mt-[60px]">
             <button
               type="submit"
               className="rounded-[32px] bg-[#101111] px-5 py-4 text-white"
