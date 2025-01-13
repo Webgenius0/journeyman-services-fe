@@ -9,6 +9,7 @@ import TermsAndCondition from "@/pages/TermsAndCondition";
 import PrivacyStatement from "@/pages/PrivacyStatement";
 import Signin from "@/pages/Signin";
 import PartyDetails from "@/pages/PartyDetails";
+import CheckOut from "@/pages/CheckOut";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
         path: "/party-details",
         element: <PartyDetails />,
       },
+      {
+        path: "/checkout",
+        element: <CheckOut />,
+      }
     ],
   },
 ]);
