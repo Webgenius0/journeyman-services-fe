@@ -1,7 +1,7 @@
 import CommonWrapper from "../common/CommonWrapper";
 import StepCard from "../common/StepCard";
 import howitworksimg from "../../assets/how-it-works-img.png";
-import VideoPlayerIcon from "../../assets/Icons/VideoPlayerIcon";
+import CommonTitle from "../common/CommonTitle";
 
 const HowItWorks = () => {
   const instructions = [
@@ -29,15 +29,19 @@ const HowItWorks = () => {
   return (
     <section>
       <CommonWrapper>
-        <div className="mt-14 flex flex-row gap-[150px]">
+       
+        <div className="mt-4 flex items-center gap-[150px]">
           {/* img */}
-          <div className="xlg:h-[600px] flex-1 overflow-hidden">
+      <div>
+      <CommonTitle>How it works?</CommonTitle>
+      <div className="w-full xlg:h-[600px] flex-1 overflow-hidden">
             <img
               src={howitworksimg}
               alt="person-example"
               className=" xl:h-full w-full object-cover"
             />
           </div>
+      </div>
           {/* steps */}
           <div className="flex-1">
             {instructions.map((item, index) => (
@@ -51,16 +55,7 @@ const HowItWorks = () => {
             ))}
           </div>
 
-          <div className="flex gap-6 items-center">
-            {/* video player */}
-            <div className="relative bg-primaryBlue flex items-center justify-center h-[100px] w-[100px] rounded-full">
-              <VideoPlayerIcon className="absolute" />
-            </div>
-            {/* text */}
-            <div>
-              <h3 className="mt-2 text-textBlack font-bold">Watch a Video</h3>
-            </div>
-          </div>
+       
         </div>
       </CommonWrapper>
     </section>
