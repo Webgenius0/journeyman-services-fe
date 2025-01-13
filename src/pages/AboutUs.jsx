@@ -14,10 +14,10 @@ const AboutUs = () => {
         {/* top section */}
         <Topsection />
         {/* our story section */}
-        <div className="mt-[87px]">
+        <div className="mt-6 xl:mt-[87px]">
           <OurStory />
         </div>
-        <div className="py-[100px]">
+        <div className="py-10 xl:py-[100px]">
           <MissionVission />
         </div>
         <CoreValues/>

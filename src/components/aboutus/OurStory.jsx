@@ -2,12 +2,12 @@ import aboutusimg2 from "@/assets/about-us-img-2.png";
 const OurStory = () => {
     return (
         <div
-        className="flex items-center gap-8 bg-[#F5F7F9] rounded-3xl
- pt-[56px] pr-[42px] pb-[39px] pl-[47px]"
+        className="flex flex-col items-center gap-8 bg-[#F5F7F9] rounded-3xl p-4 
+ xl:pt-[56px] xl:pr-[42px] xl:pb-[39px] xl:pl-[47px]"
       >
         {/* content */}
-        <div className="w-[622px] space-y-[15px] ">
-          <h3 className="text-textGray font-bold leading-[38px] text-[32px]">
+        <div className="xl:w-[622px] space-y-[15px] ">
+          <h3 className="text-center xl:text-left text-textGray font-bold xl:leading-[38px] text-2xl xl:text-[32px]">
             Our Story
           </h3>
           <p className="text-textGrayV3 leading-[25px]">
@@ -35,7 +35,7 @@ const OurStory = () => {
           </p>
         </div>
         {/* img */}
-        <div className="w-[652px]">
+        <div className="xl:w-[652px]">
           <img src={aboutusimg2} alt="" className="rounded-[14px]" />
         </div>
       </div>

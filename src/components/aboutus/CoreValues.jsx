@@ -51,14 +51,14 @@ const CoreValues = () => {
   return (
     <div>
       <CommonTitle>Core Values</CommonTitle>
-      <p className="max-w-[640px] leading-[25px] mt-[15px]">
+      <p className="text-center xl:max-w-[640px] leading-[25px] mt-[15px]">
         Our core values form the foundation of who we are, guiding our
         decisions, actions, and interactions. These principles drive us to
         deliver excellence, inspire innovation, and create meaningful impact in
         everything we do.
       </p>
       <CommonWrapper>
-        <div className="grid grid-cols-3 gap-x-[114px] gap-y-[42px]">
+        <div className="grid grid-cols-1 xl:grid-cols-3 xl:gap-x-[114px] gap-4 xl:gap-y-[42px]">
           {coreValuesData.map((value, index) => (
             <CoreValueList
               key={index}
