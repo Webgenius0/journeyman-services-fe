@@ -65,7 +65,7 @@ const ContactForm = () => {
             </label>
             <textarea
               id="message"
-              className="mt-2 h-[152px] w-full rounded-md border border-[#4B586B] p-3 focus:outline-none"
+              className="mt-2 h-[152px] w-full rounded-md border border-[#B8B6B5] p-3 focus:outline-none"
             />
           </div>
           {/* Submit Button */}
