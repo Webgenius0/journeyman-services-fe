@@ -39,7 +39,7 @@ const Navbar = () => {
 
   return (
     <div className={` ${scrolled ? "bg-white" : "bg-transparent"}`}>
-      <div className="hidden xl:block flex justify-between container py-[26px] transition-all">
+      <div className="hidden xl:flex justify-between container py-[26px] transition-all">
         <Link to="/">
           <div>
             <img src={logo} alt="logo" />
