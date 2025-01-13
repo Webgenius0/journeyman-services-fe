@@ -6,15 +6,13 @@ import CommonTitle from "../common/CommonTitle";
 
 const ReviewComponent = ({ info }) => {
   return (
-    <div className="w-[424px] h-[260px] rounded-xl bg-white px-8 py-12 flex">
+    <div className="w-[300px] xl:w-[424px] xl:h-[260px] rounded-xl bg-white px-8 py-6 xl:py-12 flex">
       <div className="flex flex-col justify-center items-center gap-3">
         <div className="flex">
           {[1, 2, 3, 4, 5].map((item, index) => (
-            <span key={index}>
+            <span key={index} className="w-4 h-4 xl:w-6 xl:h-6">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
                 viewBox="0 0 17 17"
                 fill="none"
               >
@@ -26,7 +24,7 @@ const ReviewComponent = ({ info }) => {
             </span>
           ))}
         </div>
-        <p className="text-xl text-center leading-8 font-bold text-[#666260] max-w-[360px]">
+        <p className="text-sm xl:text-xl text-center xl:leading-8 font-bold text-[#666260] xl:max-w-[360px]">
           &quot;{info.description}&quot;
         </p>
       </div>

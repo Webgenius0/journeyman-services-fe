@@ -29,7 +29,7 @@ const HowItWorks = () => {
   return (
     <section>
       <CommonWrapper>
-        <div className="mt-4 flex flex-col xl:flex-row items-center gap-[150px]">
+        <div className="mt-4 flex flex-col xl:flex-row items-center gap-[60px] xl:gap-[150px]">
           {/* img */}
           <div>
             <CommonTitle>How it works?</CommonTitle>
