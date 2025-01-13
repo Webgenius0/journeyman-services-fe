@@ -26,7 +26,7 @@ const ReviewComponent = ({ info }) => {
           </span>
         ))}
    </div>
-         <p className="text-xl text-center leading-8 font-bold text-textGray max-w-[360px]">
+         <p className="text-xl text-center leading-8 font-bold text-[#666260] max-w-[360px]">
         &quot;{info.description}&quot;
       </p>
       </div>
