@@ -4,8 +4,24 @@ import CommonDropdownSelect from "@/components/common/CommonDropdownSelect";
 import CommonRadioButton from "../common/CommonRadioButton";
 import FlexibleInput from "../common/FlexibleInput";
 import QuestionIcon from "@/assets/Icons/QuestionIcon";
+import { useState } from "react";
+import CommonModal from "../common/CommonModal";
 
 const TravelDetails = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalData, setModalData] = useState(null);
+  const modalContent = [
+    {
+      title: "Standard Policy Activities",
+      content:
+        "This policy covers activities such as hiking, cycling, and swimming. Please refer to the full terms and conditions for more details.",
+    },
+    {
+      title: "Adventure Sports Policy",
+      content:
+        "This policy covers activities such as bungee jumping, paragliding, and rock climbing. Please refer to the full terms and conditions for more details.",
+    },
+  ];
   const {
     register,
     handleSubmit,
@@ -15,6 +31,15 @@ const TravelDetails = () => {
   const onSubmit = (data) => {
     console.log("Form Data:", data);
   };
+  const openModal = (content) => {
+    setModalData(content);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setModalData(null);
+  };
 
   return (
     <div className="mt-[14px]">
@@ -23,7 +48,10 @@ const TravelDetails = () => {
 
         {/* Country of Residence */}
         <div>
-          <CommonFieldWrapper label="Country of Residence">
+          <CommonFieldWrapper
+            label="Country of Residence"
+            modalContent={modalContent[0]}
+          >
             <CommonDropdownSelect
               options={[
                 { value: "option1", label: "Option 1" },
@@ -37,7 +65,10 @@ const TravelDetails = () => {
 
         {/* Insurance Type */}
         <div>
-          <CommonFieldWrapper label="Insurance Type">
+          <CommonFieldWrapper
+            label="Insurance Type"
+            modalContent={modalContent[0]}
+          >
             <CommonRadioButton
               options={[
                 { value: "light", label: "Annual multi-trip" },
@@ -51,7 +82,10 @@ const TravelDetails = () => {
 
         {/* Area of Travel */}
         <div>
-          <CommonFieldWrapper label="Area of travel">
+          <CommonFieldWrapper
+            label="Area of travel"
+            modalContent={modalContent[0]}
+          >
             <CommonRadioButton
               options={[
                 { value: "light", label: "Worldwide" },
@@ -148,7 +182,10 @@ const TravelDetails = () => {
           Click here to view activities covered in the &apos;standard&apos;
           policy{" "}
         </p>
-        <div className="bg-[#8CA2B4] h-6 w-6 rounded-full flex justify-center items-center">
+        <div
+          className="bg-[#8CA2B4] h-6 w-6 rounded-full flex justify-center items-center"
+          onClick={() => openModal(modalContent[0])}
+        >
           <QuestionIcon />
         </div>
       </div>
@@ -157,10 +194,18 @@ const TravelDetails = () => {
           Click here to view activities covered in the &apos;Adventure
           sports&apos; policy{" "}
         </p>
-        <div className="bg-[#8CA2B4] h-6 w-6 rounded-full flex justify-center items-center">
+        <div
+          className="bg-[#8CA2B4] h-6 w-6 rounded-full flex justify-center items-center"
+          onClick={() => openModal(modalContent[1])}
+        >
           <QuestionIcon />
         </div>
       </div>
+      <CommonModal
+        isOpen={isModalOpen}
+        content={modalData}
+        onClose={closeModal}
+      />
     </div>
   );
 };
