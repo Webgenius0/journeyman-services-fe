@@ -1,4 +1,5 @@
 import InsuranceDetails from "@/components/checkout/InsuranceDetails";
+import PartyDetails from "@/components/checkout/PartyDetails";
 import CommonPageTitle from "@/components/common/CommonPageTitle";
 import CommonWrapper from "@/components/common/CommonWrapper";
 
@@ -13,8 +14,9 @@ const CheckOut = () => {
         <p className="mt-3 leading-[25px]">
           Please enter the details of your party:
         </p>
-      </div>{" "}
-      <InsuranceDetails />{" "}
+      </div>
+      <InsuranceDetails />
+      <PartyDetails />
     </CommonWrapper>
   );
 };
