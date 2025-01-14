@@ -18,8 +18,8 @@ const DetailsField = ({ title }) => {
       onSubmit={handleSubmit(onSubmit)}
       className="border border-[#B8B6B5] rounded-[8px] p-5 xl:pt-[27px] xl:pb-[43px] xl:pr-[35px] xl:pl-[54px]"
     >
-      <h3 className="text-textBlackV2 leading-[25px] mb-3">{title}</h3>
-      <div className="grid grid-cols-1 xl:grid-cols-5 items-center gap-6 ">
+      <h3 className="text-textBlackV2 xl:leading-[25px] mb-3">{title}</h3>
+      <div className="grid grid-cols-1 md:grid-cols-2 xlg:grid-cols-3 2xl:grid-cols-5 items-center gap-6 ">
         <div>
           <CommonDropdownSelect
             options={[

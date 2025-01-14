@@ -23,20 +23,20 @@ const Footer = () => {
 
   const commonTitle = `font-inter text-lg xl:text-xl font-bold leading-7 text-white`;
 
-  const socialIconStyle = `block w-8 h-8`;
-
   return (
     <footer className="bg-primaryBlue">
       <div className="container pb-6 pt-6 lg:pt-12 xl:pt-[90px]">
-        <div className="flex w-full flex-col items-start justify-between gap-12 xlg:flex-row xlg:gap-[150px]">
+        <div className="flex w-full flex-col items-start justify-between gap-6 xlg:flex-row xlg:gap-[150px]">
           {/* logo */}
           <div className="space-y-4 xlg:max-w-[340px]">
-            <Link to="/" className="block ">
-              <img
-                src={logo}
-                alt="main-logo"
-                className="h-full w-full object-contain"
-              />
+            <Link to="/" className="block">
+              <div className="w-full">
+                <img
+                  src={logo}
+                  alt="main-logo"
+                  className="w-48 lg:w-60 xlg:w-full h-auto object-contain"
+                />
+              </div>
             </Link>
 
             <p className="text-sm leading-6 text-white xlg:text-base">
@@ -46,6 +46,7 @@ const Footer = () => {
               experience seamless, efficient, and incredibly effective.
             </p>
           </div>
+
           {/* other links */}
           {footerLinks.map((item, index) => (
             <div key={index}>

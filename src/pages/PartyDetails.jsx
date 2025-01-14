@@ -43,22 +43,22 @@ const PartyDetails = () => {
     <CommonWrapper>
       <CommonPageTitle>Online travel insurance</CommonPageTitle>
       <div className="mt-[14.4px]">
-        <h3 className="text-lg font-bold text-textBlack leading-[30px]">
+        <h3 className="text-center xl:text-left text-lg font-bold text-textBlack xl:leading-[30px]">
           Party Details
         </h3>
-        <p className="mt-3 leading-[25px]">
+        <p className="text-center xl:text-left mt-3 xl:leading-[25px]">
           Please enter the details of your party:
         </p>
       </div>
       <div>
-        <h3 className="mb-3 mt-8 text-lg font-bold">Adults</h3>
+        <h3 className="mb-3 mt-6 xl:mt-8 xlg:text-lg font-bold">Adults</h3>
         <DetailsField title="Adult 1" />
       </div>
       <div className="mt-4">
         <DetailsField title="Adult 2" />
       </div>
       <div className="mt-8">
-        <h3 className="mb-3 mt-8 text-lg font-bold">Childrens</h3>
+        <h3 className="mb-3 mt-8 xl:text-lg font-bold">Childrens</h3>
         <DetailsField title="Children 1" />
       </div>
       <div className="mt-4">
@@ -66,7 +66,7 @@ const PartyDetails = () => {
       </div>
       {/* residentital address */}
       <div className="mt-6 xl:mt-[130px]">
-        <h3 className="text-lg font-bold leading-[30px] mb-[6px]">
+        <h3 className="xlg:text-lg font-bold xl:leading-[30px] mb-[6px]">
           Current residentital address
         </h3>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -80,10 +80,10 @@ const PartyDetails = () => {
               validation={{
                 required: "Start date is required",
               }}
-              width="w-[300px]"
+              width="xl:w-[300px]"
             />
           </div>
-          <div className="mt-[26px]">
+          <div className="mt-3 xl:mt-[26px]">
             <FlexibleInput
               label="Address 2"
               type="text"
@@ -93,10 +93,10 @@ const PartyDetails = () => {
               validation={{
                 required: "Start date is required",
               }}
-              width="w-[300px]"
+              width="xl:w-[300px]"
             />
           </div>
-          <div className="mt-[26px]">
+          <div className="mt-3 xl:mt-[26px]">
             <FlexibleInput
               label="Town/City"
               type="text"
@@ -106,10 +106,10 @@ const PartyDetails = () => {
               validation={{
                 required: "Start date is required",
               }}
-              width="w-[300px]"
+              width="xl:w-[300px]"
             />
           </div>
-          <div className="mt-[26px]">
+          <div className="mt-3 xl:mt-[26px]">
             <FlexibleInput
               label="Country/Region"
               type="text"
@@ -119,10 +119,10 @@ const PartyDetails = () => {
               validation={{
                 required: "Start date is required",
               }}
-              width="w-[300px]"
+              width="xl:w-[300px]"
             />
           </div>
-          <div className="mt-[26px]">
+          <div className="mt-3 xl:mt-[26px]">
             <FlexibleInput
               label="Post/Zip code"
               type="text"
@@ -132,10 +132,10 @@ const PartyDetails = () => {
               validation={{
                 required: "Start date is required",
               }}
-              width="w-[300px]"
+              width="xl:w-[300px]"
             />
           </div>
-          <div className="mt-[26px]">
+          <div className="mt-3 xl:mt-[26px]">
             <FlexibleInput
               label="Post/Zip code"
               type="text"
@@ -145,10 +145,10 @@ const PartyDetails = () => {
               validation={{
                 required: "Start date is required",
               }}
-              width="w-[300px]"
+              width="xl:w-[300px]"
             />
           </div>
-          <div className="mt-[26px]">
+          <div className="mt-3 xl:mt-[26px]">
             <FlexibleInput
               label="Post/Zip code"
               type="text"
@@ -158,10 +158,10 @@ const PartyDetails = () => {
               validation={{
                 required: "Start date is required",
               }}
-              width="w-[300px]"
+              width="xl:w-[300px]"
             />
           </div>
-          <div className="mt-[26px]">
+          <div className="mt-3 xl:mt-[26px]">
             <FlexibleInput
               label="Address 1"
               type="text"
@@ -171,7 +171,7 @@ const PartyDetails = () => {
               validation={{
                 required: "Start date is required",
               }}
-              width="w-[300px]"
+              width="xl:w-[300px]"
               underText='If you do not have a post/zip code, please enter "0000" '
             />
           </div>
@@ -237,9 +237,11 @@ const PartyDetails = () => {
               <QuestionIcon />
             </div>
           </div>
-          <CommonButton linkUrl="/checkout" className="py-3 px-7 mt-[53px]">
+         <div className="flex justify-center xl:justify-normal">
+         <CommonButton linkUrl="/checkout" className="py-3 px-7 mt-[53px]">
             Continue
           </CommonButton>
+         </div>
         </form>
         <FaqPdf />
       </div>
