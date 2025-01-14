@@ -65,7 +65,7 @@ const PartyDetails = () => {
         <DetailsField title="Children 2" />
       </div>
       {/* residentital address */}
-      <div className="mt-[130px]">
+      <div className="mt-6 xl:mt-[130px]">
         <h3 className="text-lg font-bold leading-[30px] mb-[6px]">
           Current residentital address
         </h3>
@@ -176,14 +176,14 @@ const PartyDetails = () => {
             />
           </div>
           {/* policies */}
-          <div className="py-[26px]">
+          <div className="py-4 xl:py-[26px]">
             <h3 className="text-textBlackV2">
               Please read the{" "}
               <span className="underline">Key Facts document</span>,{" "}
               <span className="underline">Policy Wording (USD)</span> and{" "}
               <span className="underline">Terms of Business</span>, as we intend
               to rely on you having read this information.
-              <ul className="list-disc pl-6 leading-[25px] text-textBlackV2">
+              <ul className="text-sm xl:text-base list-disc pl-4 xl:pl-6 xl:leading-[25px] text-textBlackV2">
                 <li>
                   I confirm that the answers in any proposal and declaration for
                   this insurance are true and complete to the best of my

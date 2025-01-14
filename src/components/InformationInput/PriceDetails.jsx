@@ -2,7 +2,7 @@ import CommonButton from "../common/CommonButton";
 
 const PriceDetails = () => {
   return (
-    <div className="max-w-[400px]">
+    <div className="xl:max-w-[400px]">
       {/* quote */}
       <div className="mt-[30px] border border-[#8CA2B4] py-[21px] px-[21px] rounded-[5px]  max-h-[200px]">
         <h3 className="xl:text-lg font-bold text-textBlackV2 xl:leading-[30px] border-b border-[#8CA2B4] text-center mb-[7px]">
@@ -18,7 +18,7 @@ const PriceDetails = () => {
         </ul>
       </div>
       {/* price details */}
-      <div className="mt-4 xl:mt-[30px] border border-[#8CA2B4] py-[21px] px-[21px] rounded-[5px] min-w-[400px]">
+      <div className="mt-4 xl:mt-[30px] border border-[#8CA2B4] py-[21px] px-[21px] rounded-[5px] xl:min-w-[400px]">
         <h3 className="xl:text-lg font-bold text-textBlackV2 xl:leading-[30px] border-b border-[#8CA2B4] text-center mb-[26px]">
           Price Details
         </h3>

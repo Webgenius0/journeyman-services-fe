@@ -16,10 +16,10 @@ const DetailsField = ({ title }) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="border border-[#B8B6B5] rounded-[8px] pt-[27px] pb-[43px] pr-[35px] pl-[54px]"
+      className="border border-[#B8B6B5] rounded-[8px] p-5 xl:pt-[27px] xl:pb-[43px] xl:pr-[35px] xl:pl-[54px]"
     >
       <h3 className="text-textBlackV2 leading-[25px] mb-3">{title}</h3>
-      <div className="grid grid-cols-5 items-center gap-6 ">
+      <div className="grid grid-cols-1 xl:grid-cols-5 items-center gap-6 ">
         <div>
           <CommonDropdownSelect
             options={[
