@@ -1,13 +1,16 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import EditProfileIcon from "@/assets/Icons/EditProfileIcon";
 import profilepic from "../../assets/dp.png";
 import FormInput from "../common/FormInput";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import CommonDropdownSelect from "@/components/common/CommonDropdownSelect";
 import toast from "react-hot-toast";
 import PasswordContainer from "./PasswordContainer";
-const  ProfileInfo = () => {
+
+const ProfileInfo = () => {
+  const [uploadedImage, setUploadedImage] = useState(profilepic);
   const {
+    control,
     register,
     handleSubmit,
     formState: { errors },
@@ -15,10 +18,10 @@ const  ProfileInfo = () => {
 
   const onSubmit = (data) => {
     console.log("Form Data:", data);
-    toast.success("Profile updated succesfully!");
+    toast.success("Profile updated successfully!");
   };
 
-  const gender = [
+  const genderOptions = [
     { label: "Male", value: "male" },
     { label: "Female", value: "female" },
   ];
@@ -29,14 +32,20 @@ const  ProfileInfo = () => {
     fileInputRef.current.click();
   };
 
-  
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const objectUrl = URL.createObjectURL(file);
+      setUploadedImage(objectUrl);
+    }
+  };
 
   return (
-    <div className="">
+    <div className="p-6 xl:p-10">
       <div className="flex flex-col items-center xl:items-start">
-        {/* Profile picture */}
+        {/* Profile Picture */}
         <img
-          src={profilepic}
+          src={uploadedImage}
           alt="Profile"
           className="h-20 w-20 cursor-pointer rounded-full object-cover xl:h-32 xl:w-32"
           onClick={handleFileInputClick}
@@ -45,17 +54,18 @@ const  ProfileInfo = () => {
         <input
           ref={fileInputRef}
           type="file"
-          className="opacity-0"
-          onChange={(e) => console.log(e.target.files[0])}
+          className="hidden"
+          accept="image/*"
+          onChange={handleFileChange}
         />
 
-        {/* Edit icon */}
-        <div className="flex items-center gap-8">
+        {/* Edit Icon */}
+        <div className="flex items-center gap-8 mt-4">
           <div>
             <h2 className="text-xl font-bold lg:text-2xl xl:text-[32px]">
               Adam Smith
             </h2>
-            <p className="text-sm text-textGray xl:text-base">
+            <p className="text-sm text-gray-500 xl:text-base">
               Member Since June 2024
             </p>
           </div>
@@ -65,99 +75,91 @@ const  ProfileInfo = () => {
         </div>
       </div>
 
-      {/* Change details form */}
-      <div className="mt-6 xlg:mt-10 xl:mt-[60px]">
+      {/* Change Details Form */}
+      <div className="mt-8 xl:mt-12">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="grid gap-2 gap-y-2 xlg:grid-cols-2 xlg:gap-8 xlg:gap-y-[32px] xl:grid-cols-3 xl:gap-x-[60px]">
-            {/* Name */}
-            <div>
-              <FormInput
-                label="Full Name"
-                type="text"
-                placeholder="Enter name"
-                register={register}
-                name="name"
-                error={errors.name}
-                validation={{
-                  required: "Name is required",
-                }}
-                bgColor="bg-transparent"
-              />
-            </div>
+          <div className="grid gap-4 xl:gap-8 xl:grid-cols-3">
+            {/* Full Name */}
+            <FormInput
+              label="Full Name"
+              type="text"
+              placeholder="Enter your name"
+              register={register}
+              name="name"
+              error={errors.name}
+              validation={{
+                required: "Name is required",
+              }}
+            />
 
             {/* Gender */}
             <div>
-              <label htmlFor="gender" className="mb-3 block font-bold">
-                Gender
-              </label>
               <CommonDropdownSelect
-                value="gender"
-                options={gender}
+                control={control}
+                name="gender"
+                options={genderOptions}
                 placeholder="Select Gender"
-                className="w-full"
-                {...register("gender", { required: "Gender is required" })}
+                label="Gender"
               />
               {errors.gender && (
-                <span className="text-sm text-red-500">
-                  {errors.gender.message}
-                </span>
+                <p className="text-sm text-red-500">{errors.gender.message}</p>
               )}
             </div>
 
             {/* Age */}
-            <div>
-              <FormInput
-                label="Age"
-                type="number"
-                placeholder="Enter Age"
-                register={register}
-                name="age"
-                error={errors.age}
-                validation={{
-                  required: "Age is required",
-                }}
-                bgColor="bg-transparent"
-              />
-            </div>
+            <FormInput
+              label="Age"
+              type="number"
+              placeholder="Enter your age"
+              register={register}
+              name="age"
+              error={errors.age}
+              validation={{
+                required: "Age is required",
+                min: { value: 1, message: "Age must be at least 1" },
+              }}
+            />
 
-            {/* Phone number */}
-            <div>
-              <FormInput
-                label="Phone Number"
-                type="number"
-                placeholder="Enter phone number"
-                register={register}
-                name="phone"
-                error={errors.phone}
-                validation={{
-                  required: "Phone number is required",
-                }}
-                bgColor="bg-transparent"
-              />
-            </div>
+            {/* Phone Number */}
+            <FormInput
+              label="Phone Number"
+              type="tel"
+              placeholder="Enter phone number"
+              register={register}
+              name="phone"
+              error={errors.phone}
+              validation={{
+                required: "Phone number is required",
+                pattern: {
+                  value: /^[0-9]{10,15}$/,
+                  message: "Invalid phone number format",
+                },
+              }}
+            />
 
             {/* Email */}
-            <div>
-              <FormInput
-                label="Email"
-                type="email"
-                placeholder="Enter email"
-                register={register}
-                name="email"
-                error={errors.email}
-                validation={{
-                  required: "Email is required",
-                }}
-                bgColor="bg-transparent"
-              />
-            </div>
+            <FormInput
+              label="Email"
+              type="email"
+              placeholder="Enter your email"
+              register={register}
+              name="email"
+              error={errors.email}
+              validation={{
+                required: "Email is required",
+                pattern: {
+                  value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                  message: "Invalid email format",
+                },
+              }}
+            />
           </div>
 
-          {/* Submit button for basic info */}
-          <div className="flex justify-center mt-6 xlg:mt-10 xl:mt-[60px]">
+          {/* Save Changes Button */}
+          <div className="flex justify-center mt-8 xl:mt-12">
             <button
               type="submit"
-              className="rounded-[32px] bg-[#101111] px-5 py-4 text-white"
+              className="rounded-3xl bg-black px-6 py-3 text-white hover:bg-gray-800"
             >
               Save Changes
             </button>
@@ -165,7 +167,8 @@ const  ProfileInfo = () => {
         </form>
       </div>
 
-     <PasswordContainer/>
+      {/* Password Change Section */}
+      <PasswordContainer />
     </div>
   );
 };

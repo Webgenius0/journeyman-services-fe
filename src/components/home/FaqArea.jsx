@@ -73,7 +73,7 @@ const FaqArea = () => {
               </CommonButton>
             </div>
           </div>
-          <div className="mx-auto h-full 2xl:min-w-[500px] lg:h-[600px] xl:h-[500px] xlg:w-full xlg:flex-1">
+          <div className="mx-auto h-full 2xl:min-w-[500px] h-[400px] lg:h-[600px] xl:h-[500px] xlg:w-full xlg:flex-1">
             <img
               src={bannerImg}
               alt="faq-banner-image"

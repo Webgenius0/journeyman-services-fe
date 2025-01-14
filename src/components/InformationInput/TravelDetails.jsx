@@ -183,7 +183,7 @@ const TravelDetails = () => {
           policy{" "}
         </p>
         <div
-          className="bg-[#8CA2B4] h-6 w-6 rounded-full flex justify-center items-center"
+          className="bg-[#8CA2B4] h-6 w-6 rounded-full flex justify-center items-center cursor-pointer"
           onClick={() => openModal(modalContent[0])}
         >
           <QuestionIcon />
@@ -195,7 +195,7 @@ const TravelDetails = () => {
           sports&apos; policy{" "}
         </p>
         <div
-          className="bg-[#8CA2B4] h-6 w-6 rounded-full flex justify-center items-center"
+          className="bg-[#8CA2B4] h-6 w-6 rounded-full flex justify-center items-center cursor-pointer"
           onClick={() => openModal(modalContent[1])}
         >
           <QuestionIcon />
