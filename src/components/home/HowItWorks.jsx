@@ -33,7 +33,7 @@ const HowItWorks = () => {
           {/* img */}
           <div>
             <CommonTitle>How it works?</CommonTitle>
-            <div className="xlg:h-[400px] xl:h-[600px] flex-1 overflow-hidden">
+            <div className="lg:h-[400px] xl:h-[600px] flex-1 overflow-hidden mt-4 xl:mt-0">
               <img
                 src={howitworksimg}
                 alt="person-example"

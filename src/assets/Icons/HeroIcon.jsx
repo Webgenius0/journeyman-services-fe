@@ -1,6 +1,6 @@
 const HeroIcon = () => {
   return (
-    <div className="w-[76px] h-[76px]">
+    <div className="w-10 h-10 xl:w-[76px] xl:h-[76px]">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 76 76" fill="none">
         <circle cx="38" cy="38" r="37.5" fill="#B2C0CD" />
         <path

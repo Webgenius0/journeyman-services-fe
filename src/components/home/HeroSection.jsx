@@ -13,7 +13,7 @@ const HeroSection = () => {
     <CommonWrapper>
       <div className="flex flex-col xlg:flex-row xlg:items-center 2xl:items-start gap-[60px] 2xl:gap-[202px]">
         {/* left side area with content */}
-        <div className="max-w-[546px]">
+        <div className="w-full xlg:max-w-[546px]">
           <div className="flex justify-center xl:justify-start gap-4 items-center">
             <h3 className="font-medium text-textBlack">Fast</h3>
             <span className="w-2 h-2 bg-[#1A1511] rounded-full"></span>
@@ -29,16 +29,23 @@ const HeroSection = () => {
             and affordable.
           </p>
           <div className="mt-4 xl:mt-[60px] flex justify-center xl:block">
-            <CommonButton linkUrl="/information-input" className="py-3 px-7" icon={<PlaneIcon />}>Get a quote now</CommonButton>
+            <CommonButton
+              linkUrl="/information-input"
+              className="py-3 px-7"
+              icon={<PlaneIcon />}
+            >
+              Get a quote now
+            </CommonButton>
           </div>
           {/* user img */}
-          <div className="mt-6 xl:mt-[147px] flex flex-col xl:flex-row items-center gap-6 xl:gap-[60px]">
-            <div className="xl:min-w-[312px]">
+          <div className="mt-6 xl:mt-[147px] flex flex-col jus xl:flex-row items-center gap-6 xl:gap-[60px]">
+            <div className="xl:min-w-[312px] flex flex-col items-center xlg:block">
               <div>
                 <img src={usersimg} alt="users" />
               </div>
               <p className="text-textBlack mt-4 font-medium">
-                300+ Booking Confirmed <br className="hidden xl:block" /> for this Week
+                300+ Booking Confirmed <br className="hidden xl:block" /> for
+                this Week
               </p>
             </div>
             {/* icon */}
@@ -49,7 +56,7 @@ const HeroSection = () => {
         </div>
 
         {/* right side img */}
-        <div className="flex items-center gap-6">
+        <div className="flex xlg:items-center gap-6">
           {/* left imgs */}
           <div>
             {/* first and second */}
