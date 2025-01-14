@@ -58,7 +58,7 @@ const CoreValues = () => {
         everything we do.
       </p>
       <CommonWrapper>
-        <div className="grid grid-cols-1 xl:grid-cols-3 xl:gap-x-[114px] gap-4 xl:gap-y-[42px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3 xl:gap-x-[114px] gap-4 xl:gap-y-[42px]">
           {coreValuesData.map((value, index) => (
             <CoreValueList
               key={index}

@@ -36,7 +36,7 @@ const OurStory = () => {
       </div>
       {/* img */}
       <div className="xl:w-[652px]">
-        <img src={aboutusimg2} alt="" className="rounded-[14px]" />
+        <img src={aboutusimg2} alt="about-us" className="rounded-[14px]" />
       </div>
     </div>
   );

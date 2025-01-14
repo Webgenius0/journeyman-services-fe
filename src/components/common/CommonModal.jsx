@@ -12,8 +12,12 @@ const CommonModal = ({ isOpen, onClose, content }) => {
         >
           <CrossIcon />
         </div>
-        <h3 className="text-xl font-semibold mb-4 text-center xl:text-left">{content.title}</h3>
-        <p className="text-sm xl:text-base text-center xl:text-left">{content.content}</p>
+        <h3 className="text-xl font-semibold mb-4 text-center xl:text-left">
+          {content.title}
+        </h3>
+        <p className="text-sm xl:text-base text-center xl:text-left">
+          {content.content}
+        </p>
       </div>
     </div>
   );

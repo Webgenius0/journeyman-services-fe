@@ -1,6 +1,6 @@
 const MissionVission = () => {
   return (
-    <div className="flex flex-col xl:flex-row gap-6 xl:gap-[130px]">
+    <div className="flex flex-col lg:flex-row gap-6 xl:gap-[130px]">
       {/* mission */}
       <div>
         <h3 className=" text-center xl:text-left text-2xl xl:text-[36px] text-textGray xl:leading-[44px] mb-2 xl:mb-[15px] font-bold">

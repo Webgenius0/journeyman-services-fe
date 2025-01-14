@@ -1,9 +1,9 @@
 import aboutusimg1 from "@/assets/about-us-img-1.png";
 const Topsection = () => {
   return (
-    <div className="flex flex-col xl:flex-row gap-8">
+    <div className="flex flex-col xlg:flex-row gap-8">
       {/* img */}
-      <div className="w-full xl:w-[652px]">
+      <div className="w-full lg:w-[652px] mx-auto">
         <img src={aboutusimg1} alt="" className="rounded-[14px]" />
       </div>
       {/* content */}
