@@ -7,8 +7,12 @@ import heroimg1 from "../../assets/hero-img-1.png";
 import heroimg2 from "../../assets/hero-img-2.png";
 import heroimg3 from "../../assets/hero-img-3.png";
 import EarthIcon from "@/assets/Icons/EarthIcon";
+import useFetchData from "@/hooks/api/useFetchData";
 
 const HeroSection = () => {
+  const { data } = useFetchData("/home");
+  console.log(data);
+
   return (
     <CommonWrapper>
       <div className="flex flex-col xlg:flex-row xlg:items-center 2xl:items-start gap-[60px] 2xl:gap-[202px]">
