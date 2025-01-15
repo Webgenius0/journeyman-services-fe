@@ -17,11 +17,7 @@ const Navbar = () => {
     {
       pathName: "Contact us",
       linkUrl: "/contact",
-    },
-    {
-      pathName: "Sign in",
-      linkUrl: "/signin",
-    },
+    }
   ];
 
   useEffect(() => {

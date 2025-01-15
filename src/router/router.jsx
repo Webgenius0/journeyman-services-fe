@@ -41,10 +41,6 @@ const router = createBrowserRouter([
         element: <PrivacyStatement />,
       },
       {
-        path: "signin",
-        element: <Signin />,
-      },
-      {
         path: "/information-input",
         element: <InformationInput />,
       },
@@ -55,7 +51,7 @@ const router = createBrowserRouter([
       {
         path: "/checkout",
         element: <CheckOut />,
-      }
+      },
     ],
   },
 ]);
