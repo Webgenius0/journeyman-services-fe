@@ -15,6 +15,10 @@ const Home = () => {
   const howitworksImage = data?.data?.cms?.how_it_work.image;
   const howitworksData = data?.data?.cms?.how_it_works;
   const reviews = data?.data?.cms?.testimonial;
+  const faq = data?.data?.cms?.faq;
+  const faqList = data?.data?.cms?.faqs;
+  const quote = data?.data?.cms?.home_qoute;
+
 
   if (isLoading) return <LoadingComponent />;
   return (
@@ -26,8 +30,8 @@ const Home = () => {
       <Services marqueesData={marqueesData} />
       <HowItWorks howitworksImage={howitworksImage} howitworksData={howitworksData} />
       <TestimonialArea reviews={reviews} />
-      <FaqArea />
-      <TrustSection />
+      <FaqArea faq={faq} faqList={faqList} />
+      <TrustSection quote={quote} />
     </div>
   );
 };

@@ -10,39 +10,14 @@ import CommonTitle from "../common/CommonTitle";
 import CommonButton from "../common/CommonButton";
 import PlaneIcon from "@/assets/Icons/PlaneIcon";
 
-const FaqArea = () => {
-  const faqList = [
-    {
-      question: "What is travel insurance, and why do I need it?",
-      answer:
-        "Travel insurance provides financial protection during your trips. It covers unexpected events like medical emergencies, trip cancellations, or lost belongings, ensuring peace of mind while traveling.",
-    },
-    {
-      question: "How is my insurance quote calculated?",
-      answer:
-        "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its. The point of using Lorem Ipsum is that it has a more-or-less normal distribution",
-    },
-    {
-      question: "Can I purchase insurance for multiple travelers at once?",
-      answer:
-        "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its. The point of using Lorem Ipsum is that it has a more-or-less normal distribution",
-    },
-    {
-      question: "How do I pay for my policy?",
-      answer:
-        "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its. The point of using Lorem Ipsum is that it has a more-or-less normal distribution",
-    },
-  ];
-
+const FaqArea = ({ faqList, faq }) => {
   return (
     <section>
       <CommonWrapper>
         <div className="flex flex-col xlg:flex-row gap-[60px] xl:gap-[120px]">
           <div className="2xl:min-w-[725px]">
             <div className="w-full space-y-8 flex-1">
-              <CommonTitle>
-                Frequently <br className="hidden xlg:inline" /> Asked Questions
-              </CommonTitle>
+              <CommonTitle>{faq.title}</CommonTitle>
 
               <div>
                 <Accordion type="single" collapsible className="space-y-3">
@@ -53,10 +28,10 @@ const FaqArea = () => {
                       className="border-b-0"
                     >
                       <AccordionTrigger className="rounded-[6px] bg-[#E6EBEF] px-3 xlg:px-6 py-2 xlg:py-4 text-sm xlg:text-lg font-semibold leading-6 hover:no-underline">
-                        {item.question}
+                        {item.title}
                       </AccordionTrigger>
                       <AccordionContent className="mt-4 rounded-[6px] bg-white p-7 text-base leading-6 text-textGray">
-                        {item.answer}
+                        {item.description}
                       </AccordionContent>
                     </AccordionItem>
                   ))}
@@ -75,7 +50,7 @@ const FaqArea = () => {
           </div>
           <div className="mx-auto h-full 2xl:min-w-[500px] sm:h-[400px] md:h-[450px] lg:h-[600px] xl:h-[500px] xlg:w-full xlg:flex-1">
             <img
-              src={bannerImg}
+              src={faq.image}
               alt="faq-banner-image"
               className="h-full w-full object-cover rounded-3xl"
             />
