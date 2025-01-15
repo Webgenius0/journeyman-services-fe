@@ -12,7 +12,8 @@ const Home = () => {
   const heroSectionData = data?.data?.cms?.home_banner;
   const bannerImages = data?.data?.cms?.home_banners || [];
   const marqueesData = data?.data?.cms?.home_marquee;
-
+  const howitworksImage = data?.data?.cms?.how_it_work.image;
+  const howitworksData = data?.data?.cms?.how_it_works;
   if (isLoading) return <LoadingComponent />;
   return (
     <div>
@@ -21,7 +22,7 @@ const Home = () => {
         bannerImages={bannerImages}
       />
       <Services marqueesData={marqueesData} />
-      <HowItWorks />
+      <HowItWorks howitworksImage={howitworksImage} howitworksData={howitworksData} />
       <TestimonialArea />
       <FaqArea />
       <TrustSection />
