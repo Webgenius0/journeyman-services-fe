@@ -1,4 +1,4 @@
-import React from "react";
+
 import CommonButton from "../common/CommonButton";
 import CommonWrapper from "../common/CommonWrapper";
 import usersimg from "../../assets/users.png";
