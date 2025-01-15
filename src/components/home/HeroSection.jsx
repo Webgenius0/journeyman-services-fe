@@ -8,7 +8,7 @@ import EarthIcon from "@/assets/Icons/EarthIcon";
 
 const HeroSection = ({ heroSectionData, bannerImages }) => {
   console.log(heroSectionData, bannerImages);
-  
+
   return (
     <CommonWrapper>
       <div className="flex flex-col xlg:flex-row xlg:items-center 2xl:items-start gap-[60px] 2xl:gap-[202px]">

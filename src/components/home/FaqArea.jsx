@@ -50,7 +50,7 @@ const FaqArea = ({ faqList, faq }) => {
           </div>
           <div className="mx-auto h-full 2xl:min-w-[500px] sm:h-[400px] md:h-[450px] lg:h-[600px] xl:h-[500px] xlg:w-full xlg:flex-1">
             <img
-              src={faq.image}
+              src={faq?.image}
               alt="faq-banner-image"
               className="h-full w-full object-cover rounded-3xl"
             />
