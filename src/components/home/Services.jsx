@@ -8,47 +8,25 @@ const ReviewComponent = ({ info }) => {
         <FlowerIcon />
       </div>
       <div>
-        <h3 className="text-sm md:text-base xlg:text-[20px] leading-6 text-white">{info.title}</h3>
+        <h3 className="text-sm md:text-base xlg:text-[20px] leading-6 text-white">
+          {info.title}
+        </h3>
       </div>
     </div>
   );
 };
 
-const Services = () => {
-  const reviews = [
-    {
-      title: "Affordable Plans for Individuals, Couples, and Families",
-    },
-    {
-      title: "Instant Policy Confirmation",
-    },
-    {
-      title: "Peace of Mind While Traveling",
-    },
-    {
-      title: "Instant Policy Confirmation",
-    },
-    {
-      title: "Affordable Plans for Individuals, Couples, and Families",
-    },
-    {
-      title: "Peace of Mind While Traveling",
-    },
-    {
-      title: "Instant Policy Confirmation",
-    },
-  ];
-
+const Services = ({ marqueesData }) => {
   return (
     <CommonWrapper noContainer>
       <div className="bg-primaryBlue bg-cover bg-center">
-          <Marquee>
-            <div className="mx-6 flex items-center gap-6">
-              {reviews.map((item, index) => (
-                <ReviewComponent key={index} info={item} />
-              ))}
-            </div>
-          </Marquee>
+        <Marquee>
+          <div className="mx-6 flex items-center gap-6">
+            {marqueesData.map((item, index) => (
+              <ReviewComponent key={index} info={item} />
+            ))}
+          </div>
+        </Marquee>
       </div>
     </CommonWrapper>
   );

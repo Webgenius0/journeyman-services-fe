@@ -1,22 +1,14 @@
+import React from "react";
 import CommonButton from "../common/CommonButton";
 import CommonWrapper from "../common/CommonWrapper";
 import usersimg from "../../assets/users.png";
 import HeroIcon from "../../assets/Icons/HeroIcon";
 import PlaneIcon from "@/assets/Icons/PlaneIcon";
 import EarthIcon from "@/assets/Icons/EarthIcon";
-import useFetchData from "@/hooks/api/useFetchData";
-import LoadingComponent from "../loaders/LoadingComponent";
 
-const HeroSection = () => {
-  const { data, isLoading } = useFetchData("/home");
-  const info = data?.data?.cms?.home_banner;
-  const bannerImages = data?.data?.cms?.home_banners || [];
-
-  console.log(info);
-  console.log("bannerimages", bannerImages);
-
-  if (isLoading) return <LoadingComponent />;
-
+const HeroSection = ({ heroSectionData, bannerImages }) => {
+  console.log(heroSectionData, bannerImages);
+  
   return (
     <CommonWrapper>
       <div className="flex flex-col xlg:flex-row xlg:items-center 2xl:items-start gap-[60px] 2xl:gap-[202px]">
@@ -30,22 +22,22 @@ const HeroSection = () => {
             <h3 className="font-medium text-textBlack">Affordable</h3>
           </div>
           <h3 className="mt-4 xl:mt-0 text-2xl xl:text-6xl text-center xl:text-left text-textBlack font-bold xl:leading-[85px] mb-4">
-            {info?.title}
+            {heroSectionData?.title || "Default Title"}
           </h3>
           <p className="text-textBlackV2 text-center xl:text-left xl:max-w-[330px]">
-            {info?.description}
+            {heroSectionData?.description || "Default description text."}
           </p>
           <div className="mt-4 xl:mt-[60px] flex justify-center xl:block">
             <CommonButton
-              linkUrl="/information-input"
+              linkUrl={heroSectionData?.btn_link || "#"}
               className="py-3 px-7"
               icon={<PlaneIcon />}
             >
-              {info?.btn_text || "Learn More"}
+              {heroSectionData?.btn_text || "Learn More"}
             </CommonButton>
           </div>
           {/* User img */}
-          <div className="mt-6 xl:mt-[147px] flex flex-col jus xl:flex-row items-center gap-6 xl:gap-[60px]">
+          <div className="mt-6 xl:mt-[147px] flex flex-col xl:flex-row items-center gap-6 xl:gap-[60px]">
             <div className="xl:min-w-[312px] flex flex-col items-center xlg:block">
               <div>
                 <img src={usersimg} alt="users" />
@@ -66,16 +58,14 @@ const HeroSection = () => {
         <div className="flex xlg:items-center gap-6">
           {bannerImages.map((image, index) => (
             <div key={index}>
+              {/* Top two images */}
               <div>
-                {/* First and second */}
-                <div>
-                  <img src={image} alt="" className="rounded-2xl" />
-                </div>
+                <img src={image} alt="" className="rounded-2xl" />
                 <div className="mt-6">
                   <img src={image} alt="" className="rounded-2xl" />
                 </div>
               </div>
-              {/* Right img */}
+              {/* Bottom image */}
               <div>
                 <div className="bg-[#E6EBEF] flex justify-center gap-2 items-center px-7 py-3 rounded-3xl mb-6">
                   <EarthIcon />
@@ -88,8 +78,6 @@ const HeroSection = () => {
             </div>
           ))}
         </div>
-
-        {/* Right side images */}
       </div>
     </CommonWrapper>
   );
