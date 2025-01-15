@@ -8,11 +8,13 @@ import heroimg2 from "../../assets/hero-img-2.png";
 import heroimg3 from "../../assets/hero-img-3.png";
 import EarthIcon from "@/assets/Icons/EarthIcon";
 import useFetchData from "@/hooks/api/useFetchData";
+import LoadingComponent from "../loaders/LoadingComponent";
 
 const HeroSection = () => {
-  const { data } = useFetchData("/home");
-  console.log(data);
-
+  const { data, isLoading } = useFetchData("/home");
+  const info = data?.data?.cms.home_banner;
+  console.log(info);
+  if (isLoading) return <LoadingComponent />;
   return (
     <CommonWrapper>
       <div className="flex flex-col xlg:flex-row xlg:items-center 2xl:items-start gap-[60px] 2xl:gap-[202px]">
@@ -29,8 +31,7 @@ const HeroSection = () => {
             Travel Insurance Instantly
           </h3>
           <p className="text-textBlackV2 text-center xl:text-left xl:max-w-[330px]">
-            Protect your journey with comprehensive coverage. Fast, reliable,
-            and affordable.
+            {info?.description}
           </p>
           <div className="mt-4 xl:mt-[60px] flex justify-center xl:block">
             <CommonButton

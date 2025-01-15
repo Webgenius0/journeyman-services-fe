@@ -10,10 +10,8 @@ const useFetchData = (path) => {
   };
 
   const { data, error, isLoading, isError } = useQuery({
-    queryKey: [path], // Query key as an array
-    queryFn: fetchData, // Query function
-    retry: 2, // Optional: Number of retries on failure
-    staleTime: 30000, // Optional: Cache stale time
+    queryKey: [path],
+    queryFn: fetchData, 
   });
 
   return { data, error, isLoading, isError };
