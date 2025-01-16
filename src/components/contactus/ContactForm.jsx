@@ -1,17 +1,31 @@
 import CommonTitle from "@/components/common/CommonTitle";
 import CommonWrapper from "@/components/common/CommonWrapper";
 import FormInput from "@/components/common/FormInput";
+import useAxiosPublic from "@/hooks/api/useAxiosPublic";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 const ContactForm = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
+  const axiosPublic = useAxiosPublic();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      setIsSubmitting(true);
+      const response = await axiosPublic.post("/contact/send", data);
+      toast.success(response.data.message);
+      console.log(response);
+      reset();
+    } catch (error) {
+      toast.error(error.response?.data?.message);
+    }
   };
 
   return (
@@ -66,15 +80,24 @@ const ContactForm = () => {
             <textarea
               id="message"
               className="mt-2 h-[152px] w-full rounded-md border border-[#B8B6B5] p-3 focus:outline-none"
+              {...register("message", {
+                required: "Message is required",
+              })}
             />
+            {errors.message && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.message.message}
+              </p>
+            )}
           </div>
           {/* Submit Button */}
           <div>
             <button
               type="submit"
               className="w-full rounded-3xl bg-primaryBlue py-[15px] text-white"
+              disabled={isSubmitting}
             >
-              Send
+              {isSubmitting ? "Sending..." : "Send"}
             </button>
           </div>
         </form>
