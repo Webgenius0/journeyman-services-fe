@@ -27,7 +27,7 @@ const ContactUs = () => {
               <h2 className="mb-2 text-base lg:text-lg xlg:text-2xl font-semibold xlg:font-bold">
                 Email:
               </h2>
-              <p className="text-sm xlg:text-base">{contactInfomation.email}</p>
+              <p className="text-sm xlg:text-base">{contactInfomation?.email}</p>
             </div>
           </div>
           {/* phone */}
@@ -39,7 +39,7 @@ const ContactUs = () => {
               <h2 className="mb-2 text-base lg:text-lg xlg:text-2xl font-semibold xlg:font-bold">
                 Phone:
               </h2>
-              <p className="text-sm xlg:text-base">{contactInfomation.phone}</p>
+              <p className="text-sm xlg:text-base">{contactInfomation?.phone}</p>
             </div>
           </div>
           {/* location */}
@@ -52,7 +52,7 @@ const ContactUs = () => {
                 Address:
               </h2>
               <p className="text-sm xlg:text-base">
-                {contactInfomation.address}
+                {contactInfomation?.address}
               </p>
             </div>
           </div>
