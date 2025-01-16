@@ -5,9 +5,14 @@ import usersimg from "../../assets/users.png";
 import HeroIcon from "../../assets/Icons/HeroIcon";
 import PlaneIcon from "@/assets/Icons/PlaneIcon";
 import EarthIcon from "@/assets/Icons/EarthIcon";
+import useFetchData from "@/hooks/api/useFetchData";
 
-const HeroSection = ({ heroSectionData, bannerImages }) => {
-  console.log(heroSectionData, bannerImages);
+const HeroSection = () => {
+  const { data, isLoading } = useFetchData("/home");
+  console.log(data);
+  const heroSectionData = data?.data?.cms?.home_banner ;
+  const bannerImages = data?.data?.cms?.home_banners;
+  console.log(heroSectionData, bannerImages)
 
   return (
     <CommonWrapper>
@@ -56,7 +61,7 @@ const HeroSection = ({ heroSectionData, bannerImages }) => {
 
         {/* Banner Images */}
         <div className="flex xlg:items-center gap-6">
-          {bannerImages.map((image, index) => (
+          {bannerImages?.map((image, index) => (
             <div key={index}>
               {/* Top two images */}
               <div>

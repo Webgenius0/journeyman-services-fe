@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import mapBg from "../../assets/dot-map-purple-bg.svg";
 import CommonWrapper from "../common/CommonWrapper";
 import CommonTitle from "../common/CommonTitle";
+import useFetchData from "@/hooks/api/useFetchData";
 
 const ReviewComponent = ({ info }) => {
   const metadata = JSON.parse(info.metadata || "{}");
@@ -39,7 +40,9 @@ ReviewComponent.propTypes = {
   info: PropTypes.object,
 };
 
-const TestimonialArea = ({ reviews }) => {
+const TestimonialArea = () => {
+  const { data, isLoading } = useFetchData("/home");
+  const reviews = data?.data?.cms?.testimonial || [];
   return (
     <section>
       <CommonWrapper noContainer>

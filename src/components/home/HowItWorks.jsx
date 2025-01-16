@@ -1,36 +1,19 @@
 import CommonWrapper from "../common/CommonWrapper";
 import StepCard from "../common/StepCard";
-import howitworksimg from "../../assets/how-it-works-img.png";
 import CommonTitle from "../common/CommonTitle";
+import useFetchData from "@/hooks/api/useFetchData";
 
-const HowItWorks = ({howitworksData, howitworksImage}) => {
+const HowItWorks = () => {
+  const { data, isLoading } = useFetchData("/home");
+  const howitworksImage = data?.data?.cms?.how_it_work?.image;
+  const howitworksData = data?.data?.cms?.how_it_works;
   console.log(howitworksData);
-  
-  const instructions = [
-    {
-      title: "Enter Your Travel Details",
-      subtitle:
-        "Provide your resident country, number of travelers, DOBs, destination, and travel dates.",
-    },
-    {
-      title: "Get an Instant Quote",
-      subtitle:
-        "View tailored travel insurance plans in GBP/USD, ready for your selection.",
-    },
-    {
-      title: "Pay Securely Online",
-      subtitle: "Complete your purchase via a trusted payment gateway.",
-    },
-    {
-      title: "Receive Your Policy",
-      subtitle:
-        "Instantly get your policy certificate via email and travel worry-free!",
-    },
-  ];
+
+  console.log(howitworksData);
 
   return (
     <section>
-      <CommonWrapper >
+      <CommonWrapper>
         <div className="mt-4 flex flex-col xlg:flex-row items-center gap-[60px] 2xl:gap-[150px]">
           {/* img */}
           <div>
@@ -45,12 +28,12 @@ const HowItWorks = ({howitworksData, howitworksImage}) => {
           </div>
           {/* steps */}
           <div className="flex-1">
-            {howitworksData.map((item, index) => (
+            {howitworksData?.map((item, index) => (
               <StepCard
                 key={index}
                 title={item.title}
                 subtitle={item.description}
-                isLastItem={index === instructions.length - 1}
+                isLastItem={index === howitworksData.length - 1}
                 widthClass="xl:max-w-[308px]"
               />
             ))}

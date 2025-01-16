@@ -1,6 +1,7 @@
 import Marquee from "react-fast-marquee";
 import CommonWrapper from "../common/CommonWrapper";
 import FlowerIcon from "../../assets/Icons/FlowerIcon";
+import useFetchData from "@/hooks/api/useFetchData";
 const ReviewComponent = ({ info }) => {
   return (
     <div className="flex items-center gap-6 py-5">
@@ -16,13 +17,15 @@ const ReviewComponent = ({ info }) => {
   );
 };
 
-const Services = ({ marqueesData }) => {
+const Services = () => {
+  const { data, isLoading } = useFetchData("/home");
+  const marqueesData = data?.data?.cms?.home_marquee;
   return (
     <CommonWrapper noContainer>
       <div className="bg-primaryBlue bg-cover bg-center">
         <Marquee>
           <div className="mx-6 flex items-center gap-6">
-            {marqueesData.map((item, index) => (
+            {marqueesData?.map((item, index) => (
               <ReviewComponent key={index} info={item} />
             ))}
           </div>
