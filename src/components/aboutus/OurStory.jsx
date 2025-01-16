@@ -1,4 +1,4 @@
-import aboutusimg2 from "@/assets/about-us-img-2.png";
+
 import useFetchData from "@/hooks/api/useFetchData";
 const OurStory = () => {
   const { data } = useFetchData("/about");
