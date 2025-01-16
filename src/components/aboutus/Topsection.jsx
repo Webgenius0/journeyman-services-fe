@@ -1,4 +1,4 @@
-import aboutusimg1 from "@/assets/about-us-img-1.png";
+
 import useFetchData from "@/hooks/api/useFetchData";
 const Topsection = () => {
   const { data } = useFetchData("/about");
@@ -21,7 +21,7 @@ const Topsection = () => {
         <p className="text-textGrayV3 xl:leading-[25px] text-center xl:text-left text-sm xl:text-base">
         {articledata?.description}
         </p>
-        <p className="text-textGrayV3 xl:leading-[25px] text-center xl:text-left text-sm xl:text-base">
+        {/* <p className="text-textGrayV3 xl:leading-[25px] text-center xl:text-left text-sm xl:text-base">
           Affordability is at the core of our service, ensuring that
           comprehensive protection is accessible to everyone—from solo travelers
           and families to groups and frequent flyers. Our reliable plans are
@@ -35,7 +35,7 @@ const Topsection = () => {
           associated with travel insurance. Wherever your journey takes you, we
           are here to protect what matters most—your safety and your peace of
           mind.&quot;
-        </p>
+        </p> */}
       </div>
     </div>
   );
