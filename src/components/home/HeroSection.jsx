@@ -27,18 +27,18 @@ const HeroSection = () => {
             <h3 className="font-medium text-textBlack">Affordable</h3>
           </div>
           <h3 className="mt-4 xl:mt-0 text-2xl xl:text-6xl text-center xl:text-left text-textBlack font-bold xl:leading-[85px] mb-4">
-            {heroSectionData?.title || "Default Title"}
+            {heroSectionData?.title}
           </h3>
           <p className="text-textBlackV2 text-center xl:text-left xl:max-w-[330px]">
             {heroSectionData?.description || "Default description text."}
           </p>
           <div className="mt-4 xl:mt-[60px] flex justify-center xl:block">
             <CommonButton
-              linkUrl={heroSectionData?.btn_link || "#"}
+              linkUrl={heroSectionData?.btn_link}
               className="py-3 px-7"
               icon={<PlaneIcon />}
             >
-              {heroSectionData?.btn_text || "Learn More"}
+              {heroSectionData?.btn_text }
             </CommonButton>
           </div>
           {/* User img */}

@@ -4,8 +4,12 @@ import HeroSection from "../components/home/HeroSection";
 import HowItWorks from "../components/home/HowItWorks";
 import Services from "../components/home/Services";
 import TestimonialArea from "../components/home/TestimonialArea";
+import useFetchData from "@/hooks/api/useFetchData";
+import LoadingComponent from "@/components/loaders/LoadingComponent";
 
 const Home = () => {
+  const {isLoading} = useFetchData('/home')
+  if (isLoading) return <LoadingComponent/>
   return (
     <div>
       <HeroSection />
