@@ -5,7 +5,6 @@ import CommonWrapper from "../common/CommonWrapper";
 import CommonTitle from "../common/CommonTitle";
 
 const ReviewComponent = ({ info }) => {
-  // Parse the metadata string to get the rating
   const metadata = JSON.parse(info.metadata || "{}");
   const rating = metadata.rating ? parseInt(metadata.rating, 10) : 0;
 

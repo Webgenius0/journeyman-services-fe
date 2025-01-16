@@ -1,4 +1,4 @@
-import bannerImg from "../../assets/faq-banner.png";
+
 import {
   Accordion,
   AccordionContent,
