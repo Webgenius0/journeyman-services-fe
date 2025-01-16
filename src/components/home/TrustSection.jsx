@@ -1,11 +1,9 @@
 import PlaneIcon from "@/assets/Icons/PlaneIcon";
 import CommonButton from "../common/CommonButton";
 import CommonWrapper from "../common/CommonWrapper";
-import useFetchData from "@/hooks/api/useFetchData";
 
-const TrustSection = () => {
-  const { data} = useFetchData("/home");
-  const quote = data?.data?.cms?.home_qoute;
+const TrustSection = ({quote}) => {
+  console.log(quote);
   
   return (
     <CommonWrapper version="lg">
