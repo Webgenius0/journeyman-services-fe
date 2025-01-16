@@ -18,7 +18,7 @@ const ReviewComponent = ({ info }) => {
 };
 
 const Services = () => {
-  const { data, isLoading } = useFetchData("/home");
+  const { data } = useFetchData("/home");
   const marqueesData = data?.data?.cms?.home_marquee;
   return (
     <CommonWrapper noContainer>

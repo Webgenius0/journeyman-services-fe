@@ -4,7 +4,7 @@ import CommonTitle from "../common/CommonTitle";
 import useFetchData from "@/hooks/api/useFetchData";
 
 const HowItWorks = () => {
-  const { data, isLoading } = useFetchData("/home");
+  const { data } = useFetchData("/home");
   const howitworksImage = data?.data?.cms?.how_it_work?.image;
   const howitworksData = data?.data?.cms?.how_it_works;
   console.log(howitworksData);

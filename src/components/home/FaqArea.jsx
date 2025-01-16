@@ -12,7 +12,7 @@ import PlaneIcon from "@/assets/Icons/PlaneIcon";
 import useFetchData from "@/hooks/api/useFetchData";
 
 const FaqArea = () => {
-  const { data, isLoading } = useFetchData("/home");
+  const { data } = useFetchData("/home");
   
   const faq = data?.data?.cms?.faq || {};
   const faqList = data?.data?.cms?.faqs || [];
