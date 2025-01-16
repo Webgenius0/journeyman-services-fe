@@ -29,7 +29,7 @@ const HeroSection = () => {
             {heroSectionData?.title}
           </h3>
           <p className="text-textBlackV2 text-center xl:text-left xl:max-w-[330px]">
-            {heroSectionData?.description || "Default description text."}
+            {heroSectionData?.description}
           </p>
           <div className="mt-4 xl:mt-[60px] flex justify-center xl:block">
             <CommonButton
