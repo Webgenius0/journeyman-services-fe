@@ -1,23 +1,25 @@
 import aboutusimg1 from "@/assets/about-us-img-1.png";
+import useFetchData from "@/hooks/api/useFetchData";
 const Topsection = () => {
+  const { data } = useFetchData("/about");
+  const articledata = data?.data?.cms?.about_article_one;
+  console.log(articledata);
+
+  const article = data?.data?.cms?.about_article_one;
+  console.log(article);
   return (
     <div className="flex flex-col xlg:flex-row gap-8">
       {/* img */}
       <div className="w-full lg:w-[652px] mx-auto">
-        <img src={aboutusimg1} alt="" className="rounded-[14px]" />
+        <img src={articledata.image} alt="" className="rounded-[14px]" />
       </div>
       {/* content */}
       <div className="w-full xl:w-[622px] space-y-2 xl:space-y-[15px]">
         <h3 className="text-textGray text-center xl:text-left font-bold xl:leading-[38px] text-2xl xl:text-[32px]">
-          We are deeply committed to delivering seamless, affordable, and
-          reliable travel insurance solutions.
+        {articledata?.title}
         </h3>
         <p className="text-textGrayV3 xl:leading-[25px] text-center xl:text-left text-sm xl:text-base">
-          Our goal is to make travel insurance not just a necessity but a simple
-          and reassuring part of your journey. Whether you&apos;re exploring a
-          bustling city, relaxing on a tropical beach, or trekking through
-          remote mountains, we’ve designed our coverage to adapt to your unique
-          travel needs.
+        {articledata?.description}
         </p>
         <p className="text-textGrayV3 xl:leading-[25px] text-center xl:text-left text-sm xl:text-base">
           Affordability is at the core of our service, ensuring that
