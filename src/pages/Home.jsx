@@ -9,29 +9,37 @@ import LoadingComponent from "@/components/loaders/LoadingComponent";
 
 const Home = () => {
   const { data, isLoading } = useFetchData("/home");
-  const heroSectionData = data?.data?.cms?.home_banner;
-  const bannerImages = data?.data?.cms?.home_banners || [];
-  const marqueesData = data?.data?.cms?.home_marquee;
-  const howitworksImage = data?.data?.cms?.how_it_work.image;
-  const howitworksData = data?.data?.cms?.how_it_works;
-  const reviews = data?.data?.cms?.testimonial;
-  const faq = data?.data?.cms?.faq;
-  const faqList = data?.data?.cms?.faqs;
-  const quote = data?.data?.cms?.home_qoute;
-
-
+  
   if (isLoading) return <LoadingComponent />;
+  
+  const heroSectionData = data?.data?.cms?.home_banner || {};
+  const bannerImages = data?.data?.cms?.home_banners || [];
+  const marqueesData = data?.data?.cms?.home_marquee || [];
+  const howitworksImage = data?.data?.cms?.how_it_work?.image || "";
+  const howitworksData = data?.data?.cms?.how_it_works || [];
+  const reviews = data?.data?.cms?.testimonial || [];
+  const faq = data?.data?.cms?.faq || {};
+  const faqList = data?.data?.cms?.faqs || [];
+  const quote = data?.data?.cms?.home_qoute || "";
+
   return (
     <div>
-      <HeroSection
-        heroSectionData={heroSectionData}
-        bannerImages={bannerImages}
-      />
-      <Services marqueesData={marqueesData} />
-      <HowItWorks howitworksImage={howitworksImage} howitworksData={howitworksData} />
-      <TestimonialArea reviews={reviews} />
-      <FaqArea faq={faq} faqList={faqList} />
-      <TrustSection quote={quote} />
+      {heroSectionData && (
+        <HeroSection
+          heroSectionData={heroSectionData}
+          bannerImages={bannerImages}
+        />
+      )}
+      {marqueesData && <Services marqueesData={marqueesData} />}
+      {howitworksData && (
+        <HowItWorks
+          howitworksImage={howitworksImage}
+          howitworksData={howitworksData}
+        />
+      )}
+      {reviews && <TestimonialArea reviews={reviews} />}
+      {faqList && <FaqArea faq={faq} faqList={faqList} />}
+      {quote && <TrustSection quote={quote} />}
     </div>
   );
 };
