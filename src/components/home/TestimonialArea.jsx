@@ -3,10 +3,12 @@ import PropTypes from "prop-types";
 import mapBg from "../../assets/dot-map-purple-bg.svg";
 import CommonWrapper from "../common/CommonWrapper";
 import CommonTitle from "../common/CommonTitle";
+import useFetchData from "@/hooks/api/useFetchData";
 
 const ReviewComponent = ({ info }) => {
   const metadata = JSON.parse(info.metadata || "{}");
   const rating = metadata.rating ? parseInt(metadata.rating, 10) : 0;
+  
 
   return (
     <div className="w-[300px] xl:w-[424px] xl:h-[260px] rounded-xl bg-white px-8 py-6 xl:py-12 flex">
@@ -39,7 +41,11 @@ ReviewComponent.propTypes = {
   info: PropTypes.object,
 };
 
-const TestimonialArea = ({ reviews }) => {
+const TestimonialArea = () => {
+  const { data} = useFetchData("/home");
+  const reviews = data?.data?.cms?.testimonial;
+  console.log('reviews from review', reviews);
+  
   return (
     <section>
       <CommonWrapper noContainer>

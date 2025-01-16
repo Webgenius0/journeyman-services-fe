@@ -9,8 +9,12 @@ import CommonWrapper from "../common/CommonWrapper";
 import CommonTitle from "../common/CommonTitle";
 import CommonButton from "../common/CommonButton";
 import PlaneIcon from "@/assets/Icons/PlaneIcon";
+import useFetchData from "@/hooks/api/useFetchData";
 
-const FaqArea = ({ faqList, faq }) => {
+const FaqArea = () => {
+  const { data} = useFetchData("/home");
+  const faq = data?.data?.cms?.faq;
+  const faqList = data?.data?.cms?.faqs;
   return (
     <section>
       <CommonWrapper>

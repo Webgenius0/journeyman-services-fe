@@ -10,12 +10,8 @@ import useFetchData from "@/hooks/api/useFetchData";
 import LoadingComponent from "@/components/loaders/LoadingComponent";
 
 const AboutUs = () => {
-  const { data, isLoading } = useFetchData("/home");
+  const { isLoading } = useFetchData("/home");
 
-  const faq = data?.data?.cms?.faq || {};
-  const faqList = data?.data?.cms?.faqs || [];
-  const reviews = data?.data?.cms?.testimonial || [];
-  const quote = data?.data?.cms?.home_qoute || "Default Quote";
   if (isLoading) return <LoadingComponent />;
   return (
     <div>
@@ -31,9 +27,9 @@ const AboutUs = () => {
         </div>
         <CoreValues />
       </CommonWrapper>
-      <TestimonialArea reviews={reviews} />
-      <FaqArea faq={faq} faqList={faqList} />
-      <TrustSection quote={quote} />
+      <TestimonialArea  />
+      <FaqArea  />
+      <TrustSection />
     </div>
   );
 };
