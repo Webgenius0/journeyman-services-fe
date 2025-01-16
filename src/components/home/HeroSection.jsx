@@ -1,4 +1,3 @@
-
 import CommonButton from "../common/CommonButton";
 import CommonWrapper from "../common/CommonWrapper";
 import usersimg from "../../assets/users.png";
@@ -10,9 +9,10 @@ import useFetchData from "@/hooks/api/useFetchData";
 const HeroSection = () => {
   const { data, isLoading } = useFetchData("/home");
   console.log(data);
-  const heroSectionData = data?.data?.cms?.home_banner ;
+  const heroSectionData = data?.data?.cms?.home_banner;
   const bannerImages = data?.data?.cms?.home_banners;
-  console.log(heroSectionData, bannerImages)
+  console.log(heroSectionData);
+  console.log("images", bannerImages);
 
   return (
     <CommonWrapper>
@@ -38,7 +38,7 @@ const HeroSection = () => {
               className="py-3 px-7"
               icon={<PlaneIcon />}
             >
-              {heroSectionData?.btn_text }
+              {heroSectionData?.btn_text}
             </CommonButton>
           </div>
           {/* User img */}
@@ -60,28 +60,33 @@ const HeroSection = () => {
         </div>
 
         {/* Banner Images */}
-        <div className="flex xlg:items-center gap-6">
-          {bannerImages?.map((image, index) => (
-            <div key={index}>
-              {/* Top two images */}
-              <div>
-                <img src={image} alt="" className="rounded-2xl" />
-                <div className="mt-6">
-                  <img src={image} alt="" className="rounded-2xl" />
-                </div>
-              </div>
-              {/* Bottom image */}
-              <div>
-                <div className="bg-[#E6EBEF] flex justify-center gap-2 items-center px-7 py-3 rounded-3xl mb-6">
-                  <EarthIcon />
-                  <p className="text-[12px] text-[#4B586B]">Alabama - Miami</p>
-                </div>
-                <div>
-                  <img src={image} alt="" className="rounded-2xl" />
-                </div>
-              </div>
+        <div className="flex justify-center items-center gap-6">
+          {/* Left side: two images (top and bottom) */}
+          <div className="flex flex-col gap-6">
+            <div className="">
+              <img
+                src={bannerImages?.[0]?.image}
+                alt="Banner 1"
+                className="rounded-2xl w-[355px] h-[300px] object-cover"
+              />
             </div>
-          ))}
+            <div className="">
+              <img
+                src={bannerImages?.[1]?.image}
+                alt="Banner 2"
+                className="rounded-2xl w-[355px] h-[300px] object-cover"
+              />
+            </div>
+          </div>
+
+          {/* Right side: third image */}
+          <div className="flex justify-center ">
+            <img
+              src={bannerImages?.[2]?.image}
+              alt="Banner 3"
+              className="rounded-2xl w-[355px] h-[300px] object-cover"
+            />
+          </div>
         </div>
       </div>
     </CommonWrapper>
