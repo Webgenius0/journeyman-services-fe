@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import CommonFieldWrapper from "@/components/common/CommonFieldWrapper";
 import CommonDropdownSelect from "@/components/common/CommonDropdownSelect";
 import CommonRadioButton from "../common/CommonRadioButton";
@@ -43,7 +43,10 @@ const TravelDetails = () => {
 
   return (
     <div className="mt-[14px]">
-      <form onSubmit={handleSubmit(onSubmit)} className="xl:w-[565px] space-y-5">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="xl:w-[565px] space-y-5"
+      >
         <h3 className="mb-6 text-lg font-semibold">Travel Details</h3>
 
         {/* Country of Residence */}
@@ -58,7 +61,6 @@ const TravelDetails = () => {
                 { value: "option2", label: "Option 2" },
               ]}
               placeholder="Please Select"
-              onChange={(value) => console.log(value)}
             />
           </CommonFieldWrapper>
         </div>
@@ -66,16 +68,15 @@ const TravelDetails = () => {
         {/* Insurance Type */}
         <div>
           <CommonFieldWrapper
-            label="Insurance Type"
+            label="Country of Residence"
             modalContent={modalContent[0]}
           >
-            <CommonRadioButton
+            <CommonDropdownSelect
               options={[
-                { value: "light", label: "Annual multi-trip" },
-                { value: "dark", label: "Single trip" },
+                { value: "option1", label: "Option 1" },
+                { value: "option2", label: "Option 2" },
               ]}
-              onChange={(value) => console.log(value)}
-              defaultValue="light"
+              placeholder="Please Select"
             />
           </CommonFieldWrapper>
         </div>
@@ -86,7 +87,7 @@ const TravelDetails = () => {
             label="Area of travel"
             modalContent={modalContent[0]}
           >
-            <CommonRadioButton
+            <CommonDropdownSelect
               options={[
                 { value: "light", label: "Worldwide" },
                 {
@@ -94,8 +95,7 @@ const TravelDetails = () => {
                   label: "Worldwide (excluding USA, Canada & Caribbean)",
                 },
               ]}
-              onChange={(value) => console.log(value)}
-              defaultValue="light"
+              placeholder="Please Select"
             />
           </CommonFieldWrapper>
         </div>

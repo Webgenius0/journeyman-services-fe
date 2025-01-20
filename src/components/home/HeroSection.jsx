@@ -10,7 +10,7 @@ const HeroSection = () => {
   console.log(data);
   const heroSectionData = data?.data?.cms?.home_banner;
   const bannerImages = data?.data?.cms?.home_banners;
-  console.log(heroSectionData);
+  console.log('heroSectionData', heroSectionData);
   console.log("images", bannerImages);
 
   return (
