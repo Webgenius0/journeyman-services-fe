@@ -46,7 +46,7 @@ const FaqArea = () => {
             </div>
             <div className="mt-6 xl:mt-[60px] flex justify-center xl:justify-normal">
               <CommonButton
-                linkUrl="/information-input"
+                linkUrl="/travel-insurance"
                 className="py-3 px-7"
                 icon={<PlaneIcon />}
               >

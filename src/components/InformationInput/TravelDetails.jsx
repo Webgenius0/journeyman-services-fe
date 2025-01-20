@@ -1,4 +1,4 @@
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import CommonFieldWrapper from "@/components/common/CommonFieldWrapper";
 import CommonDropdownSelect from "@/components/common/CommonDropdownSelect";
 import CommonRadioButton from "../common/CommonRadioButton";
@@ -6,10 +6,12 @@ import FlexibleInput from "../common/FlexibleInput";
 import QuestionIcon from "@/assets/Icons/QuestionIcon";
 import { useState } from "react";
 import CommonModal from "../common/CommonModal";
+import { Collapse } from "react-collapse"; // Import Collapse
 
 const TravelDetails = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
+  const [showExtraFields, setShowExtraFields] = useState(false);
   const modalContent = [
     {
       title: "Standard Policy Activities",
@@ -41,6 +43,10 @@ const TravelDetails = () => {
     setModalData(null);
   };
 
+  const handleInsuranceTypeChange = (value) => {
+    setShowExtraFields(value === "option1");
+  };
+
   return (
     <div className="mt-[14px]">
       <form
@@ -49,6 +55,16 @@ const TravelDetails = () => {
       >
         <h3 className="mb-6 text-lg font-semibold">Travel Details</h3>
 
+        <div>
+          <CommonDropdownSelect
+            options={[
+              { value: "option1", label: "British Pounds" },
+              { value: "option2", label: "USA Dollars" },
+            ]}
+            placeholder=""
+            label="Policy Currency"
+          />
+        </div>
         {/* Country of Residence */}
         <div>
           <CommonFieldWrapper
@@ -68,34 +84,57 @@ const TravelDetails = () => {
         {/* Insurance Type */}
         <div>
           <CommonFieldWrapper
-            label="Country of Residence"
+            label="Insurance Type"
             modalContent={modalContent[0]}
           >
-            <CommonDropdownSelect
+            <CommonRadioButton
               options={[
-                { value: "option1", label: "Option 1" },
-                { value: "option2", label: "Option 2" },
+                { value: "option1", label: "Annual multi-trip" },
+                { value: "option2", label: "Single trip" },
               ]}
-              placeholder="Please Select"
+              onChange={handleInsuranceTypeChange}
             />
           </CommonFieldWrapper>
         </div>
-
+        {/* extra fields */}
+        <Collapse isOpened={showExtraFields}>
+          <div>
+            <CommonRadioButton
+              options={[
+                {
+                  value: "summer",
+                  label: "Standard - 90 days per trip (45 days for over 74s)",
+                },
+                { value: "winter", label: "Extended - 180 days per trip" },
+              ]}
+              label="Length of trip"
+            />
+          </div>
+          <div>
+            <CommonRadioButton
+              options={[
+                { value: "monthly", label: "Monthly" },
+                { value: "quarterly", label: "Quarterly" },
+              ]}
+              label="Cancellation cover"
+            />
+          </div>
+        </Collapse>
         {/* Area of Travel */}
         <div>
           <CommonFieldWrapper
             label="Area of travel"
             modalContent={modalContent[0]}
           >
-            <CommonDropdownSelect
+            <CommonRadioButton
               options={[
-                { value: "light", label: "Worldwide" },
+                { value: "option1", label: "Worldwide" },
                 {
-                  value: "dark",
+                  value: "option2",
                   label: "Worldwide (excluding USA, Canada & Caribbean)",
                 },
+                { value: "option3", label: "Europe" },
               ]}
-              placeholder="Please Select"
             />
           </CommonFieldWrapper>
         </div>

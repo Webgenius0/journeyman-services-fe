@@ -6,11 +6,9 @@ import LoadingComponent from "../loaders/LoadingComponent";
 const FaqPdf = () => {
   const { isLoading, data } = useFetchData("/page/form");
   const pdfs = data?.data?.cms?.form_pdf;
-  console.log(pdfs);
-  
 
   if (isLoading) return <LoadingComponent />;
-  
+
   return (
     <CommonWrapper>
       <div className="xl:max-w-[954px]">
@@ -18,26 +16,28 @@ const FaqPdf = () => {
           Click here for Covid-19 Coronavirus travel insurance FAQs
         </h2>
         <div className="h-auto xl:h-auto border border-[#8CA2B4] py-[22px] p-4 xl:px-16 flex flex-wrap justify-evenly items-center rounded-[5px]">
-          {pdfs?.map((pdf, index) => (
-            <div
-              key={index}
-              className="flex flex-col items-center w-[200px] mb-4"
-            >
-              <PdfIcon />
-              <h3 className="text-sm leading-7 text-textBlackV2 text-center mt-2">
-                {pdf.title}
-              </h3>
-              {pdf.metadata && (
+          {pdfs?.map((pdf, index) => {
+            const pdfUrl = JSON.parse(pdf.metadata).pdf;
+            const fileName = pdfUrl.split("/").pop();
+
+            return (
+              <div
+                key={index}
+                className="flex flex-col items-center w-[200px] mb-4"
+              >
                 <a
-                  href={JSON.parse(pdf.metadata).pdf}
-                  download={JSON.parse(pdf.metadata).pdf.split('/').pop()}
-                  className="text-primary text-sm mt-1"
+                  href={pdfUrl}
+                  download={fileName}
+                  className="flex flex-col items-center w-full"
                 >
-                  Download PDF
+                  <PdfIcon />
+                  <h3 className="text-sm leading-7 text-textBlackV2 text-center mt-2">
+                    {pdf.title}
+                  </h3>
                 </a>
-              )}
-            </div>
-          ))}
+              </div>
+            );
+          })}
         </div>
       </div>
     </CommonWrapper>

@@ -22,7 +22,7 @@ const TrustSection = () => {
           </p>
           <div className="mt-6 xl:mt-[60px]">
             <CommonButton
-              linkUrl="/information-input"
+              linkUrl="/travel-insurance"
               className="py-3 px-7"
               icon={<PlaneIcon />}
             >

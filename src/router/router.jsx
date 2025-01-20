@@ -41,7 +41,7 @@ const router = createBrowserRouter([
         element: <PrivacyStatement />,
       },
       {
-        path: "/information-input",
+        path: "/travel-insurance",
         element: <InformationInput />,
       },
       {
