@@ -6,7 +6,7 @@ import PlaneIcon from "@/assets/Icons/PlaneIcon";
 import useFetchData from "@/hooks/api/useFetchData";
 
 const HeroSection = () => {
-  const { data } = useFetchData("/home");
+  const { data } = useFetchData("/page/home");
   console.log(data);
   const heroSectionData = data?.data?.cms?.home_banner;
   const bannerImages = data?.data?.cms?.home_banners;

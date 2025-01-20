@@ -10,7 +10,7 @@ import ExcellenceIcon from "@/assets/Icons/ExcellenceIcon";
 import useFetchData from "@/hooks/api/useFetchData";
 
 const CoreValues = () => {
-  const { data } = useFetchData("/about");
+  const { data } = useFetchData("/page/about");
   const corevalue = data?.data?.cms?.core_value;
   const corevalues = data?.data?.cms?.core_values;
 

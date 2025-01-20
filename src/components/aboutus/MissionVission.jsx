@@ -1,7 +1,7 @@
 import useFetchData from "@/hooks/api/useFetchData";
 
 const MissionVission = () => {
-  const { data } = useFetchData("/about");
+  const { data } = useFetchData("/page/about");
   const missionvission = data?.data?.cms?.mission_vission;
 
   return (

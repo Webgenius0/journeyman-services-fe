@@ -41,7 +41,7 @@ ReviewComponent.propTypes = {
 };
 
 const TestimonialArea = () => {
-  const { data } = useFetchData("/home");
+  const { data } = useFetchData("/page/about");
   const reviews = data?.data?.cms?.testimonial || [];
   return (
     <section>

@@ -1,7 +1,7 @@
 
 import useFetchData from "@/hooks/api/useFetchData";
 const OurStory = () => {
-  const { data } = useFetchData("/about");
+  const { data } = useFetchData("/page/about");
   const ourStoryData = data?.data?.cms?.about_article_two;
   console.log(ourStoryData);
 

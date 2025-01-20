@@ -1,7 +1,7 @@
 
 import useFetchData from "@/hooks/api/useFetchData";
 const Topsection = () => {
-  const { data } = useFetchData("/about");
+  const { data } = useFetchData("/page/about");
   const articledata = data?.data?.cms?.about_article_one;
   console.log(articledata);
 

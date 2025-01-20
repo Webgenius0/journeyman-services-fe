@@ -4,7 +4,7 @@ import CommonWrapper from "../common/CommonWrapper";
 import useFetchData from "@/hooks/api/useFetchData";
 
 const TrustSection = () => {
-  const { data } = useFetchData("/home");
+  const { data } = useFetchData("/page/home");
   const quote = data?.data?.cms?.home_qoute || "";
   return (
     <CommonWrapper version="lg">

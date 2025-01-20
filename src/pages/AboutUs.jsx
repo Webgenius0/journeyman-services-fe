@@ -10,7 +10,7 @@ import useFetchData from "@/hooks/api/useFetchData";
 import LoadingComponent from "@/components/loaders/LoadingComponent";
 
 const AboutUs = () => {
-  const { isLoading } = useFetchData("/about");
+  const { isLoading } = useFetchData("/page/about");
   if (isLoading) return <LoadingComponent />;
   return (
     <div>

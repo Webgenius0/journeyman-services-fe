@@ -1,11 +1,6 @@
 import { Link } from "react-router-dom";
 
-const CommonButton = ({
-  children,
-  linkUrl = "/",
-  icon,
-  className = "",
-}) => {
+const CommonButton = ({ children, linkUrl = "/", icon, className = "" }) => {
   return (
     <Link
       to={linkUrl}
