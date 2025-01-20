@@ -1,11 +1,16 @@
 import PdfIcon from "@/assets/Icons/PdfIcon";
 import CommonWrapper from "./CommonWrapper";
 import useFetchData from "@/hooks/api/useFetchData";
+import LoadingComponent from "../loaders/LoadingComponent";
 
 const FaqPdf = () => {
-  const { data } = useFetchData("/page/form");
+  const { isLoading, data } = useFetchData("/page/form");
   const pdfs = data?.data?.cms?.form_pdf;
+  console.log(pdfs);
+  
 
+  if (isLoading) return <LoadingComponent />;
+  
   return (
     <CommonWrapper>
       <div className="xl:max-w-[954px]">
@@ -25,11 +30,10 @@ const FaqPdf = () => {
               {pdf.metadata && (
                 <a
                   href={JSON.parse(pdf.metadata).pdf}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  download={JSON.parse(pdf.metadata).pdf.split('/').pop()}
                   className="text-primary text-sm mt-1"
                 >
-                  View PDF
+                  Download PDF
                 </a>
               )}
             </div>
