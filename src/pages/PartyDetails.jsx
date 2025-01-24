@@ -7,12 +7,26 @@ import FaqPdf from "@/components/common/FaqPdf";
 import FlexibleInput from "@/components/common/FlexibleInput";
 import DetailsField from "@/components/partydetails/DetailsField";
 import { Checkbox } from "@/components/ui/checkbox";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 const PartyDetails = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
+  const [adults, setAdults] = useState(0);
+  const [children, setChildren] = useState(0);
+
+  useEffect(() => {
+    const adults = localStorage.getItem("selectedAdults");
+    const children = localStorage.getItem("selectedChildren");
+
+    if (adults && children) {
+      setAdults(Number(adults));
+      setChildren(Number(children));
+    }
+  }, []);
+  console.log(adults, children);
+
   const modalContent = [
     {
       title: "Standard Policy Activities",
@@ -39,6 +53,7 @@ const PartyDetails = () => {
   const onSubmit = (data) => {
     console.log(data);
   };
+
   return (
     <CommonWrapper>
       <CommonPageTitle>Online travel insurance</CommonPageTitle>
@@ -50,24 +65,31 @@ const PartyDetails = () => {
           Please enter the details of your party:
         </p>
       </div>
+
+      {/* Adult Details */}
       <div>
         <h3 className="mb-3 mt-6 xl:mt-8 xlg:text-lg font-bold">Adults</h3>
-        <DetailsField title="Adult 1" />
+        {[...Array(adults)].map((_, index) => (
+          <div key={`adult-${index}`} className={index > 0 ? "mt-4" : ""}>
+            <DetailsField title={`Adult ${index + 1}`} />
+          </div>
+        ))}
       </div>
-      <div className="mt-4">
-        <DetailsField title="Adult 2" />
-      </div>
+
+      {/* Children Details */}
       <div className="mt-8">
-        <h3 className="mb-3 mt-8 xl:text-lg font-bold">Childrens</h3>
-        <DetailsField title="Children 1" />
+        <h3 className="mb-3 mt-8 xl:text-lg font-bold">Children</h3>
+        {[...Array(children)].map((_, index) => (
+          <div key={`child-${index}`} className={index > 0 ? "mt-4" : ""}>
+            <DetailsField title={`Children ${index + 1}`} />
+          </div>
+        ))}
       </div>
-      <div className="mt-4">
-        <DetailsField title="Children 2" />
-      </div>
-      {/* residentital address */}
+
+      {/* Residential Address */}
       <div className="mt-6 xl:mt-[130px]">
         <h3 className="xlg:text-lg font-bold xl:leading-[30px] mb-[6px]">
-          Current residentital address
+          Current residential address
         </h3>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div>
@@ -87,7 +109,7 @@ const PartyDetails = () => {
             <FlexibleInput
               label="Address 2"
               type="text"
-              name="address1"
+              name="address2"
               register={register}
               error={errors?.forename}
               validation={{
@@ -100,7 +122,7 @@ const PartyDetails = () => {
             <FlexibleInput
               label="Town/City"
               type="text"
-              name="address1"
+              name="townCity"
               register={register}
               error={errors?.forename}
               validation={{
@@ -113,7 +135,7 @@ const PartyDetails = () => {
             <FlexibleInput
               label="Country/Region"
               type="text"
-              name="address1"
+              name="countryRegion"
               register={register}
               error={errors?.forename}
               validation={{
@@ -126,7 +148,7 @@ const PartyDetails = () => {
             <FlexibleInput
               label="Post/Zip code"
               type="text"
-              name="address1"
+              name="zipCode"
               register={register}
               error={errors?.forename}
               validation={{
@@ -139,7 +161,7 @@ const PartyDetails = () => {
             <FlexibleInput
               label="Post/Zip code"
               type="text"
-              name="address1"
+              name="zipCode2"
               register={register}
               error={errors?.forename}
               validation={{
@@ -152,7 +174,7 @@ const PartyDetails = () => {
             <FlexibleInput
               label="Post/Zip code"
               type="text"
-              name="address1"
+              name="zipCode3"
               register={register}
               error={errors?.forename}
               validation={{
@@ -165,7 +187,7 @@ const PartyDetails = () => {
             <FlexibleInput
               label="Address 1"
               type="text"
-              name="address1"
+              name="address1Alt"
               register={register}
               error={errors?.forename}
               validation={{
@@ -175,7 +197,8 @@ const PartyDetails = () => {
               underText='If you do not have a post/zip code, please enter "0000" '
             />
           </div>
-          {/* policies */}
+
+          {/* Policy Information */}
           <div className="py-4 xl:py-[26px]">
             <h3 className="text-textBlackV2">
               Please read the{" "}
@@ -214,7 +237,7 @@ const PartyDetails = () => {
             </h3>
           </div>
 
-          {/* checkbox */}
+          {/* Checkbox */}
           <div className="flex items-center space-x-2">
             <Checkbox id="terms" />
             <label
@@ -237,11 +260,11 @@ const PartyDetails = () => {
               <QuestionIcon />
             </div>
           </div>
-         <div className="flex justify-center xl:justify-normal">
-         <CommonButton linkUrl="/checkout" className="py-3 px-7 mt-[53px]">
-            Continue
-          </CommonButton>
-         </div>
+          <div className="flex justify-center xl:justify-normal">
+            <CommonButton linkUrl="/checkout" className="py-3 px-7 mt-[53px]">
+              Continue
+            </CommonButton>
+          </div>
         </form>
         <FaqPdf />
       </div>

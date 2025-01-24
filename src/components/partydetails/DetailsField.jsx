@@ -31,6 +31,7 @@ const DetailsField = ({ title }) => {
             onChange={(value) => console.log(value)}
           />
         </div>
+        
         <div>
           <FlexibleInput
             label="Forename"

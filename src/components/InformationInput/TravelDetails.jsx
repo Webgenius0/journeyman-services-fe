@@ -24,10 +24,22 @@ const TravelDetails = () => {
   const [modalData, setModalData] = useState(null);
   const [selectedInsuranceType, setSelectedInsuranceType] = useState("");
   const [date, setDate] = useState(new Date());
+  const [selectedAdults, setSelectedAdults] = useState("0");
+  const [selectedChildren, setSelectedChildren] = useState("0");
 
   const { data } = useFetchData("/country/list");
   const countries = data?.data;
   console.log(countries);
+
+  const handleAdultsChange = (value) => {
+    setSelectedAdults(value);
+    localStorage.setItem("selectedAdults", value);
+  };
+
+  const handleChildrenChange = (value) => {
+    setSelectedChildren(value);
+    localStorage.setItem("selectedChildren", value);
+  };
 
   const modalContent = [
     {
@@ -192,19 +204,18 @@ const TravelDetails = () => {
         </div>
 
         <div>
-          <FlexibleInput
+          <CommonDropdownSelect
+            options={[
+              { value: "0", label: "0" },
+              { value: "1", label: "1" },
+              { value: "2", label: "2" },
+              { value: "3", label: "3" },
+            ]}
+            placeholder="0"
             label="Number of adults"
-            type="text"
-            name="fullName"
-            placeholder="1"
-            register={register}
-            error={errors?.adults}
-            validation={{
-              required: "Number of adults is required",
-            }}
             width="xl:w-[100px]"
-            required
-            underText="(18-79 years)"
+            value={selectedAdults}
+            onChange={handleAdultsChange}
           />
         </div>
 
@@ -225,19 +236,18 @@ const TravelDetails = () => {
           />
         </div>
         <div>
-          <FlexibleInput
-            label="Number of children"
-            type="number"
-            name="children"
+          <CommonDropdownSelect
+            options={[
+              { value: "0", label: "0" },
+              { value: "1", label: "1" },
+              { value: "2", label: "2" },
+              { value: "3", label: "3" },
+            ]}
             placeholder="0"
-            register={register}
-            error={errors?.adults}
-            validation={{
-              required: "Number of children is required",
-            }}
+            label="Number of children"
             width="xl:w-[100px]"
-            required
-            underText="(Dependent children up to 21 years of age and still in full time education)"
+            value={selectedChildren}
+            onChange={handleChildrenChange}
           />
         </div>
 
