@@ -1,4 +1,3 @@
-import * as React from "react";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -18,12 +17,17 @@ import CommonModal from "../common/CommonModal";
 import { Collapse } from "react-collapse";
 import QuestionIcon from "@/assets/Icons/QuestionIcon";
 import FlexibleInput from "../common/FlexibleInput";
+import useFetchData from "@/hooks/api/useFetchData";
 
 const TravelDetails = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
   const [selectedInsuranceType, setSelectedInsuranceType] = useState("");
   const [date, setDate] = useState(new Date());
+
+  const { data } = useFetchData("/country/list");
+  const countries = data?.data;
+  console.log(countries);
 
   const modalContent = [
     {
@@ -76,7 +80,7 @@ const TravelDetails = () => {
               { value: "option1", label: "British Pounds" },
               { value: "option2", label: "USA Dollars" },
             ]}
-            placeholder=""
+            placeholder="British Pounds"
             label="Policy Currency"
           />
         </div>
@@ -88,10 +92,10 @@ const TravelDetails = () => {
             modalContent={modalContent[0]}
           >
             <CommonDropdownSelect
-              options={[
-                { value: "option1", label: "Option 1" },
-                { value: "option2", label: "Option 2" },
-              ]}
+              options={countries?.map((country) => ({
+                value: country.code,
+                label: country.name,
+              }))}
               placeholder="Please Select"
             />
           </CommonFieldWrapper>
