@@ -4,7 +4,7 @@ const CommonButton = ({ children, linkUrl = "/", icon, className = "" }) => {
   return (
     <Link
       to={linkUrl}
-      className={`inline-flex items-center rounded-3xl bg-primaryBlue font-bold leading-6 text-white text-sm xlg:text-base ${className}`}
+      className={`inline-flex items-center rounded-3xl bg-primaryBlue font-bold leading-6 text-white text-sm xlg:text-base border border-transparent ${className} hover:bg-white hover:text-primaryBlue hover:border-primaryBlue transition duration-300`}
     >
       {children}
       {icon && <span className="ml-[10px]">{icon}</span>}

@@ -6,7 +6,7 @@ import FlexibleInput from "../common/FlexibleInput";
 import QuestionIcon from "@/assets/Icons/QuestionIcon";
 import { useState } from "react";
 import CommonModal from "../common/CommonModal";
-import { Collapse } from "react-collapse"; // Import Collapse
+import { Collapse } from "react-collapse";
 
 const TravelDetails = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
