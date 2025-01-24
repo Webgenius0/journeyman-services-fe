@@ -1,17 +1,30 @@
+import * as React from "react";
+import { format } from "date-fns";
+import { CalendarIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { useForm } from "react-hook-form";
 import CommonFieldWrapper from "@/components/common/CommonFieldWrapper";
 import CommonDropdownSelect from "@/components/common/CommonDropdownSelect";
 import CommonRadioButton from "../common/CommonRadioButton";
-import FlexibleInput from "../common/FlexibleInput";
-import QuestionIcon from "@/assets/Icons/QuestionIcon";
 import { useState } from "react";
 import CommonModal from "../common/CommonModal";
 import { Collapse } from "react-collapse";
+import QuestionIcon from "@/assets/Icons/QuestionIcon";
+import FlexibleInput from "../common/FlexibleInput";
 
 const TravelDetails = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
-  const [showExtraFields, setShowExtraFields] = useState(false);
+  const [selectedInsuranceType, setSelectedInsuranceType] = useState("");
+  const [date, setDate] = useState(new Date());
+
   const modalContent = [
     {
       title: "Standard Policy Activities",
@@ -24,6 +37,7 @@ const TravelDetails = () => {
         "This policy covers activities such as bungee jumping, paragliding, and rock climbing. Please refer to the full terms and conditions for more details.",
     },
   ];
+
   const {
     register,
     handleSubmit,
@@ -33,6 +47,7 @@ const TravelDetails = () => {
   const onSubmit = (data) => {
     console.log("Form Data:", data);
   };
+
   const openModal = (content) => {
     setModalData(content);
     setIsModalOpen(true);
@@ -44,7 +59,7 @@ const TravelDetails = () => {
   };
 
   const handleInsuranceTypeChange = (value) => {
-    setShowExtraFields(value === "option1");
+    setSelectedInsuranceType(value);
   };
 
   return (
@@ -65,6 +80,7 @@ const TravelDetails = () => {
             label="Policy Currency"
           />
         </div>
+
         {/* Country of Residence */}
         <div>
           <CommonFieldWrapper
@@ -89,37 +105,41 @@ const TravelDetails = () => {
           >
             <CommonRadioButton
               options={[
-                { value: "option1", label: "Annual multi-trip" },
+                { value: "annual", label: "Annual multi-trip" },
                 { value: "option2", label: "Single trip" },
               ]}
               onChange={handleInsuranceTypeChange}
+              value={selectedInsuranceType}
             />
+
+            {/* Nested Fields only for "Annual multi-trip" */}
+            <Collapse isOpened={selectedInsuranceType === "annual"}>
+              <div className="ml-4 mt-3 border p-4 rounded-md">
+                <CommonRadioButton
+                  options={[
+                    {
+                      value: "summer",
+                      label:
+                        "Standard - 90 days per trip (45 days for over 74s)",
+                    },
+                    { value: "winter", label: "Extended - 180 days per trip" },
+                  ]}
+                  label="Length of trip"
+                />
+                <div className="mt-3">
+                  <CommonRadioButton
+                    options={[
+                      { value: "monthly", label: "Monthly" },
+                      { value: "quarterly", label: "Quarterly" },
+                    ]}
+                    label="Cancellation cover"
+                  />
+                </div>
+              </div>
+            </Collapse>
           </CommonFieldWrapper>
         </div>
-        {/* extra fields */}
-        <Collapse isOpened={showExtraFields}>
-          <div>
-            <CommonRadioButton
-              options={[
-                {
-                  value: "summer",
-                  label: "Standard - 90 days per trip (45 days for over 74s)",
-                },
-                { value: "winter", label: "Extended - 180 days per trip" },
-              ]}
-              label="Length of trip"
-            />
-          </div>
-          <div>
-            <CommonRadioButton
-              options={[
-                { value: "monthly", label: "Monthly" },
-                { value: "quarterly", label: "Quarterly" },
-              ]}
-              label="Cancellation cover"
-            />
-          </div>
-        </Collapse>
+
         {/* Area of Travel */}
         <div>
           <CommonFieldWrapper
@@ -139,22 +159,34 @@ const TravelDetails = () => {
           </CommonFieldWrapper>
         </div>
 
-        {/* Form Input Fields */}
+        {/* Date Picker */}
         <div>
-          <FlexibleInput
-            label="Start Date"
-            type="date"
-            name="startDate"
-            placeholder="Select start date"
-            register={register}
-            error={errors?.startDate}
-            validation={{
-              required: "Start date is required",
-            }}
-            width="xl:w-[300px]"
-            required
-          />
+          <CommonFieldWrapper label="Start Date">
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  variant={"outline"}
+                  className={cn(
+                    "w-[280px] justify-start text-left font-normal",
+                    !date && "text-muted-foreground"
+                  )}
+                >
+                  <CalendarIcon />
+                  {date ? format(date, "PPP") : <span>Pick a date</span>}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0">
+                <Calendar
+                  mode="single"
+                  selected={date}
+                  onSelect={setDate}
+                  initialFocus
+                />
+              </PopoverContent>
+            </Popover>
+          </CommonFieldWrapper>
         </div>
+
         <div>
           <FlexibleInput
             label="Number of adults"
@@ -204,7 +236,8 @@ const TravelDetails = () => {
             underText="(Dependent children up to 21 years of age and still in full time education)"
           />
         </div>
-        {/* Insurance Type */}
+
+        {/* Insurance Type for Winter/Adventure Sports */}
         <div>
           <CommonRadioButton
             options={[
@@ -216,10 +249,11 @@ const TravelDetails = () => {
           />
         </div>
       </form>
+
       <div className="flex gap-2 xl:gap-3 mt-7">
         <p className="text-textBlackV2 text-sm xl:text-base xl:leading-[25px]">
           Click here to view activities covered in the &apos;standard&apos;
-          policy{" "}
+          policy
         </p>
         <div
           className="bg-[#8CA2B4] h-6 w-6 rounded-full flex justify-center items-center cursor-pointer"
@@ -228,10 +262,11 @@ const TravelDetails = () => {
           <QuestionIcon />
         </div>
       </div>
+
       <div className="flex gap-3 mt-7">
         <p className="text-textBlackV2 text-sm xl:text-base xl:leading-[25px]">
           Click here to view activities covered in the &apos;Adventure
-          sports&apos; policy{" "}
+          sports&apos; policy
         </p>
         <div
           className="bg-[#8CA2B4] h-6 w-6 rounded-full flex justify-center items-center cursor-pointer"
@@ -240,6 +275,7 @@ const TravelDetails = () => {
           <QuestionIcon />
         </div>
       </div>
+
       <CommonModal
         isOpen={isModalOpen}
         content={modalData}
