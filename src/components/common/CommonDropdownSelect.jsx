@@ -14,7 +14,7 @@ export default function CommonDropdownSelect({
   placeholder,
   label,
   width,
-  underText, // Add underText prop
+  underText, 
 }) {
   return (
     <div>

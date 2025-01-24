@@ -20,13 +20,20 @@ import FlexibleInput from "../common/FlexibleInput";
 import useFetchData from "@/hooks/api/useFetchData";
 
 const TravelDetails = () => {
+  // Initialize default values for adults and children
+  const defaultAdults = "1";
+  const defaultChildren = "0";
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
   const [selectedInsuranceType, setSelectedInsuranceType] = useState("");
   const [date, setDate] = useState(new Date());
-  const [selectedAdults, setSelectedAdults] = useState("0");
-  const [selectedChildren, setSelectedChildren] = useState("0");
 
+  const [selectedAdults, setSelectedAdults] = useState(
+    localStorage.getItem("selectedAdults") || defaultAdults
+  );
+  const [selectedChildren, setSelectedChildren] = useState(
+    localStorage.getItem("selectedChildren") || defaultChildren
+  );
   const { data } = useFetchData("/country/list");
   const countries = data?.data;
   console.log(countries);
@@ -206,12 +213,11 @@ const TravelDetails = () => {
         <div>
           <CommonDropdownSelect
             options={[
-              { value: "0", label: "0" },
               { value: "1", label: "1" },
               { value: "2", label: "2" },
               { value: "3", label: "3" },
             ]}
-            placeholder="0"
+            placeholder="1"
             label="Number of adults"
             width="xl:w-[100px]"
             value={selectedAdults}

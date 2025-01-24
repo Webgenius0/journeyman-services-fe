@@ -25,7 +25,6 @@ const PartyDetails = () => {
       setChildren(Number(children));
     }
   }, []);
-  console.log(adults, children);
 
   const modalContent = [
     {
@@ -34,6 +33,7 @@ const PartyDetails = () => {
         "This policy covers activities such as hiking, cycling, and swimming. Please refer to the full terms and conditions for more details.",
     },
   ];
+
   const openModal = (content) => {
     setModalData(content);
     setIsModalOpen(true);
@@ -67,24 +67,28 @@ const PartyDetails = () => {
       </div>
 
       {/* Adult Details */}
-      <div>
-        <h3 className="mb-3 mt-6 xl:mt-8 xlg:text-lg font-bold">Adults</h3>
-        {[...Array(adults)].map((_, index) => (
-          <div key={`adult-${index}`} className={index > 0 ? "mt-4" : ""}>
-            <DetailsField title={`Adult ${index + 1}`} />
-          </div>
-        ))}
-      </div>
+      {adults > 0 && (
+        <div>
+          <h3 className="mb-3 mt-6 xl:mt-8 xlg:text-lg font-bold">Adults</h3>
+          {[...Array(adults)].map((_, index) => (
+            <div key={`adult-${index}`} className={index > 0 ? "mt-4" : ""}>
+              <DetailsField title={`Adult ${index + 1}`} />
+            </div>
+          ))}
+        </div>
+      )}
 
       {/* Children Details */}
-      <div className="mt-8">
-        <h3 className="mb-3 mt-8 xl:text-lg font-bold">Children</h3>
-        {[...Array(children)].map((_, index) => (
-          <div key={`child-${index}`} className={index > 0 ? "mt-4" : ""}>
-            <DetailsField title={`Children ${index + 1}`} />
-          </div>
-        ))}
-      </div>
+      {children > 0 && (
+        <div className="mt-8">
+          <h3 className="mb-3 mt-8 xl:text-lg font-bold">Children</h3>
+          {[...Array(children)].map((_, index) => (
+            <div key={`child-${index}`} className={index > 0 ? "mt-4" : ""}>
+              <DetailsField title={`Children ${index + 1}`} />
+            </div>
+          ))}
+        </div>
+      )}
 
       {/* Residential Address */}
       <div className="mt-6 xl:mt-[130px]">
@@ -100,7 +104,7 @@ const PartyDetails = () => {
               register={register}
               error={errors?.forename}
               validation={{
-                required: "Start date is required",
+                required: "Address 1 is required",
               }}
               width="xl:w-[300px]"
             />
@@ -113,7 +117,7 @@ const PartyDetails = () => {
               register={register}
               error={errors?.forename}
               validation={{
-                required: "Start date is required",
+                required: "Address 2 is required",
               }}
               width="xl:w-[300px]"
             />
@@ -126,7 +130,7 @@ const PartyDetails = () => {
               register={register}
               error={errors?.forename}
               validation={{
-                required: "Start date is required",
+                required: "Town/City is required",
               }}
               width="xl:w-[300px]"
             />
@@ -139,7 +143,7 @@ const PartyDetails = () => {
               register={register}
               error={errors?.forename}
               validation={{
-                required: "Start date is required",
+                required: "Country/Region is required",
               }}
               width="xl:w-[300px]"
             />
@@ -152,33 +156,7 @@ const PartyDetails = () => {
               register={register}
               error={errors?.forename}
               validation={{
-                required: "Start date is required",
-              }}
-              width="xl:w-[300px]"
-            />
-          </div>
-          <div className="mt-3 xl:mt-[26px]">
-            <FlexibleInput
-              label="Post/Zip code"
-              type="text"
-              name="zipCode2"
-              register={register}
-              error={errors?.forename}
-              validation={{
-                required: "Start date is required",
-              }}
-              width="xl:w-[300px]"
-            />
-          </div>
-          <div className="mt-3 xl:mt-[26px]">
-            <FlexibleInput
-              label="Post/Zip code"
-              type="text"
-              name="zipCode3"
-              register={register}
-              error={errors?.forename}
-              validation={{
-                required: "Start date is required",
+                required: "Zip code is required",
               }}
               width="xl:w-[300px]"
             />
@@ -191,7 +169,7 @@ const PartyDetails = () => {
               register={register}
               error={errors?.forename}
               validation={{
-                required: "Start date is required",
+                required: "Address 1 is required",
               }}
               width="xl:w-[300px]"
               underText='If you do not have a post/zip code, please enter "0000" '
