@@ -4,7 +4,7 @@ import useFetchData from "@/hooks/api/useFetchData";
 
 const Footer = () => {
   const { data } = useFetchData("/page/common");
-  console.log('common data', data);
+  // console.log('common data', data);
   
   const footerLinks = [
     {

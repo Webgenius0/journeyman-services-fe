@@ -26,7 +26,9 @@ const TravelDetails = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
   const [selectedInsuranceType, setSelectedInsuranceType] = useState("");
+
   const [date, setDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(null); // Track end date
 
   const [selectedAdults, setSelectedAdults] = useState(
     localStorage.getItem("selectedAdults") || defaultAdults
@@ -36,7 +38,6 @@ const TravelDetails = () => {
   );
   const { data } = useFetchData("/country/list");
   const countries = data?.data;
-  console.log(countries);
 
   const handleAdultsChange = (value) => {
     setSelectedAdults(value);
@@ -83,6 +84,9 @@ const TravelDetails = () => {
 
   const handleInsuranceTypeChange = (value) => {
     setSelectedInsuranceType(value);
+    if (value !== "annual") {
+      setEndDate(null); // Reset end date when switching to "Single trip"
+    }
   };
 
   return (
@@ -129,7 +133,7 @@ const TravelDetails = () => {
             <CommonRadioButton
               options={[
                 { value: "annual", label: "Annual multi-trip" },
-                { value: "option2", label: "Single trip" },
+                { value: "single", label: "Single trip" },
               ]}
               onChange={handleInsuranceTypeChange}
               value={selectedInsuranceType}
@@ -163,53 +167,78 @@ const TravelDetails = () => {
           </CommonFieldWrapper>
         </div>
 
-        {/* Area of Travel */}
+        {/* Date Picker - Start Date */}
         <div>
-          <CommonFieldWrapper
-            label="Area of travel"
-            modalContent={modalContent[0]}
+          <label
+            htmlFor="start-date"
+            className="block mb-2 text-sm font-semibold"
           >
-            <CommonRadioButton
-              options={[
-                { value: "option1", label: "Worldwide" },
-                {
-                  value: "option2",
-                  label: "Worldwide (excluding USA, Canada & Caribbean)",
-                },
-                { value: "option3", label: "Europe" },
-              ]}
-            />
-          </CommonFieldWrapper>
+            Start Date
+          </label>
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                variant={"outline"}
+                className={cn(
+                  "w-[280px] justify-start text-left font-normal",
+                  !date && "text-muted-foreground"
+                )}
+              >
+                <CalendarIcon />
+                {date ? format(date, "PPP") : <span>Pick a date</span>}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-0">
+              <Calendar
+                mode="single"
+                selected={date}
+                onSelect={setDate}
+                initialFocus
+              />
+            </PopoverContent>
+          </Popover>
         </div>
 
-        {/* Date Picker */}
-        <div>
-          <CommonFieldWrapper label="Start Date">
+        {/* End Date Picker - Only for Single Trip */}
+        {selectedInsuranceType === "single" && (
+          <div>
+            <label
+              htmlFor="start-date"
+              className="block mb-2 text-sm font-semibold"
+            >
+              End Date
+            </label>
             <Popover>
               <PopoverTrigger asChild>
                 <Button
                   variant={"outline"}
                   className={cn(
                     "w-[280px] justify-start text-left font-normal",
-                    !date && "text-muted-foreground"
+                    !endDate && "text-muted-foreground"
                   )}
                 >
                   <CalendarIcon />
-                  {date ? format(date, "PPP") : <span>Pick a date</span>}
+                  {endDate ? (
+                    format(endDate, "PPP")
+                  ) : (
+                    <span>Pick an end date</span>
+                  )}
                 </Button>
               </PopoverTrigger>
               <PopoverContent className="w-auto p-0">
                 <Calendar
                   mode="single"
-                  selected={date}
-                  onSelect={setDate}
+                  selected={endDate}
+                  onSelect={setEndDate}
+                  minDate={date}
                   initialFocus
                 />
               </PopoverContent>
             </Popover>
-          </CommonFieldWrapper>
-        </div>
+          </div>
+        )}
 
+        {/* Other Form Fields */}
         <div>
           <CommonDropdownSelect
             options={[
@@ -226,46 +255,33 @@ const TravelDetails = () => {
         </div>
 
         <div>
-          <FlexibleInput
-            label="What age is the oldest insured party?"
-            type="number"
-            name="age"
+          <CommonDropdownSelect
+            options={[
+              { value: "0", label: "Less than 50" },
+              { value: "1", label: "50-59" },
+              { value: "2", label: "60-64" },
+            ]}
             placeholder="Less than 50"
-            register={register}
-            error={errors?.age}
-            validation={{
-              required: "End date is required",
-            }}
-            width="xl:w-1/2"
-            required
+            label="What age is the oldest insured party?"
+            value={selectedChildren}
+            onChange={handleChildrenChange}
+            width="xl:w-[250px]"
             underText="(How old is the eldest person being insured on this policy on the proposed start date above?)"
           />
         </div>
+
         <div>
           <CommonDropdownSelect
             options={[
               { value: "0", label: "0" },
               { value: "1", label: "1" },
               { value: "2", label: "2" },
-              { value: "3", label: "3" },
             ]}
             placeholder="0"
             label="Number of children"
             width="xl:w-[100px]"
             value={selectedChildren}
             onChange={handleChildrenChange}
-          />
-        </div>
-
-        {/* Insurance Type for Winter/Adventure Sports */}
-        <div>
-          <CommonRadioButton
-            options={[
-              { value: "light", label: "Winter Sports?" },
-              { value: "dark", label: "Adventurer Sports?" },
-            ]}
-            onChange={(value) => console.log(value)}
-            defaultValue="light"
           />
         </div>
       </form>

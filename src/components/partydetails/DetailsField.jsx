@@ -23,15 +23,17 @@ const DetailsField = ({ title }) => {
         <div>
           <CommonDropdownSelect
             options={[
-              { value: "option1", label: "Option 1" },
-              { value: "option2", label: "Option 2" },
+              { value: "option1", label: "Mr" },
+              { value: "option2", label: "Mrs" },
+              { value: "option3", label: "Ms" },
+              { value: "option4", label: "Miss" },
             ]}
             label="Title"
             placeholder="Mr."
             onChange={(value) => console.log(value)}
           />
         </div>
-        
+
         <div>
           <FlexibleInput
             label="Forename"
