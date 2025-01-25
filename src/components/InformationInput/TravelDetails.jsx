@@ -139,6 +139,9 @@ const TravelDetails = () => {
               placeholder="Please Select"
               value={selectedCountry}
               onChange={setSelectedCountry}
+              underText="(This is your home country and not the country that you are visiting)
+
+"
             />
           </CommonFieldWrapper>
         </div>

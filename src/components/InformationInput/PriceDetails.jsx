@@ -4,12 +4,12 @@ import { Collapse } from "react-collapse";
 
 const PriceDetails = () => {
   const { selectedCountry } = useTravelDetails();
-  console.log(selectedCountry);
+  // console.log(selectedCountry);
 
-  // List of countries where "Please note" section should be shown
+  // countries for those message area will display
   const countriesWithNote = [
     "United Kingdom",
-    "Isle of Milan",
+    "Isle of Man",
     "Guernsey",
     "Jersey",
   ];
