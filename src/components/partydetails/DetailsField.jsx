@@ -1,6 +1,7 @@
 import CommonDropdownSelect from "@/components/common/CommonDropdownSelect";
 import FlexibleInput from "../common/FlexibleInput";
 import { useForm } from "react-hook-form";
+import { useTravelDetails } from "@/contexts/TravelDetailsProvider";
 
 const DetailsField = ({ title }) => {
   const {
@@ -12,6 +13,7 @@ const DetailsField = ({ title }) => {
   const onSubmit = (data) => {
     console.log(data);
   };
+  const { seletedCountry } = useTravelDetails();
 
   return (
     <form

@@ -16,7 +16,7 @@ const InformationInput = () => {
 
         {/* Sticky Price Details */}
         <div className="xl:w-[400px] xl:ml-8">
-          <div className="sticky top-0">
+          <div className="sticky top-28">
             <PriceDetails />
           </div>
         </div>
