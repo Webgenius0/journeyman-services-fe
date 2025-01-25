@@ -14,10 +14,10 @@ const DetailsField = ({ title }) => {
   const onSubmit = (data) => {
     console.log(data);
   };
-  const { seletedCountry } = useTravelDetails();
+  const { selectedCountry } = useTravelDetails();
   const { data } = useFetchData("/country/list");
   const countries = data?.data;
-  console.log(seletedCountry, countries)
+  console.log(selectedCountry);
 
   return (
     <form
@@ -81,12 +81,13 @@ const DetailsField = ({ title }) => {
         </div>
         <div>
           <CommonDropdownSelect
-            options={[
-              { value: "option1", label: "America" },
-              { value: "option2", label: "Option 2" },
-            ]}
+            options={countries?.map((country) => ({
+              value: country.code,
+              label: country.name,
+            }))}
             label="Nationality"
-            placeholder="America"
+            placeholder={selectedCountry || "Select Country"}
+            defaultValue={selectedCountry}
             onChange={(value) => console.log(value)}
           />
         </div>

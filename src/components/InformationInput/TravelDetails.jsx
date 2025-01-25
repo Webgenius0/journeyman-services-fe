@@ -53,6 +53,8 @@ const TravelDetails = () => {
 
   const { data } = useFetchData("/country/list");
   const countries = data?.data;
+  console.log(selectedCountry);
+  
 
   const [availableAreas, setAvailableAreas] = useState([
     { value: "worldwide", label: "Worldwide" },
