@@ -1,6 +1,21 @@
+import { useTravelDetails } from "@/contexts/TravelDetailsProvider";
 import CommonButton from "../common/CommonButton";
+import { Collapse } from "react-collapse";
 
 const PriceDetails = () => {
+  const { selectedCountry } = useTravelDetails();
+  console.log(selectedCountry);
+
+  // List of countries where "Please note" section should be shown
+  const countriesWithNote = [
+    "United Kingdom",
+    "Isle of Milan",
+    "Guernsey",
+    "Jersey",
+  ];
+
+  const showNote = countriesWithNote.includes(selectedCountry);
+
   return (
     <div className="xl:max-w-[400px]">
       {/* quote */}
@@ -36,20 +51,25 @@ const PriceDetails = () => {
           </CommonButton>
           <CommonButton className="px-7 py-3">Save Quote</CommonButton>
         </div>
-        <div className="mt-14">
-          <h3 className="text-lg font-bold text-textBlackV2 leading-[30px] border-b border-[#8CA2B4] text-center mb-[7px]">
-            Please note
-          </h3>
-          <p className="text-center xl:text-left mb-[7px] text-textBlackV2 text-sm xl:text-base xl:leading-[25px]">
-            Pre-existing conditions are not covered under the terms and
-            conditions of Journeyman policies. If you are seeking travel
-            insurance that would provide cover for a pre-existing condition the
-            Money and Pensions Service (MaPS) has launched a travel insurance
-            directory on its Money Advice Service website which can be found
-            here and details providers which can offer travel insurance
-            inclusive of pre-existing conditions
-          </p>
-        </div>
+        {/* Conditionally render the "Please note" section */}
+        <Collapse isOpened="true">
+          {showNote && (
+            <div className="mt-14">
+              <h3 className="text-lg font-bold text-textBlackV2 leading-[30px] border-b border-[#8CA2B4] text-center mb-[7px]">
+                Please note
+              </h3>
+              <p className="text-center xl:text-left mb-[7px] text-textBlackV2 text-sm xl:text-base xl:leading-[25px]">
+                Pre-existing conditions are not covered under the terms and
+                conditions of Journeyman policies. If you are seeking travel
+                insurance that would provide cover for a pre-existing condition
+                the Money and Pensions Service (MaPS) has launched a travel
+                insurance directory on its Money Advice Service website which
+                can be found here and details providers which can offer travel
+                insurance inclusive of pre-existing conditions.
+              </p>
+            </div>
+          )}
+        </Collapse>
       </div>
     </div>
   );

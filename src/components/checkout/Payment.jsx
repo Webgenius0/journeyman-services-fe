@@ -11,12 +11,12 @@ const Payment = () => {
     date,
   } = useTravelDetails();
 
-  const bigData = {
+  const data = {
     date: date,
     currency: selectedCurrency,
   };
 
-  console.log(bigData);
+  console.log(data);
 
   const {
     register,
