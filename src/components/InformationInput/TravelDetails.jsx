@@ -12,7 +12,7 @@ import { useForm } from "react-hook-form";
 import CommonFieldWrapper from "@/components/common/CommonFieldWrapper";
 import CommonDropdownSelect from "@/components/common/CommonDropdownSelect";
 import CommonRadioButton from "../common/CommonRadioButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CommonModal from "../common/CommonModal";
 import { Collapse } from "react-collapse";
 import QuestionIcon from "@/assets/Icons/QuestionIcon";
@@ -53,6 +53,54 @@ const TravelDetails = () => {
 
   const { data } = useFetchData("/country/list");
   const countries = data?.data;
+
+  const [availableAreas, setAvailableAreas] = useState([
+    { value: "worldwide", label: "Worldwide" },
+    {
+      value: "worlwide_ex_usa",
+      label: "Worldwide (excluding USA, Canada & Caribbean)",
+    },
+    { value: "europe", label: "Europe Only" },
+  ]);
+
+  useEffect(() => {
+    if (selectedCountry) {
+      const selectedCountryData = countries?.find(
+        (country) => country.name === selectedCountry
+      );
+      const continent = selectedCountryData?.continent?.toLowerCase();
+
+      // options for area of travel
+      let areaOptions = [
+        { value: "worldwide", label: "Worldwide" },
+        {
+          value: "worlwide_ex_usa",
+          label: "Worldwide (excluding USA, Canada & Caribbean)",
+        },
+        { value: "europe", label: "Europe Only" },
+      ];
+
+      if (continent === "europe") {
+        areaOptions = [
+          { value: "worldwide", label: "Worldwide" },
+          {
+            value: "worlwide_ex_usa",
+            label: "Worldwide (excluding USA, Canada & Caribbean)",
+          },
+          { value: "europe", label: "Europe Only" },
+        ];
+      } else if (continent?.includes("america")) {
+        areaOptions = [{ value: "worldwide", label: "Worldwide" }];
+      } else {
+        areaOptions = [
+          { value: "worldwide", label: "Worldwide" },
+          { value: "europe", label: "Europe Only" },
+        ];
+      }
+
+      setAvailableAreas(areaOptions);
+    }
+  }, [selectedCountry, countries]);
 
   const handleAdultsChange = (value) => {
     setSelectedAdults(value);
@@ -139,9 +187,7 @@ const TravelDetails = () => {
               placeholder="Please Select"
               value={selectedCountry}
               onChange={setSelectedCountry}
-              underText="(This is your home country and not the country that you are visiting)
-
-"
+              underText="(This is your home country and not the country that you are visiting)"
             />
           </CommonFieldWrapper>
         </div>
@@ -163,7 +209,7 @@ const TravelDetails = () => {
 
             {/* Nested Fields only for "Annual multi-trip" */}
             <Collapse isOpened={selectedInsuranceType === "annual"}>
-              <div className="ml-4 mt-3 border p-4 rounded-md">
+              <div className="ml-4 mt-3 border p-4 rounded-md ">
                 <CommonRadioButton
                   options={[
                     {
@@ -195,17 +241,7 @@ const TravelDetails = () => {
             modalContent={modalContent[0]}
           >
             <CommonRadioButton
-              options={[
-                { value: "worldwide", label: "Worldwide" },
-                {
-                  value: "worlwide_ex_usa",
-                  label: "Worldwide (excluding USA, Canada & Caribbean)",
-                },
-                {
-                  value: "europe",
-                  label: "Europe Only",
-                },
-              ]}
+              options={availableAreas}
               onChange={setSelectedArea}
               value={selectedArea}
             />

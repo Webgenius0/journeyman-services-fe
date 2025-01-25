@@ -16,6 +16,8 @@ const PartyDetails = () => {
   const [modalData, setModalData] = useState(null);
   const { selectedAdults, selectedChildren, seletedCountry } = useTravelDetails();
 
+  
+
   // console.log("selectedAdult", selectedAdults);
   // console.log("selectedChildren", selectedChildren);
   
