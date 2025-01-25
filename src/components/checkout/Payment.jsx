@@ -1,10 +1,23 @@
-import React from "react";
 import CommonButton from "../common/CommonButton";
 import FlexibleInput from "../common/FlexibleInput";
 import { useForm } from "react-hook-form";
 import FaqPdf from "../common/FaqPdf";
+import { useTravelDetails } from "@/contexts/TravelDetailsProvider";
 
 const Payment = () => {
+  const {
+    selectedCurrency,
+
+    date,
+  } = useTravelDetails();
+
+  const bigData = {
+    date: date,
+    currency: selectedCurrency,
+  };
+
+  console.log(bigData);
+
   const {
     register,
     handleSubmit,
@@ -16,7 +29,9 @@ const Payment = () => {
   };
   return (
     <div className="mt-[74px]">
-      <h3 className="text-textBlackV2 font-bold text-lg leading-[30px]">Payment</h3>
+      <h3 className="text-textBlackV2 font-bold text-lg leading-[30px]">
+        Payment
+      </h3>
       <p className="text-textBlackV2 leading-[25px]">
         Please enter the details as they appear on your credit/debit card
         statement
@@ -105,7 +120,7 @@ const Payment = () => {
           Finish and pay
         </CommonButton>
       </form>
-      <FaqPdf/>
+      <FaqPdf />
     </div>
   );
 };

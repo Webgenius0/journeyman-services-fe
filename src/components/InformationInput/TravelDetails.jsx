@@ -17,35 +17,49 @@ import CommonModal from "../common/CommonModal";
 import { Collapse } from "react-collapse";
 import QuestionIcon from "@/assets/Icons/QuestionIcon";
 import useFetchData from "@/hooks/api/useFetchData";
+import { useTravelDetails } from "@/contexts/TravelDetailsProvider";
 
 const TravelDetails = () => {
-  // Initialize default values for adults and children
-  const defaultAdults = "1";
-  const defaultChildren = "0";
+  const {
+    selectedAdults,
+    setSelectedAdults,
+    selectedChildren,
+    setSelectedChildren,
+    selectedInsuranceType,
+    setSelectedInsuranceType,
+    selectedArea,
+    setSelectedArea,
+    selectedCurrency,
+    setSelectedCurrency,
+    selectedCountry,
+    setSelectedCountry,
+    date,
+    setDate,
+    endDate,
+    setEndDate,
+  } = useTravelDetails();
+
+  console.log(
+    selectedAdults,
+    selectedArea,
+    selectedInsuranceType,
+    date,
+    endDate,
+    selectedCountry
+  );
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
-  const [selectedInsuranceType, setSelectedInsuranceType] = useState("");
-  const [date, setDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(null); // New state for end date
 
-  const [selectedAdults, setSelectedAdults] = useState(
-    localStorage.getItem("selectedAdults") || defaultAdults
-  );
-  const [selectedChildren, setSelectedChildren] = useState(
-    localStorage.getItem("selectedChildren") || defaultChildren
-  );
   const { data } = useFetchData("/country/list");
   const countries = data?.data;
-  console.log(countries);
 
   const handleAdultsChange = (value) => {
     setSelectedAdults(value);
-    localStorage.setItem("selectedAdults", value);
   };
 
   const handleChildrenChange = (value) => {
     setSelectedChildren(value);
-    localStorage.setItem("selectedChildren", value);
   };
 
   const modalContent = [
@@ -99,11 +113,15 @@ const TravelDetails = () => {
         <div>
           <CommonDropdownSelect
             options={[
-              { value: "option1", label: "British Pounds" },
-              { value: "option2", label: "USA Dollars" },
+              { value: "British Pounds", label: "British Pounds" },
+              { value: "USA Dollars", label: "USA Dollars" },
             ]}
             placeholder="British Pounds"
             label="Policy Currency"
+            value={selectedCurrency}
+            onChange={(value) => {
+              setSelectedCurrency(value);
+            }}
           />
         </div>
 
@@ -115,10 +133,12 @@ const TravelDetails = () => {
           >
             <CommonDropdownSelect
               options={countries?.map((country) => ({
-                value: country.code,
+                value: country.name,
                 label: country.name,
               }))}
               placeholder="Please Select"
+              value={selectedCountry}
+              onChange={setSelectedCountry}
             />
           </CommonFieldWrapper>
         </div>
@@ -166,10 +186,33 @@ const TravelDetails = () => {
           </CommonFieldWrapper>
         </div>
 
+        <div>
+          <CommonFieldWrapper
+            label="Area of travel"
+            modalContent={modalContent[0]}
+          >
+            <CommonRadioButton
+              options={[
+                { value: "worldwide", label: "Worldwide" },
+                {
+                  value: "worlwide_ex_usa",
+                  label: "Worldwide (excluding USA, Canada & Caribbean)",
+                },
+                {
+                  value: "europe",
+                  label: "Europe Only",
+                },
+              ]}
+              onChange={setSelectedArea}
+              value={selectedArea}
+            />
+          </CommonFieldWrapper>
+        </div>
+
         {/* Date Picker */}
         <div>
           <label
-            htmlFor="end-date"
+            htmlFor="start-date"
             className="block mb-2 text-sm font-semibold"
           >
             Start Date
@@ -237,7 +280,6 @@ const TravelDetails = () => {
         </Collapse>
 
         {/* Other form fields */}
-        {/* Number of Adults */}
         <div>
           <CommonDropdownSelect
             options={[
@@ -253,7 +295,6 @@ const TravelDetails = () => {
           />
         </div>
 
-        {/* Number of Children */}
         <div>
           <CommonDropdownSelect
             options={[
@@ -270,12 +311,11 @@ const TravelDetails = () => {
           />
         </div>
 
-        {/* Insurance Type for Winter/Adventure Sports */}
         <div>
           <CommonRadioButton
             options={[
               { value: "light", label: "Winter Sports?" },
-              { value: "dark", label: "Adventurer Sports?" },
+              { value: "dark", label: "Adventure Sports?" },
             ]}
             onChange={(value) => console.log(value)}
             defaultValue="light"
