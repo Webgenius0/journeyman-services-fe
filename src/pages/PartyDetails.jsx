@@ -7,24 +7,17 @@ import FaqPdf from "@/components/common/FaqPdf";
 import FlexibleInput from "@/components/common/FlexibleInput";
 import DetailsField from "@/components/partydetails/DetailsField";
 import { Checkbox } from "@/components/ui/checkbox";
-import { useEffect, useState } from "react";
+import { useTravelDetails } from "@/contexts/TravelDetailsProvider";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const PartyDetails = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
-  const [adults, setAdults] = useState(0);
-  const [children, setChildren] = useState(0);
+  const { selectedAdults, selectedChildren } = useTravelDetails();
 
-  useEffect(() => {
-    const adults = localStorage.getItem("selectedAdults");
-    const children = localStorage.getItem("selectedChildren");
-
-    if (adults && children) {
-      setAdults(Number(adults));
-      setChildren(Number(children));
-    }
-  }, []);
+  console.log("selectedAdult", selectedAdults);
+  console.log("selectedChildren", selectedChildren);
 
   const modalContent = [
     {
@@ -67,10 +60,10 @@ const PartyDetails = () => {
       </div>
 
       {/* Adult Details */}
-      {adults > 0 && (
+      {selectedAdults > 0 && (
         <div>
           <h3 className="mb-3 mt-6 xl:mt-8 xlg:text-lg font-bold">Adults</h3>
-          {[...Array(adults)].map((_, index) => (
+          {Array.from({ length: selectedAdults }).map((_, index) => (
             <div key={`adult-${index}`} className={index > 0 ? "mt-4" : ""}>
               <DetailsField title={`Adult ${index + 1}`} />
             </div>
@@ -79,11 +72,11 @@ const PartyDetails = () => {
       )}
 
       {/* Children Details */}
-      {children > 0 && (
+      {selectedChildren > 0 && (
         <div className="mt-8">
           <h3 className="mb-3 mt-8 xl:text-lg font-bold">Children</h3>
-          {[...Array(children)].map((_, index) => (
-            <div key={`child-${index}`} className={index > 0 ? "mt-4" : ""}>
+          {Array.from({ length: selectedChildren }).map((_, index) => (
+            <div key={`children-${index}`} className={index > 0 ? "mt-4" : ""}>
               <DetailsField title={`Children ${index + 1}`} />
             </div>
           ))}
