@@ -16,7 +16,6 @@ import { useState } from "react";
 import CommonModal from "../common/CommonModal";
 import { Collapse } from "react-collapse";
 import QuestionIcon from "@/assets/Icons/QuestionIcon";
-import FlexibleInput from "../common/FlexibleInput";
 import useFetchData from "@/hooks/api/useFetchData";
 
 const TravelDetails = () => {
@@ -26,9 +25,8 @@ const TravelDetails = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
   const [selectedInsuranceType, setSelectedInsuranceType] = useState("");
-
   const [date, setDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(null); // Track end date
+  const [endDate, setEndDate] = useState(null); // New state for end date
 
   const [selectedAdults, setSelectedAdults] = useState(
     localStorage.getItem("selectedAdults") || defaultAdults
@@ -38,6 +36,7 @@ const TravelDetails = () => {
   );
   const { data } = useFetchData("/country/list");
   const countries = data?.data;
+  console.log(countries);
 
   const handleAdultsChange = (value) => {
     setSelectedAdults(value);
@@ -84,8 +83,8 @@ const TravelDetails = () => {
 
   const handleInsuranceTypeChange = (value) => {
     setSelectedInsuranceType(value);
-    if (value !== "annual") {
-      setEndDate(null); // Reset end date when switching to "Single trip"
+    if (value !== "single") {
+      setEndDate(null);
     }
   };
 
@@ -167,10 +166,10 @@ const TravelDetails = () => {
           </CommonFieldWrapper>
         </div>
 
-        {/* Date Picker - Start Date */}
+        {/* Date Picker */}
         <div>
           <label
-            htmlFor="start-date"
+            htmlFor="end-date"
             className="block mb-2 text-sm font-semibold"
           >
             Start Date
@@ -199,11 +198,10 @@ const TravelDetails = () => {
           </Popover>
         </div>
 
-        {/* End Date Picker - Only for Single Trip */}
-        {selectedInsuranceType === "single" && (
+        <Collapse isOpened={selectedInsuranceType === "single"}>
           <div>
             <label
-              htmlFor="start-date"
+              htmlFor="end-date"
               className="block mb-2 text-sm font-semibold"
             >
               End Date
@@ -236,9 +234,10 @@ const TravelDetails = () => {
               </PopoverContent>
             </Popover>
           </div>
-        )}
+        </Collapse>
 
-        {/* Other Form Fields */}
+        {/* Other form fields */}
+        {/* Number of Adults */}
         <div>
           <CommonDropdownSelect
             options={[
@@ -254,28 +253,14 @@ const TravelDetails = () => {
           />
         </div>
 
-        <div>
-          <CommonDropdownSelect
-            options={[
-              { value: "0", label: "Less than 50" },
-              { value: "1", label: "50-59" },
-              { value: "2", label: "60-64" },
-            ]}
-            placeholder="Less than 50"
-            label="What age is the oldest insured party?"
-            value={selectedChildren}
-            onChange={handleChildrenChange}
-            width="xl:w-[250px]"
-            underText="(How old is the eldest person being insured on this policy on the proposed start date above?)"
-          />
-        </div>
-
+        {/* Number of Children */}
         <div>
           <CommonDropdownSelect
             options={[
               { value: "0", label: "0" },
               { value: "1", label: "1" },
               { value: "2", label: "2" },
+              { value: "3", label: "3" },
             ]}
             placeholder="0"
             label="Number of children"
@@ -284,33 +269,45 @@ const TravelDetails = () => {
             onChange={handleChildrenChange}
           />
         </div>
+
+        {/* Insurance Type for Winter/Adventure Sports */}
+        <div>
+          <CommonRadioButton
+            options={[
+              { value: "light", label: "Winter Sports?" },
+              { value: "dark", label: "Adventurer Sports?" },
+            ]}
+            onChange={(value) => console.log(value)}
+            defaultValue="light"
+          />
+        </div>
+
+        <div className="flex gap-2 xl:gap-3 mt-7">
+          <p className="text-textBlackV2 text-sm xl:text-base xl:leading-[25px]">
+            Click here to view activities covered in the &apos;standard&apos;
+            policy
+          </p>
+          <div
+            className="bg-[#8CA2B4] h-6 w-6 rounded-full flex justify-center items-center cursor-pointer"
+            onClick={() => openModal(modalContent[0])}
+          >
+            <QuestionIcon />
+          </div>
+        </div>
+
+        <div className="flex gap-3 mt-7">
+          <p className="text-textBlackV2 text-sm xl:text-base xl:leading-[25px]">
+            Click here to view activities covered in the &apos;Adventure
+            sports&apos; policy
+          </p>
+          <div
+            className="bg-[#8CA2B4] h-6 w-6 rounded-full flex justify-center items-center cursor-pointer"
+            onClick={() => openModal(modalContent[1])}
+          >
+            <QuestionIcon />
+          </div>
+        </div>
       </form>
-
-      <div className="flex gap-2 xl:gap-3 mt-7">
-        <p className="text-textBlackV2 text-sm xl:text-base xl:leading-[25px]">
-          Click here to view activities covered in the &apos;standard&apos;
-          policy
-        </p>
-        <div
-          className="bg-[#8CA2B4] h-6 w-6 rounded-full flex justify-center items-center cursor-pointer"
-          onClick={() => openModal(modalContent[0])}
-        >
-          <QuestionIcon />
-        </div>
-      </div>
-
-      <div className="flex gap-3 mt-7">
-        <p className="text-textBlackV2 text-sm xl:text-base xl:leading-[25px]">
-          Click here to view activities covered in the &apos;Adventure
-          sports&apos; policy
-        </p>
-        <div
-          className="bg-[#8CA2B4] h-6 w-6 rounded-full flex justify-center items-center cursor-pointer"
-          onClick={() => openModal(modalContent[1])}
-        >
-          <QuestionIcon />
-        </div>
-      </div>
 
       <CommonModal
         isOpen={isModalOpen}
