@@ -38,6 +38,9 @@ const TravelDetails = () => {
     setDate,
     endDate,
     setEndDate,
+    setPriceData,
+    priceData,
+    setLoading
   } = useTravelDetails();
   const axiosPublic = useAxiosPublic();
 
@@ -51,7 +54,6 @@ const TravelDetails = () => {
   const [ageGroup, setAgeGroup] = useState("49");
 
   const [partyType, setPartyType] = useState("individual");
-  const [priceData, setPriceData] = useState(null);
   console.log(priceData);
 
   // Calculate duration between start and end dates
@@ -65,6 +67,7 @@ const TravelDetails = () => {
 
   const fetchPriceList = async () => {
     try {
+      setLoading(true);
       const duration = calculateDuration();
       console.log(ageGroup);
 

@@ -3,9 +3,12 @@ import CommonButton from "../common/CommonButton";
 import { Collapse } from "react-collapse";
 
 const PriceDetails = () => {
-  const { selectedCountry, selectedArea, selectedInsuranceType } =
+  const { selectedCountry, selectedArea, selectedInsuranceType, priceData, loading } =
     useTravelDetails();
 
+  console.log(priceData);
+  const price = priceData?.data?.price;
+  console.log(price);
   // countries for those message area will display
   const countriesWithNote = [
     "United Kingdom",
@@ -44,15 +47,16 @@ const PriceDetails = () => {
           {/* price */}
           <Collapse isOpened={true}>
             <div className="mt-[30px] border border-[#8CA2B4] py-[21px] px-[21px] rounded-[5px] xl:min-w-[400px]">
-              <h3 className="xl:text-lg font-bold text-textBlackV2 xl:leading-[30px] border-b border-[#8CA2B4] text-center mb-[26px]">
+             <div>
+             <h3 className="xl:text-lg font-bold text-textBlackV2 xl:leading-[30px] border-b border-[#8CA2B4] text-center mb-[26px]">
                 Price Details
               </h3>
               <p className="text-center xl:text-left mb-[7px] text-textBlackV2 text-xl xl:text-2xl">
-                <span className="font-bold">Price:</span> $132.33
+                <span className="font-bold">Price:</span> ${price}
               </p>
               <ul className="text-center xl:text-left leading-[25px]">
                 <li>The Price includes</li>
-                <li>Basic premium: $126</li>
+                <li>Basic premium: ${price}</li>
                 <li>An administration charge of $4.54 (3.5%)</li>
               </ul>
               <div className="flex justify-between mt-3 xl:mt-[21px]">
@@ -61,6 +65,7 @@ const PriceDetails = () => {
                 </CommonButton>
                 <CommonButton className="px-7 py-3">Save Quote</CommonButton>
               </div>
+             </div>
             </div>
           </Collapse>
           {/* Conditionally rendering the "Please note" section */}
