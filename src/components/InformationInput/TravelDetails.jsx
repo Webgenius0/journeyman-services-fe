@@ -18,6 +18,7 @@ import { Collapse } from "react-collapse";
 import QuestionIcon from "@/assets/Icons/QuestionIcon";
 import useFetchData from "@/hooks/api/useFetchData";
 import { useTravelDetails } from "@/contexts/TravelDetailsProvider";
+import useAxiosPublic from "@/hooks/api/useAxiosPublic";
 
 const TravelDetails = () => {
   const {
@@ -38,6 +39,7 @@ const TravelDetails = () => {
     endDate,
     setEndDate,
   } = useTravelDetails();
+  const axiosPublic = useAxiosPublic();
 
   // by default currency is selected as british pounds
   useEffect(() => {
@@ -45,6 +47,45 @@ const TravelDetails = () => {
       setSelectedCurrency("British Pounds");
     }
   }, [selectedCurrency, setSelectedCurrency]);
+
+  const [ageGroup, setAgeGroup] = useState("49");
+
+  const [partyType, setPartyType] = useState("individual");
+  const [priceData, setPriceData] = useState(null);
+  console.log(priceData);
+
+  // Calculate duration between start and end dates
+  const calculateDuration = () => {
+    if (date && endDate) {
+      const durationInMillis = endDate - date;
+      return Math.floor(durationInMillis / (1000 * 60 * 60 * 24));
+    }
+    return 0;
+  };
+
+  const fetchPriceList = async () => {
+    try {
+      const duration = calculateDuration();
+      console.log(ageGroup);
+
+      const response = await axiosPublic.post("/price/list", {
+        is_annual: selectedInsuranceType === "annual" ? 1 : 0,
+        destination: selectedArea,
+        max_duration: duration,
+        age_group: ageGroup,
+        party_type: partyType,
+      });
+
+      // Set the response data into state
+      setPriceData(response.data);
+    } catch (error) {
+      console.error("Error fetching price list:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchPriceList();
+  }, [selectedInsuranceType, selectedArea, date, endDate, ageGroup, partyType]);
 
   // console.log(
   //   selectedAdults,
@@ -66,7 +107,7 @@ const TravelDetails = () => {
   const [availableAreas, setAvailableAreas] = useState([
     { value: "worldwide", label: "Worldwide" },
     {
-      value: "worlwide_ex_usa",
+      value: "ex_usa",
       label: "Worldwide (excluding USA, Canada & Caribbean)",
     },
     { value: "europe", label: "Europe Only" },
@@ -357,6 +398,26 @@ const TravelDetails = () => {
             width="xl:w-[100px]"
             value={selectedChildren}
             onChange={handleChildrenChange}
+          />
+        </div>
+        <div>
+          <CommonDropdownSelect
+            options={[
+              { value: "49", label: "Less than 50" },
+              { value: "50-59", label: "50-59" },
+              { value: "60-64", label: "60-64" },
+              { value: "65-69", label: "65-69" },
+              { value: "70-74", label: "70-74" },
+              { value: "75-79", label: "75-79" },
+              { value: "80-84", label: "80-84" },
+              { value: "85", label: "Over 84" },
+            ]}
+            placeholder="Less than 50"
+            label="What age is the oldest insured party?
+"
+            width="xl:w-[200px]"
+            onChange={(value) => setAgeGroup(value)}
+            value={ageGroup}
           />
         </div>
 
