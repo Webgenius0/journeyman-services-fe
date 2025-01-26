@@ -40,7 +40,7 @@ const TravelDetails = () => {
     setEndDate,
     setPriceData,
     priceData,
-    setLoading
+    setLoading,
   } = useTravelDetails();
   const axiosPublic = useAxiosPublic();
 
@@ -115,6 +115,14 @@ const TravelDetails = () => {
     },
     { value: "europe", label: "Europe Only" },
   ]);
+
+  // end date by default +7 of todays date
+  useEffect(() => {
+    const today = new Date();
+    const defaultEndDate = new Date(today);
+    defaultEndDate.setDate(today.getDate() + 7);
+    setEndDate(defaultEndDate);
+  }, []);
 
   useEffect(() => {
     if (selectedCountry) {
@@ -364,7 +372,7 @@ const TravelDetails = () => {
                   mode="single"
                   selected={endDate}
                   onSelect={setEndDate}
-                  minDate={date}
+                  minDate={new Date()} // Optionally, set the minimum date to today's date
                   initialFocus
                 />
               </PopoverContent>
