@@ -57,7 +57,7 @@ const PriceDetails = () => {
                   Price Details
                 </h3>
                 <p className="text-center xl:text-left mb-[7px] text-textBlackV2 text-xl xl:text-2xl">
-                  {selectedCurrency} <span className="font-bold">Price:</span>
+                  <span className="font-bold">Price:</span>
                   {selectedCurrency === "GBP"
                     ? ` £${priceInGBP}`
                     : selectedCurrency === "USD"
