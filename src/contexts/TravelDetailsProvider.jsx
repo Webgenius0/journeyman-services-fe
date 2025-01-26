@@ -14,10 +14,14 @@ export const TravelDetailsProvider = ({ children }) => {
   const [date, setDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
   const [selectedCurrency, setSelectedCurrency] = useState("GBP");
-  
-
-  // console.log(selectedCurrency);
-  
+  const [address1, setAddress1] = useState("");
+  const [address2, setAddress2] = useState("");
+  const [zipCode, setZipCode] = useState("");
+  const [telephone, setTelephone] = useState("");
+  const [email, setEmail] = useState("");
+  const [city, setCity] = useState("");
+  const [message, setMessage] = useState("");
+  const [hear, setHear] = useState("");
 
   return (
     <TravelDetailsContext.Provider
@@ -40,6 +44,22 @@ export const TravelDetailsProvider = ({ children }) => {
         setEndDate,
         selectedCurrency,
         setSelectedCurrency,
+        address1,
+        setAddress1,
+        address2,
+        setAddress2,
+        zipCode,
+        setZipCode,
+        telephone,
+        setTelephone,
+        email,
+        setEmail,
+        city,
+        setCity,
+        message,
+        setMessage,
+        hear,
+        setHear,
       }}
     >
       {children}

@@ -16,7 +16,7 @@ const DetailsField = ({ title }) => {
     console.log(data);
   };
 
-  const { selectedCountry } = useTravelDetails();
+  const { selectedCountry, setSelectedCountry } = useTravelDetails();
   const { data } = useFetchData("/country/list");
   const countries = data?.data;
 
@@ -92,7 +92,7 @@ const DetailsField = ({ title }) => {
             label="Nationality"
             placeholder={selectedCountry || "Select Country"}
             defaultValue={selectedCountry}
-            onChange={(value) => console.log(value)}
+            onChange={(value) => setSelectedCountry(value)}
           />
         </div>
       </div>

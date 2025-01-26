@@ -4,8 +4,38 @@ import Payment from "@/components/checkout/Payment";
 import PolicyPrice from "@/components/checkout/PolicyPrice";
 import CommonPageTitle from "@/components/common/CommonPageTitle";
 import CommonWrapper from "@/components/common/CommonWrapper";
+import { useTravelDetails } from "@/contexts/TravelDetailsProvider";
 
 const CheckOut = () => {
+  const {
+    address1,
+    address2,
+    selectedAdults,
+    selectedChildren,
+    selectedCountry,
+    zipCode,
+    telephone,
+    email,
+    city,
+    message,
+    hear,
+  } = useTravelDetails();
+
+  console.log({
+    address1,
+    address2,
+    selectedAdults,
+    selectedChildren,
+    selectedCountry,
+    zipCode,
+    telephone,
+    email,
+    city,
+    message,
+    hear,
+  });
+
+  console.log(address1, address2);
   return (
     <CommonWrapper>
       <CommonPageTitle>Online travel insurance</CommonPageTitle>
@@ -19,8 +49,8 @@ const CheckOut = () => {
       </div>
       <InsuranceDetails />
       <PartyDetails />
-      <PolicyPrice/>
-      <Payment/>
+      <PolicyPrice />
+      <Payment />
     </CommonWrapper>
   );
 };

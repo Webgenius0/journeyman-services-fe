@@ -12,19 +12,48 @@ import { useTravelDetails } from "@/contexts/TravelDetailsProvider";
 import useFetchData from "@/hooks/api/useFetchData";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 const PartyDetails = () => {
+  const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
-  const { selectedAdults, selectedChildren, selectedCountry } =
-    useTravelDetails();
+  const {
+    selectedAdults,
+    selectedChildren,
+    selectedCountry,
+    setSelectedCountry,
+    setAddress1,
+    setAddress2,
+    setZipCode,
+    setTelephone,
+    setEmail,
+    setCity,
+    setMessage,
+    hear,
+    setHear
+  } = useTravelDetails();
   const { data } = useFetchData("/country/list");
   const countries = data?.data;
 
-  // console.log("selectedAdult", selectedAdults);
-  // console.log("selectedChildren", selectedChildren);
+  // Handle form submission
+  const onSubmit = (data) => {
+    // Store data in TravelDetailsProvider context
+    setSelectedCountry(data.country);
+    setAddress1(data.address1);
+    setAddress2(data.address2);
+    setCity(data.townCity);
+    setZipCode(data.zipCode);
+    setTelephone(data.telephone);
+    setEmail(data.email);
+    setMessage(data.message);
+    setHear(data.hear);
 
-  // console.log("selected country", selectedCountry);
+    if (!Object.keys(errors).length) {
+      navigate("/checkout");
+    }
+  };
+  
 
   const modalContent = [
     {
@@ -49,10 +78,6 @@ const PartyDetails = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-  const onSubmit = (data) => {
-    console.log(data);
-  };
 
   return (
     <CommonWrapper>
@@ -90,6 +115,7 @@ const PartyDetails = () => {
         </div>
       )}
 
+      {/* all the address information */}
       {/* Residential Address */}
       <div className="mt-6 xl:mt-[130px]">
         <h3 className="xlg:text-lg font-bold xl:leading-[30px] mb-[6px]">
@@ -102,7 +128,7 @@ const PartyDetails = () => {
               type="text"
               name="address1"
               register={register}
-              error={errors?.forename}
+              error={errors?.address1}
               validation={{
                 required: "Address 1 is required",
               }}
@@ -115,7 +141,7 @@ const PartyDetails = () => {
               type="text"
               name="address2"
               register={register}
-              error={errors?.forename}
+              error={errors?.address2}
               validation={{
                 required: "Address 2 is required",
               }}
@@ -128,7 +154,7 @@ const PartyDetails = () => {
               type="text"
               name="townCity"
               register={register}
-              error={errors?.forename}
+              error={errors?.townCity}
               validation={{
                 required: "Town/City is required",
               }}
@@ -136,16 +162,16 @@ const PartyDetails = () => {
             />
           </div>
           <div className="mt-3 xl:mt-[26px]">
-            <FlexibleInput
-              label="Country/Region"
-              type="text"
-              name="countryRegion"
-              register={register}
-              error={errors?.forename}
-              validation={{
-                required: "Country/Region is required",
-              }}
-              width="xl:w-[300px]"
+            <CommonDropdownSelect
+              options={countries?.map((country) => ({
+                value: country.code,
+                label: country.name,
+              }))}
+              label="Nationality"
+              placeholder={selectedCountry || "Select Country"}
+              defaultValue={selectedCountry}
+              onChange={(value) => setSelectedCountry(value)}
+              width="w-[300px]"
             />
           </div>
           <div className="mt-3 xl:mt-[26px]">
@@ -154,7 +180,7 @@ const PartyDetails = () => {
               type="text"
               name="zipCode"
               register={register}
-              error={errors?.forename}
+              error={errors?.zipCode}
               validation={{
                 required: "Zip code is required",
               }}
@@ -182,7 +208,7 @@ const PartyDetails = () => {
               type="email"
               name="email"
               register={register}
-              error={errors?.telephone}
+              error={errors?.email}
               validation={{
                 required: "Email is required",
               }}
@@ -191,28 +217,17 @@ const PartyDetails = () => {
           </div>
           <div className="mt-3 xl:mt-[26px]">
             <CommonDropdownSelect
-              options={countries?.map((country) => ({
-                value: country.code,
-                label: country.name,
-              }))}
-              label="Nationality"
-              placeholder={selectedCountry || "Select Country"}
-              defaultValue={selectedCountry}
-              onChange={(value) => console.log(value)}
-              width="w-[300px]"
-            />
-          </div>
-          <div className="mt-3 xl:mt-[26px]">
-            <CommonDropdownSelect
               options={[
-                { value: "0", label: "0" },
-                { value: "1", label: "1" },
-                { value: "2", label: "2" },
-                { value: "3", label: "3" },
+                { value: "0", label: "Search Engine" },
+                { value: "1", label: "Agent-Broker-Intermediary" },
+                { value: "2", label: "Employer-Colleague-Friend" },
+                { value: "3", label: "Advertisement-Leaflet" },
+                { value: "4", label: "Other..." },
               ]}
               label="How did you hear about Journeyman ?"
               placeholder={"Select"}
-              onChange={(value) => console.log(value)}
+              onChange={setHear}
+              value={hear}
               width="w-[300px]"
             />
           </div>
@@ -225,44 +240,6 @@ const PartyDetails = () => {
               width="xl:w-[300px]"
               textarea
             />
-          </div>
-          {/* Policy Information */}
-          <div className="py-4 xl:py-[26px]">
-            <h3 className="text-textBlackV2">
-              Please read the{" "}
-              <span className="underline">Key Facts document</span>,{" "}
-              <span className="underline">Policy Wording (USD)</span> and{" "}
-              <span className="underline">Terms of Business</span>, as we intend
-              to rely on you having read this information.
-              <ul className="text-sm xl:text-base list-disc pl-4 xl:pl-6 xl:leading-[25px] text-textBlackV2">
-                <li>
-                  I confirm that the answers in any proposal and declaration for
-                  this insurance are true and complete to the best of my
-                  knowledge and belief. Such proposals and declarations form the
-                  basis of this contract.
-                </li>
-                <li>
-                  I, or any person on whose behalf payment is claimed, will
-                  observe the terms and conditions of the Policy. I understand
-                  that any known facts and any changes affecting the risk after
-                  the Policy&apos;s inception or last renewal date must be
-                  disclosed. Failure to disclose such facts or changes may mean
-                  that this Policy will not provide the required cover or may
-                  invalidate the Policy altogether.
-                </li>
-                <li>
-                  I, and any other person listed, will take all reasonable steps
-                  to prevent accidents, injuries, illnesses, diseases, losses,
-                  or damages.
-                </li>
-                <li>
-                  I have read and accept the policy terms and conditions as laid
-                  out in the Key Facts document, Policy Wording, Terms of
-                  Business, and declarations above. I am happy to proceed on
-                  this understanding.
-                </li>
-              </ul>
-            </h3>
           </div>
 
           {/* Checkbox */}
@@ -277,6 +254,7 @@ const PartyDetails = () => {
               declarations above. I am happy to proceed on this understanding.
             </label>
           </div>
+
           <div className="flex gap-3 mt-7">
             <p className="text-textBlackV2 leading-[25px]">
               Important Information
@@ -288,8 +266,9 @@ const PartyDetails = () => {
               <QuestionIcon />
             </div>
           </div>
+
           <div className="flex justify-center xl:justify-normal">
-            <CommonButton linkUrl="/checkout" className="py-3 px-7 mt-[53px]">
+            <CommonButton type="submit" className="py-3 px-7 mt-[53px]">
               Continue
             </CommonButton>
           </div>
