@@ -31,7 +31,7 @@ const PartyDetails = () => {
     setCity,
     setMessage,
     hear,
-    setHear
+    setHear,
   } = useTravelDetails();
   const { data } = useFetchData("/country/list");
   const countries = data?.data;
@@ -53,7 +53,6 @@ const PartyDetails = () => {
       navigate("/checkout");
     }
   };
-  
 
   const modalContent = [
     {
@@ -240,6 +239,44 @@ const PartyDetails = () => {
               width="xl:w-[300px]"
               textarea
             />
+          </div>
+          {/* Policy Information */}
+          <div className="py-4 xl:py-[26px]">
+            <h3 className="text-textBlackV2">
+              Please read the{" "}
+              <span className="underline">Key Facts document</span>,{" "}
+              <span className="underline">Policy Wording (USD)</span> and{" "}
+              <span className="underline">Terms of Business</span>, as we intend
+              to rely on you having read this information.
+              <ul className="text-sm xl:text-base list-disc pl-4 xl:pl-6 xl:leading-[25px] text-textBlackV2">
+                <li>
+                  I confirm that the answers in any proposal and declaration for
+                  this insurance are true and complete to the best of my
+                  knowledge and belief. Such proposals and declarations form the
+                  basis of this contract.
+                </li>
+                <li>
+                  I, or any person on whose behalf payment is claimed, will
+                  observe the terms and conditions of the Policy. I understand
+                  that any known facts and any changes affecting the risk after
+                  the Policy&apos;s inception or last renewal date must be
+                  disclosed. Failure to disclose such facts or changes may mean
+                  that this Policy will not provide the required cover or may
+                  invalidate the Policy altogether.
+                </li>
+                <li>
+                  I, and any other person listed, will take all reasonable steps
+                  to prevent accidents, injuries, illnesses, diseases, losses,
+                  or damages.
+                </li>
+                <li>
+                  I have read and accept the policy terms and conditions as laid
+                  out in the Key Facts document, Policy Wording, Terms of
+                  Business, and declarations above. I am happy to proceed on
+                  this understanding.
+                </li>
+              </ul>
+            </h3>
           </div>
 
           {/* Checkbox */}

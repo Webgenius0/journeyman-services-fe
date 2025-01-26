@@ -1,4 +1,12 @@
+import { useTravelDetails } from "@/contexts/TravelDetailsProvider";
+
 const InsuranceDetails = () => {
+  const { address1, address2, zipCode, selectedCountry, city, telephone } =
+    useTravelDetails();
+  console.log(address1, address2, zipCode, city, selectedCountry);
+
+  const fullAddress = `${address1} ${address2}, ${city}, ${selectedCountry}`;
+
   return (
     <div className="border border-[#B8B6B5] rounded-md px-4 py-4 xl:pt-6 xl:pb-9 xl:px-6 mt-6">
       <h3 className="text-center xl:text-left xl:text-lg font-bold text-textBlack2 xl:leading-[30px]">
@@ -9,7 +17,9 @@ const InsuranceDetails = () => {
           <h4 className="font-semibold text-textBlack2 xl:leading-[25px]">
             Area:
           </h4>
-          <p className="text-textBlack2 xl:leading-[25px]">Dhaka, Bangladesh</p>
+          <p className="text-textBlack2 xl:leading-[25px]">
+            {city}, {selectedCountry}
+          </p>
         </div>
 
         <div className="flex justify-between">
@@ -30,16 +40,14 @@ const InsuranceDetails = () => {
           <h4 className="font-semibold text-textBlack2 xl:leading-[25px]">
             Address:
           </h4>
-          <p className="text-textBlack2 xl:leading-[25px]">
-            123 Main Street, Dhaka
-          </p>
+          <p className="text-textBlack2 xl:leading-[25px]">{fullAddress}</p>
         </div>
 
         <div className="flex justify-between">
           <h4 className="font-semibold text-textBlack2 leading-[25px]">
             Contact Details:
           </h4>
-          <p className="text-textBlack2 leading-[25px]">+880123456789</p>
+          <p className="text-textBlack2 leading-[25px}">{telephone}</p>
         </div>
       </div>
     </div>

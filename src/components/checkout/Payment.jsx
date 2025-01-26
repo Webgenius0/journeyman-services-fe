@@ -5,28 +5,27 @@ import FaqPdf from "../common/FaqPdf";
 import { useTravelDetails } from "@/contexts/TravelDetailsProvider";
 
 const Payment = () => {
-  const {
-    selectedCurrency,
-
-    date,
-  } = useTravelDetails();
-
-  const data = {
-    date: date,
-    currency: selectedCurrency,
-  };
-
-  console.log(data);
+  const { address1, address2, zipCode, selectedCountry, city } =
+    useTravelDetails();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      address1: address1,
+      address2: address2,
+      zipCode: zipCode,
+      city: city,
+      selectedCountry: selectedCountry,
+    },
+  });
 
   const onSubmit = (data) => {
     console.log(data);
   };
+
   return (
     <div className="mt-[74px]">
       <h3 className="text-textBlackV2 font-bold text-lg leading-[30px]">
@@ -37,29 +36,23 @@ const Payment = () => {
         statement
       </p>
       <form onSubmit={handleSubmit(onSubmit)} className="mt-3">
-        <div>
-          <FlexibleInput
-            label="Address 1"
-            type="text"
-            name="address1"
-            register={register}
-            error={errors?.forename}
-            validation={{
-              required: "Start date is required",
-            }}
-            width="w-[300px]"
-          />
-        </div>
+        <FlexibleInput
+          label="Address 1"
+          type="text"
+          name="address1"
+          register={register}
+          error={errors?.address1}
+          validation={{ required: "Address 1 is required" }}
+          width="w-[300px]"
+        />
         <div className="mt-[26px]">
           <FlexibleInput
             label="Address 2"
             type="text"
-            name="address1"
+            name="address2"
             register={register}
-            error={errors?.forename}
-            validation={{
-              required: "Start date is required",
-            }}
+            error={errors?.address2}
+            validation={{ required: "Address 2 is required" }}
             width="w-[300px]"
           />
         </div>
@@ -67,12 +60,10 @@ const Payment = () => {
           <FlexibleInput
             label="Town/City"
             type="text"
-            name="address1"
+            name="city"
             register={register}
-            error={errors?.forename}
-            validation={{
-              required: "Start date is required",
-            }}
+            error={errors?.city}
+            validation={{ required: "City is required" }}
             width="w-[300px]"
           />
         </div>
@@ -80,12 +71,10 @@ const Payment = () => {
           <FlexibleInput
             label="Country/Region"
             type="text"
-            name="address1"
+            name="selectedCountry"
             register={register}
-            error={errors?.forename}
-            validation={{
-              required: "Start date is required",
-            }}
+            error={errors?.selectedCountry}
+            validation={{ required: "Country is required" }}
             width="w-[300px]"
           />
         </div>
@@ -93,29 +82,13 @@ const Payment = () => {
           <FlexibleInput
             label="Post/Zip code"
             type="text"
-            name="address1"
+            name="zipCode"
             register={register}
-            error={errors?.forename}
-            validation={{
-              required: "Start date is required",
-            }}
+            error={errors?.zipCode}
+            validation={{ required: "Zip code is required" }}
             width="w-[300px]"
           />
         </div>
-        <div className="mt-[26px]">
-          <FlexibleInput
-            label="Post/Zip code"
-            type="text"
-            name="address1"
-            register={register}
-            error={errors?.forename}
-            validation={{
-              required: "Start date is required",
-            }}
-            width="w-[300px]"
-          />
-        </div>
-
         <CommonButton linkUrl="/checkout" className="py-3 px-7 mt-[53px]">
           Finish and pay
         </CommonButton>

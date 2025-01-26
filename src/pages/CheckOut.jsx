@@ -21,19 +21,19 @@ const CheckOut = () => {
     hear,
   } = useTravelDetails();
 
-  console.log({
-    address1,
-    address2,
-    selectedAdults,
-    selectedChildren,
-    selectedCountry,
-    zipCode,
-    telephone,
-    email,
-    city,
-    message,
-    hear,
-  });
+  // console.log({
+  //   address1,
+  //   address2,
+  //   selectedAdults,
+  //   selectedChildren,
+  //   selectedCountry,
+  //   zipCode,
+  //   telephone,
+  //   email,
+  //   city,
+  //   message,
+  //   hear,
+  // });
 
   console.log(address1, address2);
   return (
