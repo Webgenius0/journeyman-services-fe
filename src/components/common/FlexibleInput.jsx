@@ -12,6 +12,7 @@ const FlexibleInput = ({
   required,
   underText,
   textarea,
+  onChange
 }) => {
   return (
     <div className={`${containerClass}`}>
@@ -39,6 +40,7 @@ const FlexibleInput = ({
             {...register(name, validation)}
             type={type}
             name={name}
+            onChange={onChange}
             placeholder={placeholder}
             className={`w-full rounded-[5px] border border-[#8CA2B4] px-4 py-2 text-sm text-textGrayV2 focus:outline-none xlg:px-[6px] xlg:py-[6px] xlg:text-base ${bgColor}`}
           />

@@ -1,10 +1,18 @@
+import { useTravelDetails } from "@/contexts/TravelDetailsProvider";
+
 const PartyDetails = () => {
+  const { selectedCountry, title, forename, surname, dob } = useTravelDetails();
+
+  // Combine forename and surname for the name
+  const fullName = `${forename} ${surname}`;
+
+  // the dynamic party data from the context
   const partyData = [
     {
-      title: "Mr.",
-      name: "John Doe",
-      nationality: "American",
-      dob: "01/01/1990",
+      title,
+      name: fullName,
+      nationality: selectedCountry || "N/A",
+      dob,
     },
   ];
 
@@ -36,16 +44,16 @@ const PartyDetails = () => {
             {partyData.map((party, index) => (
               <tr key={index} className="bg-white hover:bg-gray-50">
                 <td className="py-3 px-4 sm:py-[10px] sm:px-6 text-center border border-[#B8B6B5] text-textGray">
-                  {party.title}
+                  {party.title || "N/A"}
                 </td>
                 <td className="py-3 px-4 sm:py-[10px] sm:px-6 text-center border border-[#B8B6B5] text-textGray">
-                  {party.name}
+                  {party.name || "N/A"}
                 </td>
                 <td className="py-3 px-4 sm:py-[10px] sm:px-6 text-center border border-[#B8B6B5] text-textGray">
-                  {party.nationality}
+                  {party.nationality || "N/A"}
                 </td>
                 <td className="py-3 px-4 sm:py-[10px] sm:px-6 text-center border border-[#B8B6B5] text-textGray">
-                  {party.dob}
+                  {party.dob || "N/A"}
                 </td>
               </tr>
             ))}

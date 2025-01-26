@@ -22,6 +22,10 @@ export const TravelDetailsProvider = ({ children }) => {
   const [city, setCity] = useState("");
   const [message, setMessage] = useState("");
   const [hear, setHear] = useState("");
+  const [title, setTitle] = useState("");
+  const [forename, setForename] = useState("");
+  const [surname, setSurname] = useState("");
+  const [dob, setDob] = useState("");
 
   return (
     <TravelDetailsContext.Provider
@@ -60,6 +64,14 @@ export const TravelDetailsProvider = ({ children }) => {
         setMessage,
         hear,
         setHear,
+        title,
+        setTitle,
+        forename,
+        setForename,
+        surname,
+        setSurname,
+        dob,
+        setDob,
       }}
     >
       {children}

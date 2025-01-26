@@ -16,7 +16,17 @@ const DetailsField = ({ title }) => {
     console.log(data);
   };
 
-  const { selectedCountry, setSelectedCountry } = useTravelDetails();
+  const {
+    selectedCountry,
+    setSelectedCountry,
+    setTitle,
+    setForename,
+    setSurname,
+    setDob,
+  } = useTravelDetails();
+
+ 
+  
   const { data } = useFetchData("/country/list");
   const countries = data?.data;
 
@@ -30,14 +40,14 @@ const DetailsField = ({ title }) => {
         <div>
           <CommonDropdownSelect
             options={[
-              { value: "option1", label: "Mr" },
-              { value: "option2", label: "Mrs" },
-              { value: "option3", label: "Ms" },
-              { value: "option4", label: "Miss" },
+              { value: "Mr", label: "Mr" },
+              { value: "Mrs", label: "Mrs" },
+              { value: "Ms", label: "Ms" },
+              { value: "Miss", label: "Miss" },
             ]}
             label="Title"
             placeholder="Mr."
-            onChange={(value) => console.log(value)}
+            onChange={(value) => setTitle(value)}
           />
         </div>
 
@@ -52,6 +62,7 @@ const DetailsField = ({ title }) => {
               required: "Forename is required",
             }}
             width="w-full"
+            onChange={(e) => setForename(e.target.value)}
           />
         </div>
 
@@ -66,6 +77,7 @@ const DetailsField = ({ title }) => {
               required: "Surname is required",
             }}
             width="w-full"
+            onChange={(e) => setSurname(e.target.value)}
           />
         </div>
 
@@ -80,6 +92,7 @@ const DetailsField = ({ title }) => {
               required: "Date of Birth is required",
             }}
             width="w-full"
+            onChange={(e) => setDob(e.target.value)}
           />
         </div>
 
