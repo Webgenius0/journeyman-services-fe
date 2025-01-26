@@ -15,7 +15,7 @@ export const TravelDetailsProvider = ({ children }) => {
   const [endDate, setEndDate] = useState(null);
   const [selectedCurrency, setSelectedCurrency] = useState("GBP");
 
-  console.log(selectedCurrency);
+  // console.log(selectedCurrency);
   
 
   return (

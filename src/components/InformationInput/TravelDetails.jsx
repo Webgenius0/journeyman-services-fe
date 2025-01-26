@@ -39,6 +39,13 @@ const TravelDetails = () => {
     setEndDate,
   } = useTravelDetails();
 
+  // by default currency is selected as british pounds
+  useEffect(() => {
+    if (!selectedCurrency) {
+      setSelectedCurrency("British Pounds");
+    }
+  }, [selectedCurrency, setSelectedCurrency]);
+
   // console.log(
   //   selectedAdults,
   //   selectedArea,
@@ -47,6 +54,7 @@ const TravelDetails = () => {
   //   endDate,
   //   selectedCountry
   // );
+  console.log(selectedCurrency);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
@@ -54,7 +62,6 @@ const TravelDetails = () => {
   const { data } = useFetchData("/country/list");
   const countries = data?.data;
   // console.log(selectedCountry);
-  
 
   const [availableAreas, setAvailableAreas] = useState([
     { value: "worldwide", label: "Worldwide" },
@@ -163,8 +170,8 @@ const TravelDetails = () => {
         <div>
           <CommonDropdownSelect
             options={[
-              { value: "British Pounds", label: "British Pounds" },
-              { value: "USA Dollars", label: "USA Dollars" },
+              { value: "GBP", label: "British Pounds" },
+              { value: "USD", label: "USA Dollars" },
             ]}
             placeholder="British Pounds"
             label="Policy Currency"
