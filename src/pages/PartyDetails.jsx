@@ -1,5 +1,6 @@
 import QuestionIcon from "@/assets/Icons/QuestionIcon";
 import CommonButton from "@/components/common/CommonButton";
+import CommonDropdownSelect from "@/components/common/CommonDropdownSelect";
 import CommonModal from "@/components/common/CommonModal";
 import CommonPageTitle from "@/components/common/CommonPageTitle";
 import CommonWrapper from "@/components/common/CommonWrapper";
@@ -8,19 +9,22 @@ import FlexibleInput from "@/components/common/FlexibleInput";
 import DetailsField from "@/components/partydetails/DetailsField";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useTravelDetails } from "@/contexts/TravelDetailsProvider";
+import useFetchData from "@/hooks/api/useFetchData";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const PartyDetails = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
-  const { selectedAdults, selectedChildren, seletedCountry } =
+  const { selectedAdults, selectedChildren, selectedCountry } =
     useTravelDetails();
+  const { data } = useFetchData("/country/list");
+  const countries = data?.data;
 
   // console.log("selectedAdult", selectedAdults);
   // console.log("selectedChildren", selectedChildren);
 
-  console.log("selected country", seletedCountry);
+  // console.log("selected country", selectedCountry);
 
   const modalContent = [
     {
@@ -157,21 +161,71 @@ const PartyDetails = () => {
               width="xl:w-[300px]"
             />
           </div>
+          {/* telephone */}
           <div className="mt-3 xl:mt-[26px]">
             <FlexibleInput
-              label="Address 1"
-              type="text"
-              name="address1Alt"
+              label="Telephone"
+              type="number"
+              name="telephone"
               register={register}
-              error={errors?.forename}
+              error={errors?.telephone}
               validation={{
-                required: "Address 1 is required",
+                required: "Telephone is required",
               }}
               width="xl:w-[300px]"
-              underText='If you do not have a post/zip code, please enter "0000" '
             />
           </div>
-
+          {/* email */}
+          <div className="mt-3 xl:mt-[26px]">
+            <FlexibleInput
+              label="Email:"
+              type="email"
+              name="email"
+              register={register}
+              error={errors?.telephone}
+              validation={{
+                required: "Email is required",
+              }}
+              width="xl:w-[300px]"
+            />
+          </div>
+          <div className="mt-3 xl:mt-[26px]">
+            <CommonDropdownSelect
+              options={countries?.map((country) => ({
+                value: country.code,
+                label: country.name,
+              }))}
+              label="Nationality"
+              placeholder={selectedCountry || "Select Country"}
+              defaultValue={selectedCountry}
+              onChange={(value) => console.log(value)}
+              width="w-[300px]"
+            />
+          </div>
+          <div className="mt-3 xl:mt-[26px]">
+            <CommonDropdownSelect
+              options={[
+                { value: "0", label: "0" },
+                { value: "1", label: "1" },
+                { value: "2", label: "2" },
+                { value: "3", label: "3" },
+              ]}
+              label="How did you hear about Journeyman ?"
+              placeholder={"Select"}
+              onChange={(value) => console.log(value)}
+              width="w-[300px]"
+            />
+          </div>
+          <div className="mt-3 xl:mt-[26px]">
+            <FlexibleInput
+              label="Please specify"
+              type="text"
+              name="message"
+              register={register}
+              width="xl:w-[300px]"
+              textarea
+            />
+          </div>
           {/* Policy Information */}
           <div className="py-4 xl:py-[26px]">
             <h3 className="text-textBlackV2">

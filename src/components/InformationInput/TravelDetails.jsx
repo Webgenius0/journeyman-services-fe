@@ -284,6 +284,7 @@ const TravelDetails = () => {
                 selected={date}
                 onSelect={setDate}
                 initialFocus
+                disabled={(date) => date < new Date()}
               />
             </PopoverContent>
           </Popover>

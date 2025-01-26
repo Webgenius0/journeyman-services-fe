@@ -11,6 +11,7 @@ const FlexibleInput = ({
   bgColor = "bg-white",
   required,
   underText,
+  textarea,
 }) => {
   return (
     <div className={`${containerClass}`}>
@@ -24,15 +25,24 @@ const FlexibleInput = ({
         </label>
       </div>
 
-      {/* Input Field */}
-      <div className={`relative  ${width}`}>
-        <input
-          {...register(name, validation)}
-          type={type}
-          name={name}
-          placeholder={placeholder}
-          className={`w-full rounded-[5px] border border-[#8CA2B4] px-4 py-2 text-sm text-textGrayV2 focus:outline-none xlg:px-[6px] xlg:py-[6px] xlg:text-base ${bgColor}`}
-        />
+      {/* Input or Textarea Field */}
+      <div className={`relative ${width}`}>
+        {textarea ? (
+          <textarea
+            {...register(name, validation)}
+            name={name}
+            placeholder={placeholder}
+            className={`w-full rounded-[5px] border border-[#8CA2B4] px-4 py-2 text-sm text-textGrayV2 focus:outline-none xlg:px-[6px] xlg:py-[6px] xlg:text-base ${bgColor} h-32`} // Added height for textarea
+          />
+        ) : (
+          <input
+            {...register(name, validation)}
+            type={type}
+            name={name}
+            placeholder={placeholder}
+            className={`w-full rounded-[5px] border border-[#8CA2B4] px-4 py-2 text-sm text-textGrayV2 focus:outline-none xlg:px-[6px] xlg:py-[6px] xlg:text-base ${bgColor}`}
+          />
+        )}
       </div>
 
       {/* Under Text */}
