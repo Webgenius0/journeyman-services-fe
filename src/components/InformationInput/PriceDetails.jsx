@@ -1,6 +1,7 @@
 import { useTravelDetails } from "@/contexts/TravelDetailsProvider";
 import CommonButton from "../common/CommonButton";
 import { Collapse } from "react-collapse";
+import useOtherPrices from "@/hooks/useOtherPrices";
 
 const PriceDetails = () => {
   const {
@@ -10,6 +11,12 @@ const PriceDetails = () => {
     priceData,
     loading,
   } = useTravelDetails();
+
+  const { data } = useOtherPrices();
+  console.log(data);
+
+  const charge = data?.data?.charge;
+  console.log(charge);
 
   console.log(priceData);
   const price = priceData?.data?.price;
@@ -62,7 +69,7 @@ const PriceDetails = () => {
                 <ul className="text-center xl:text-left leading-[25px]">
                   <li>The Price includes</li>
                   <li>Basic premium: ${price}</li>
-                  <li>An administration charge of $4.54 (3.5%)</li>
+                  <li>An administration charge of $4.54 ({charge}%)</li>
                 </ul>
                 <div className="flex justify-between mt-3 xl:mt-[21px]">
                   <CommonButton linkUrl="/party-details" className="px-7 py-3">

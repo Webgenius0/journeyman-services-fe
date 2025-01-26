@@ -44,6 +44,8 @@ const TravelDetails = () => {
   } = useTravelDetails();
   const axiosPublic = useAxiosPublic();
 
+  
+
   // by default currency is selected as british pounds
   useEffect(() => {
     if (!selectedCurrency) {
@@ -372,7 +374,7 @@ const TravelDetails = () => {
                   mode="single"
                   selected={endDate}
                   onSelect={setEndDate}
-                  minDate={new Date()} // Optionally, set the minimum date to today's date
+                  minDate={new Date()}
                   initialFocus
                 />
               </PopoverContent>
