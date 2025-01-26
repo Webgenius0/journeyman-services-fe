@@ -14,15 +14,13 @@ import { useForm } from "react-hook-form";
 const PartyDetails = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
-  const { selectedAdults, selectedChildren, seletedCountry } = useTravelDetails();
-
-  
+  const { selectedAdults, selectedChildren, seletedCountry } =
+    useTravelDetails();
 
   // console.log("selectedAdult", selectedAdults);
   // console.log("selectedChildren", selectedChildren);
-  
-  console.log("selected country", seletedCountry);
 
+  console.log("selected country", seletedCountry);
 
   const modalContent = [
     {

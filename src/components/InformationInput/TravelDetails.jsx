@@ -39,21 +39,21 @@ const TravelDetails = () => {
     setEndDate,
   } = useTravelDetails();
 
-  console.log(
-    selectedAdults,
-    selectedArea,
-    selectedInsuranceType,
-    date,
-    endDate,
-    selectedCountry
-  );
+  // console.log(
+  //   selectedAdults,
+  //   selectedArea,
+  //   selectedInsuranceType,
+  //   date,
+  //   endDate,
+  //   selectedCountry
+  // );
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
 
   const { data } = useFetchData("/country/list");
   const countries = data?.data;
-  console.log(selectedCountry);
+  // console.log(selectedCountry);
   
 
   const [availableAreas, setAvailableAreas] = useState([

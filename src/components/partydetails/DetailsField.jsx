@@ -1,8 +1,20 @@
+import { format } from "date-fns";
+import { CalendarIcon } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import CommonDropdownSelect from "@/components/common/CommonDropdownSelect";
-import FlexibleInput from "../common/FlexibleInput";
 import { useForm } from "react-hook-form";
 import { useTravelDetails } from "@/contexts/TravelDetailsProvider";
 import useFetchData from "@/hooks/api/useFetchData";
+import { useState } from "react";
+import FlexibleInput from "../common/FlexibleInput";
 
 const DetailsField = ({ title }) => {
   const {
@@ -14,10 +26,11 @@ const DetailsField = ({ title }) => {
   const onSubmit = (data) => {
     console.log(data);
   };
+
+  const [date, setDate] = useState(null);
   const { selectedCountry } = useTravelDetails();
   const { data } = useFetchData("/country/list");
   const countries = data?.data;
-  console.log(selectedCountry);
 
   return (
     <form
@@ -48,11 +61,12 @@ const DetailsField = ({ title }) => {
             register={register}
             error={errors?.forename}
             validation={{
-              required: "Start date is required",
+              required: "Forename is required",
             }}
             width="w-full"
           />
         </div>
+
         <div>
           <FlexibleInput
             label="Surname"
@@ -61,24 +75,40 @@ const DetailsField = ({ title }) => {
             register={register}
             error={errors?.surname}
             validation={{
-              required: "Start date is required",
+              required: "Surname is required",
             }}
             width="w-full"
           />
         </div>
+
         <div>
-          <FlexibleInput
-            label="Date of birth"
-            type="date"
-            name="dob"
-            register={register}
-            error={errors?.dob}
-            validation={{
-              required: "Start date is required",
-            }}
-            width="w-full"
-          />
+          <label htmlFor="dob" className="block mb-2 text-sm font-semibold">
+            Date of Birth
+          </label>
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                variant={"outline"}
+                className={cn(
+                  "w-full justify-start text-left font-normal",
+                  !date && "text-muted-foreground"
+                )}
+              >
+                <CalendarIcon className="mr-2 h-4 w-4" />
+                {date ? format(date, "PPP") : <span>Pick a date</span>}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-0">
+              <Calendar
+                mode="single"
+                selected={date}
+                onSelect={setDate}
+                initialFocus
+              />
+            </PopoverContent>
+          </Popover>
         </div>
+
         <div>
           <CommonDropdownSelect
             options={countries?.map((country) => ({

@@ -17,12 +17,14 @@ const PriceDetails = () => {
   // checking all required fields are selected
   const isRequiredFieldSelected =
     selectedCountry && selectedArea && selectedInsuranceType;
+  // console.log("required fields", isRequiredFieldSelected);
+  // console.log(selectedCountry, selectedArea, selectedInsuranceType);
 
   const showNote = countriesWithNote.includes(selectedCountry);
 
   return (
     <div className="xl:max-w-[400px]">
-      {/* Conditionally rendering Quote or Price Details */}
+      {/* conditionally rendering Quote or Price Details */}
       {!isRequiredFieldSelected ? (
         <div className="mt-[30px] border border-[#8CA2B4] py-[21px] px-[21px] rounded-[5px] max-h-[200px]">
           <h3 className="xl:text-lg font-bold text-textBlackV2 xl:leading-[30px] border-b border-[#8CA2B4] text-center mb-[7px]">
