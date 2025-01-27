@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-  baseURL: "https://coby.softvencefsd.xyz/api",
+  baseURL: "https://new.journeyman-services.com/api",
 });
 
 const useAxiosPublic = () => {

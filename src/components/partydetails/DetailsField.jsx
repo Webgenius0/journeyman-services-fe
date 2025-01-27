@@ -30,11 +30,12 @@ const DetailsField = ({ title, person, indexValue }) => {
   } = useForm();
 
   const handleDateChange = (e) => {
-    const selectedDate = e.target.value;
-    const [year, month, day] = selectedDate.split("-");
-    const formattedDate = `${day}/${month}/${year}`;
-    setDob(formattedDate);
+    const selectedDate = e.target.value; 
+    const [year, month, day] = selectedDate.split("-"); 
+    const formattedDate = `${day}/${month}/${year}`; 
+    setDob(formattedDate); 
   };
+  
  console.log(dob)
   // entire submit function
   const onSubmit = useCallback(

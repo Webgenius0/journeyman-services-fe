@@ -13,7 +13,7 @@ export const TravelDetailsProvider = ({ children }) => {
   const [selectedCountry, setSelectedCountry] = useState("");
   const [date, setDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
-  const [selectedCurrency, setSelectedCurrency] = useState("GBP");
+  const [selectedCurrency, setSelectedCurrency] = useState("British Pounds");
   const [address1, setAddress1] = useState("");
   const [address2, setAddress2] = useState("");
   const [zipCode, setZipCode] = useState("");

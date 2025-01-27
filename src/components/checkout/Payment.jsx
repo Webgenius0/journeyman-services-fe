@@ -5,6 +5,7 @@ import FaqPdf from "../common/FaqPdf";
 import { useTravelDetails } from "@/contexts/TravelDetailsProvider";
 import useAxiosPublic from "@/hooks/api/useAxiosPublic";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Payment = () => {
   const {
@@ -40,7 +41,9 @@ const Payment = () => {
 
   const axiosPublic = useAxiosPublic();
 
-  // console.log(adultArray, childrenArray)
+  const navigate = useNavigate();
+
+  console.log(adultArray);
 
   const {
     register,
@@ -56,7 +59,7 @@ const Payment = () => {
     },
   });
 
-  console.log(dob)
+  console.log(totalPrice);
   // console.log(priceData)
   const onSubmit = async (data) => {
     // console.log("Form Submitted", data);
@@ -77,7 +80,7 @@ const Payment = () => {
         name: `${adult.forename} ${adult.surname}`,
         forename: adult.forename,
         surname: adult.surname,
-        birth_day: adult.dob,
+        birth_day: adult.dob || "15/01/2025",
         nationality: adult.nationality || "N/A",
       })),
       number_of_children: selectedChildren,
@@ -98,7 +101,7 @@ const Payment = () => {
       country: selectedCountry,
       how_know: hear,
       comments: message,
-      currency: selectedCurrency,
+      currency: selectedCurrency == "British Pounds" ? "GBP" : "USD",
       total_price: totalPrice,
     };
 
@@ -107,8 +110,9 @@ const Payment = () => {
         "/booking/form/submit",
         travelDetails
       );
-      console.log("Response:", response.data);
+      console.log("Response:", response.data.data);
       toast.success("Payment submitted successfully!");
+      window.location.href = response.data.data;
     } catch (error) {
       console.error("Error submitting payment:", error);
       toast.error("Failed to submit payment. Please try again.");

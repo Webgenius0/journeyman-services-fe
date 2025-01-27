@@ -25,7 +25,7 @@ const PriceDetails = () => {
 
   // Calculate basic premium and total price based on the selected currency
   const basicPremium =
-    selectedCurrency === "GBP"
+    selectedCurrency === "British Pounds"
       ? priceInGBP
       : selectedCurrency === "USD"
       ? priceInUSD
@@ -74,7 +74,7 @@ const PriceDetails = () => {
                 </h3>
                 <p className="text-center xl:text-left mb-[7px] text-textBlackV2 text-xl xl:text-2xl">
                   <span className="font-bold">Price:</span>{" "}
-                  {selectedCurrency === "GBP"
+                  {selectedCurrency === "British Pounds"
                     ? `£${totalPrice.toFixed(2)}`
                     : selectedCurrency === "USD"
                     ? `$${totalPrice.toFixed(2)}`
@@ -84,7 +84,7 @@ const PriceDetails = () => {
                 <ul className="text-center xl:text-left leading-[25px]">
                   <li>
                     Basic premium:{" "}
-                    {selectedCurrency === "GBP"
+                    {selectedCurrency === "British Pounds"
                       ? `£${priceInGBP}`
                       : selectedCurrency === "USD"
                       ? `$${priceInUSD}`
@@ -92,7 +92,7 @@ const PriceDetails = () => {
                   </li>
                   <li>
                     An administration charge of{" "}
-                    {selectedCurrency === "GBP"
+                    {selectedCurrency === "British Pounds"
                       ? `£${adminCharge.toFixed(2)} `
                       : selectedCurrency === "USD"
                       ? `$${adminCharge.toFixed(2)} `

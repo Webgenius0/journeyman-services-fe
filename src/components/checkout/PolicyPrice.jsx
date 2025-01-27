@@ -15,7 +15,7 @@ const PolicyPrice = () => {
             Basic Premium:
           </h4>
           <p className="text-textBlack2 leading-[25px]">
-            {selectedCurrency === "GBP"
+            {selectedCurrency === "British Pounds"
               ? `£${basicPremium}`
               : selectedCurrency === "USD"
               ? `$${basicPremium}`
@@ -28,7 +28,7 @@ const PolicyPrice = () => {
             Administration charge:
           </h4>
           <p className="text-textBlack2 leading-[25px]">
-            {selectedCurrency === "GBP"
+            {selectedCurrency === "British Pounds"
               ? `£${adminCharge}`
               : selectedCurrency === "USD"
               ? `$${adminCharge}`
@@ -41,7 +41,7 @@ const PolicyPrice = () => {
             Total:
           </h4>
           <p className="text-textBlack2 text-left leading-[25px]">
-            {selectedCurrency === "GBP"
+            {selectedCurrency === "British Pounds"
               ? `£${totalPrice}`
               : selectedCurrency === "USD"
               ? `$${totalPrice}`

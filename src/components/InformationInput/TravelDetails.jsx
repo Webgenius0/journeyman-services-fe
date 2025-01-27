@@ -49,7 +49,7 @@ const TravelDetails = () => {
   // console.log(selectedCountry, date, endDate);
 
   
-  // by default currency is selected as british pounds
+  // by default currency is selected as GBP
   useEffect(() => {
     if (!selectedCurrency) {
       setSelectedCurrency("British Pounds");
@@ -235,7 +235,7 @@ const TravelDetails = () => {
 
   const handleInsuranceTypeChange = (value) => {
     setSelectedInsuranceType(value);
-    if (value !== "single") {
+    if (value !== "single-trip") {
       setEndDate(null);
     }
   };
@@ -251,7 +251,7 @@ const TravelDetails = () => {
         <div>
           <CommonDropdownSelect
             options={[
-              { value: "GBP", label: "British Pounds" },
+              { value: "British Pounds", label: "British Pounds" },
               { value: "USD", label: "USA Dollars" },
             ]}
             placeholder="British Pounds"
@@ -291,7 +291,7 @@ const TravelDetails = () => {
             <CommonRadioButton
               options={[
                 { value: "annual", label: "Annual multi-trip" },
-                { value: "single", label: "Single trip" },
+                { value: "single-trip", label: "Single trip" },
               ]}
               onChange={handleInsuranceTypeChange}
               value={selectedInsuranceType}
@@ -380,7 +380,7 @@ const TravelDetails = () => {
           </Popover>
         </div>
 
-        <Collapse isOpened={selectedInsuranceType === "single"}>
+        <Collapse isOpened={selectedInsuranceType === "single-trip"}>
           <div>
             <label
               htmlFor="end-date"

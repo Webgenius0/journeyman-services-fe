@@ -48,7 +48,7 @@ const PartyDetails = () => {
     setTelephone(data.telephone);
     setEmail(data.email);
     setMessage(data.message);
-    setHear(data.hear);
+    setHear(data.hear || hear);
 
     if (!Object.keys(errors).length) {
       navigate("/checkout");
