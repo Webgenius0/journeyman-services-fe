@@ -28,7 +28,18 @@ export const TravelDetailsProvider = ({ children }) => {
   const [dob, setDob] = useState("");
   const [priceData, setPriceData] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [age, setAge] = useState(null);
+  const [age, setAge] = useState("49");
+
+  const [totalPrice, setTotalPrice] = useState(null);
+  const [basicPremium, setBasicPremium] = useState(null);
+  const [administrationCharge, setAdministrationCharge] = useState(null);
+
+  // submitting the form
+  const [submitForm, setSubmitForm] = useState(false);
+
+  // adults and childrens array
+  const [adultArray, setAdultArray] = useState([]);
+  const [childrenArray, setChildrenArray] = useState([]);
 
   return (
     <TravelDetailsContext.Provider
@@ -81,6 +92,18 @@ export const TravelDetailsProvider = ({ children }) => {
         setLoading,
         age,
         setAge,
+        submitForm,
+        setSubmitForm,
+        adultArray,
+        childrenArray,
+        setAdultArray,
+        setChildrenArray,
+        setTotalPrice,
+        setBasicPremium,
+        setAdministrationCharge,
+        totalPrice,
+        basicPremium,
+        administrationCharge,
       }}
     >
       {children}

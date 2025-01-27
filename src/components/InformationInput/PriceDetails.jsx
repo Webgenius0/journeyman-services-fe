@@ -11,14 +11,32 @@ const PriceDetails = () => {
     priceData,
     selectedCurrency,
     loading,
+    setTotalPrice,
+    setBasicPremium,
+    setAdministrationCharge,
   } = useTravelDetails();
 
   const { priceLogics } = useLogicPrices();
-  const charge = priceLogics?.data?.charge;
-  // console.log(priceLogics)
-  // Using the API response to fetch prices
+  const charge = parseFloat(priceLogics?.data?.charge);
+
+  // Fetching prices based on the selected currency
   const priceInGBP = priceData?.data?.price_in_pound;
   const priceInUSD = priceData?.data?.price_in_dollar;
+
+  // Calculate basic premium and total price based on the selected currency
+  const basicPremium =
+    selectedCurrency === "GBP"
+      ? priceInGBP
+      : selectedCurrency === "USD"
+      ? priceInUSD
+      : 0;
+  const adminCharge = basicPremium * (charge / 100);
+  const totalPrice = basicPremium + adminCharge;
+
+  // Set the values when the price is calculated
+  setBasicPremium(basicPremium);
+  setAdministrationCharge(adminCharge);
+  setTotalPrice(totalPrice);
 
   const countriesWithNote = [
     "United Kingdom",
@@ -26,10 +44,8 @@ const PriceDetails = () => {
     "Guernsey",
     "Jersey",
   ];
-
   const isRequiredFieldSelected =
     selectedCountry && selectedArea && selectedInsuranceType;
-
   const showNote = countriesWithNote.includes(selectedCountry);
 
   return (
@@ -57,17 +73,32 @@ const PriceDetails = () => {
                   Price Details
                 </h3>
                 <p className="text-center xl:text-left mb-[7px] text-textBlackV2 text-xl xl:text-2xl">
-                  <span className="font-bold">Price:</span>
+                  <span className="font-bold">Price:</span>{" "}
                   {selectedCurrency === "GBP"
-                    ? ` £${priceInGBP}`
+                    ? `£${totalPrice.toFixed(2)}`
                     : selectedCurrency === "USD"
-                    ? ` $${priceInUSD}`
+                    ? `$${totalPrice.toFixed(2)}`
                     : ""}
                 </p>
+
                 <ul className="text-center xl:text-left leading-[25px]">
-                  <li>The Price includes</li>
-                  <li>Basic premium: ${priceInUSD}</li>
-                  <li>An administration charge of $4.54 ({charge}%)</li>
+                  <li>
+                    Basic premium:{" "}
+                    {selectedCurrency === "GBP"
+                      ? `£${priceInGBP}`
+                      : selectedCurrency === "USD"
+                      ? `$${priceInUSD}`
+                      : ""}
+                  </li>
+                  <li>
+                    An administration charge of{" "}
+                    {selectedCurrency === "GBP"
+                      ? `£${adminCharge.toFixed(2)} `
+                      : selectedCurrency === "USD"
+                      ? `$${adminCharge.toFixed(2)} `
+                      : ""}
+                    ({charge}%)
+                  </li>
                 </ul>
                 <div className="flex justify-between mt-3 xl:mt-[21px]">
                   <CommonButton linkUrl="/party-details" className="px-7 py-3">

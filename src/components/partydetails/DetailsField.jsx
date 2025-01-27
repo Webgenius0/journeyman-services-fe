@@ -3,19 +3,9 @@ import CommonDropdownSelect from "@/components/common/CommonDropdownSelect";
 import FlexibleInput from "../common/FlexibleInput";
 import { useTravelDetails } from "@/contexts/TravelDetailsProvider";
 import useFetchData from "@/hooks/api/useFetchData";
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
-const DetailsField = ({ title }) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
-  const onSubmit = (data) => {
-    console.log(data);
-  };
-
+const DetailsField = ({ title, person, indexValue }) => {
   const {
     selectedCountry,
     setSelectedCountry,
@@ -23,9 +13,68 @@ const DetailsField = ({ title }) => {
     setForename,
     setSurname,
     setDob,
+    dob,
     setAge,
+    submitForm,
+    adultArray,
+    childrenArray,
+    setAdultArray,
+    setChildrenArray,
   } = useTravelDetails();
- 
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+  } = useForm();
+
+  const handleDateChange = (e) => {
+    const selectedDate = e.target.value;
+    const [year, month, day] = selectedDate.split("-");
+    const formattedDate = `${day}/${month}/${year}`;
+    setDob(formattedDate);
+  };
+ console.log(dob)
+  // entire submit function
+  const onSubmit = useCallback(
+    (data) => {
+      const formValues = {
+        ...data,
+        person: person,
+        id: `${person}-${indexValue}`,
+      };
+
+      console.log(formValues);
+
+      if (formValues.person === "adults") {
+        // Update the adult array
+        setAdultArray((prevArray) => {
+          const filteredArray = prevArray.filter(
+            (item) => item.id !== formValues.id
+          );
+          return [...filteredArray, formValues];
+        });
+      } else {
+        // Update the children array
+        setChildrenArray((prevArray) => {
+          const filteredArray = prevArray.filter(
+            (item) => item.id !== formValues.id
+          );
+          return [...filteredArray, formValues];
+        });
+      }
+    },
+    [person, indexValue, setAdultArray, setChildrenArray]
+  );
+
+  console.log("from details field", adultArray, childrenArray);
+
+  useEffect(() => {
+    if (submitForm) {
+      handleSubmit(onSubmit)();
+    }
+  }, [submitForm, handleSubmit, onSubmit]);
 
   const { data } = useFetchData("/country/list");
   const countries = data?.data;
@@ -62,7 +111,9 @@ const DetailsField = ({ title }) => {
               required: "Forename is required",
             }}
             width="w-full"
-            onChange={(e) => setForename(e.target.value)}
+            onChange={(e) => {
+              setForename(e.target.value);
+            }}
           />
         </div>
 
@@ -77,7 +128,9 @@ const DetailsField = ({ title }) => {
               required: "Surname is required",
             }}
             width="w-full"
-            onChange={(e) => setSurname(e.target.value)}
+            onChange={(e) => {
+              setSurname(e.target.value);
+            }}
           />
         </div>
 
@@ -85,14 +138,14 @@ const DetailsField = ({ title }) => {
           <FlexibleInput
             label="Date of Birth"
             type="date"
-            name="dob"
+            name="birth_day"
             register={register}
-            error={errors?.dob}
+            error={errors?.birth_day}
             validation={{
               required: "Date of Birth is required",
             }}
             width="w-full"
-            onChange={(e) => setDob(e.target.value)}
+            onChange={handleDateChange}
           />
         </div>
 
@@ -106,9 +159,22 @@ const DetailsField = ({ title }) => {
             placeholder={selectedCountry || "Select Country"}
             defaultValue={selectedCountry}
             value={selectedCountry}
-            onChange={setSelectedCountry}
+            onChange={(value) => {
+              setValue("nationality", value);
+              setSelectedCountry(value);
+            }}
           />
         </div>
+
+        {/* Submit button */}
+        {/* <button
+          type="submit"
+          className="bg-blue-500 text-white py-2 px-4 rounded-md"
+        >
+          Submit
+        </button> */}
+
+  
       </div>
     </form>
   );

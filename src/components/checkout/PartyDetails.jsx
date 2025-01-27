@@ -1,20 +1,18 @@
 import { useTravelDetails } from "@/contexts/TravelDetailsProvider";
 
 const PartyDetails = () => {
-  const { selectedCountry, title, forename, surname, dob } = useTravelDetails();
+  const { adultArray, childrenArray } = useTravelDetails();
 
-  // Combine forename and surname for the name
-  const fullName = `${forename} ${surname}`;
+  // Combine adultArray and childrenArray into one array
+  const combinedPartyArray = [...adultArray, ...childrenArray];
 
-  // the dynamic party data from the context
-  const partyData = [
-    {
-      title,
-      name: fullName,
-      nationality: selectedCountry ,
-      dob,
-    },
-  ];
+  // Format the party data
+  const partyData = combinedPartyArray.map(person => ({
+    title: person.title || "N/A",
+    name: `${person.forename || "N/A"} ${person.surname || "N/A"}`,
+    nationality: person.nationality || "N/A",
+    birth_day: person.birth_day || "N/A",
+  }));
 
   return (
     <div className="border border-[#B8B6B5] rounded-md pt-6 pb-9 px-6 sm:px-9 mt-6">
@@ -44,16 +42,16 @@ const PartyDetails = () => {
             {partyData.map((party, index) => (
               <tr key={index} className="bg-white hover:bg-gray-50">
                 <td className="py-3 px-4 sm:py-[10px] sm:px-6 text-center border border-[#B8B6B5] text-textGray">
-                  {party.title || "N/A"}
+                  {party.title}
                 </td>
                 <td className="py-3 px-4 sm:py-[10px] sm:px-6 text-center border border-[#B8B6B5] text-textGray">
-                  {party.name || "N/A"}
+                  {party.name}
                 </td>
                 <td className="py-3 px-4 sm:py-[10px] sm:px-6 text-center border border-[#B8B6B5] text-textGray">
-                  {party.nationality }
+                  {party.nationality}
                 </td>
                 <td className="py-3 px-4 sm:py-[10px] sm:px-6 text-center border border-[#B8B6B5] text-textGray">
-                  {party.dob || "N/A"}
+                  {party.dob}
                 </td>
               </tr>
             ))}

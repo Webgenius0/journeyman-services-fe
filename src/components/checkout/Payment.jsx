@@ -1,8 +1,11 @@
+import axios from "axios";
 import CommonButton from "../common/CommonButton";
 import FlexibleInput from "../common/FlexibleInput";
 import { useForm } from "react-hook-form";
 import FaqPdf from "../common/FaqPdf";
 import { useTravelDetails } from "@/contexts/TravelDetailsProvider";
+import useAxiosPublic from "@/hooks/api/useAxiosPublic";
+import toast from "react-hot-toast";
 
 const Payment = () => {
   const {
@@ -26,35 +29,16 @@ const Payment = () => {
     title,
     forename,
     surname,
-    setSurname,
     priceData,
     age,
+    adultArray,
+    childrenArray,
+    dob
   } = useTravelDetails();
 
-  console.log("useTravelDetails", {
-    selectedAdults,
-    selectedChildren,
-    selectedInsuranceType,
-    selectedArea,
-    selectedType,
-    selectedCountry,
-    date,
-    endDate,
-    selectedCurrency,
-    address1,
-    address2,
-    zipCode,
-    telephone,
-    email,
-    city,
-    message,
-    hear,
-    title,
-    forename,
-    surname,
-    priceData,
-    age,
-  });
+  const axiosPublic = useAxiosPublic();
+
+  console.log(adultArray, childrenArray)
 
   const {
     register,
@@ -69,37 +53,63 @@ const Payment = () => {
       selectedCountry,
     },
   });
-
-  // Consolidating the form data into an object
-  const onSubmit = (data) => {
-    console.log("Form Submitted", data); // Log submitted form data
+const totalPrice = priceData?.data.price_in_dollar;
+  console.log(priceData)
+  const onSubmit = async (data) => {
+    console.log("Form Submitted", data);
 
     const travelDetails = {
-      selectedAdults,
-      selectedChildren,
-      selectedInsuranceType,
-      selectedArea,
-      selectedType,
-      selectedCountry,
-      date,
-      endDate,
-      selectedCurrency,
-      address1: data.address1,
-      address2: data.address2,
-      zipCode: data.zipCode,
+      policy_currency: selectedCurrency,
+      country_of_residence: selectedCountry || "Bangladesh",
+      insurance_type: selectedInsuranceType,
+      policy_type: selectedType,
+      coverage_type: "standard",
+      area_of_travel: selectedArea,
+      start_date: date,
+      end_date: endDate,
+      number_of_adults: selectedAdults,
+      age,
+      adults: adultArray.map((adult) => ({
+        name: `${adult.forename} ${adult.surname}`,
+        forename: adult.forename,
+        surname: adult.surname,
+        birth_day: adult.dob,
+        nationality: adult.nationality || "N/A",
+      })),
+      number_of_children: selectedChildren,
+      travel_type: ["winter", "adventure"],
+      children: childrenArray.map((child) => ({
+        name: `${child.forename} ${child.surname}`,
+        forename: child.forename,
+        surname: child.surname,
+        birth_day: child.dob,
+        nationality: child.nationality || "N/A",
+      })),
+      address_one: data.address1,
+      address_two: data.address2,
+      city: data.city,
+      zip_code: data.zipCode,
       telephone,
       email,
-      city: data.city,
-      message,
-      hear,
-      title,
-      forename,
-      surname,
-      priceData,
-      age,
+      country: selectedCountry,
+      how_know: hear,
+      comments: message,
+      currency: selectedCurrency,
+      total_price: totalPrice || 450,
     };
 
-    console.log("Consolidated travelDetails", travelDetails); // Log travelDetails object
+    try {
+      const response = await axiosPublic.post(
+        "/booking/form/submit",
+        travelDetails
+      );
+      console.log("Response:", response.data);
+      toast.success("Payment submitted successfully!");
+    } catch (error) {
+      console.error("Error submitting payment:", error);
+      toast.error("Failed to submit payment. Please try again.");
+    }
+    console.log(travelDetails);
   };
 
   return (
@@ -165,7 +175,7 @@ const Payment = () => {
             width="w-[300px]"
           />
         </div>
-        <CommonButton linkUrl="" className="py-3 px-7 mt-[53px]">
+        <CommonButton type="submit" linkUrl="" className="py-3 px-7 mt-[53px]">
           Finish and pay
         </CommonButton>
       </form>

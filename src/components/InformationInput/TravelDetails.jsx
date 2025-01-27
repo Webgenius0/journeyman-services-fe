@@ -41,10 +41,12 @@ const TravelDetails = () => {
     setEndDate,
     setPriceData,
     setLoading,
+    age, 
+    setAge, 
   } = useTravelDetails();
   const axiosPublic = useAxiosPublic();
 
-  console.log(selectedCountry, date, endDate);
+  // console.log(selectedCountry, date, endDate);
 
   const { priceLogics } = useLogicPrices();
   console.log(priceLogics);
@@ -55,14 +57,12 @@ const TravelDetails = () => {
     }
   }, [selectedCurrency, setSelectedCurrency]);
 
-  const [ageGroup, setAgeGroup] = useState("49");
 
   const [partyType, setPartyType] = useState("individual");
 
   useEffect(() => {
-    console.log("entered");
     const totalPeople = parseInt(selectedAdults) + parseInt(selectedChildren);
-    console.log(totalPeople);
+  
 
     if (totalPeople === 1) {
       setPartyType("individual");
@@ -83,20 +83,24 @@ const TravelDetails = () => {
     }
     return 0;
   };
-  console.log("duration", calculateDuration());
+  // console.log("duration", calculateDuration());
 
-  console.log(partyType);
+
+  const handleAgeChange = (value) => {
+    setAge(value); 
+  };
+  console.log('ageGroup', age);
   const fetchPriceList = async () => {
     try {
       setLoading(true);
       const duration = calculateDuration();
-      console.log(ageGroup);
+      // console.log(ageGroup);
 
       const response = await axiosPublic.post("/price/list", {
         is_annual: selectedInsuranceType === "annual" ? 1 : 0,
         destination: selectedArea,
         max_duration: duration,
-        age_group: ageGroup,
+        age_group: age,
         party_type: partyType,
       });
 
@@ -109,7 +113,7 @@ const TravelDetails = () => {
 
   useEffect(() => {
     fetchPriceList();
-  }, [selectedInsuranceType, selectedArea, date, endDate, ageGroup, partyType]);
+  }, [selectedInsuranceType, selectedArea, date, endDate, age, partyType]);
 
   // console.log(
   //   selectedAdults,
@@ -195,6 +199,7 @@ const TravelDetails = () => {
   const handleChildrenChange = (value) => {
     setSelectedChildren(value);
   };
+  
 
   const modalContent = [
     {
@@ -461,8 +466,9 @@ const TravelDetails = () => {
             label="What age is the oldest insured party?
 "
             width="xl:w-[200px]"
-            onChange={(value) => setAgeGroup(value)}
-            value={ageGroup}
+         
+            value={age}
+            onChange={handleAgeChange}  
           />
         </div>
 

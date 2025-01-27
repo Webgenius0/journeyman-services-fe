@@ -32,6 +32,7 @@ const PartyDetails = () => {
     setMessage,
     hear,
     setHear,
+    setSubmitForm,
   } = useTravelDetails();
   const { data } = useFetchData("/country/list");
   const countries = data?.data;
@@ -78,6 +79,8 @@ const PartyDetails = () => {
     formState: { errors },
   } = useForm();
 
+  // submitting all the form togeter
+
   return (
     <CommonWrapper>
       <CommonPageTitle>Online travel insurance</CommonPageTitle>
@@ -96,7 +99,11 @@ const PartyDetails = () => {
           <h3 className="mb-3 mt-6 xl:mt-8 xlg:text-lg font-bold">Adults</h3>
           {Array.from({ length: selectedAdults }).map((_, index) => (
             <div key={`adult-${index}`} className={index > 0 ? "mt-4" : ""}>
-              <DetailsField title={`Adult ${index + 1}`} />
+              <DetailsField
+                title={`Adult ${index + 1}`}
+                person="adults"
+                indexValue={index + 1}
+              />
             </div>
           ))}
         </div>
@@ -108,7 +115,11 @@ const PartyDetails = () => {
           <h3 className="mb-3 mt-8 xl:text-lg font-bold">Children</h3>
           {Array.from({ length: selectedChildren }).map((_, index) => (
             <div key={`children-${index}`} className={index > 0 ? "mt-4" : ""}>
-              <DetailsField title={`Children ${index + 1}`} />
+              <DetailsField
+                title={`Children ${index + 1}`}
+                person="childrens"
+                indexValue={index + 1}
+              />
             </div>
           ))}
         </div>
@@ -305,7 +316,10 @@ const PartyDetails = () => {
             </div>
           </div>
 
-          <div className="flex justify-center xl:justify-normal">
+          <div
+            onClick={() => setSubmitForm(true)}
+            className="flex justify-center xl:justify-normal"
+          >
             <CommonButton type="submit" className="py-3 px-7 mt-[53px]">
               Continue
             </CommonButton>
