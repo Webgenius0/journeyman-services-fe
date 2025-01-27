@@ -40,7 +40,7 @@ const PartyDetails = () => {
   // Handle form submission
   const onSubmit = (data) => {
     // Store data in TravelDetailsProvider context
-    setSelectedCountry(data.country);
+    setSelectedCountry(data.country || selectedCountry );
     setAddress1(data.address1);
     setAddress2(data.address2);
     setCity(data.townCity);
@@ -80,6 +80,9 @@ const PartyDetails = () => {
   } = useForm();
 
   // submitting all the form togeter
+
+
+  console.log('party details country',selectedCountry)
 
   return (
     <CommonWrapper>

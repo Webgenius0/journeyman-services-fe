@@ -1,4 +1,3 @@
-import axios from "axios";
 import CommonButton from "../common/CommonButton";
 import FlexibleInput from "../common/FlexibleInput";
 import { useForm } from "react-hook-form";
@@ -33,12 +32,15 @@ const Payment = () => {
     age,
     adultArray,
     childrenArray,
-    dob
+    dob,
+    totalPrice,
   } = useTravelDetails();
+
+  // console.log("selectedCountry from checkout", selectedCountry);
 
   const axiosPublic = useAxiosPublic();
 
-  console.log(adultArray, childrenArray)
+  // console.log(adultArray, childrenArray)
 
   const {
     register,
@@ -53,10 +55,11 @@ const Payment = () => {
       selectedCountry,
     },
   });
-const totalPrice = priceData?.data.price_in_dollar;
-  console.log(priceData)
+
+  console.log(dob)
+  // console.log(priceData)
   const onSubmit = async (data) => {
-    console.log("Form Submitted", data);
+    // console.log("Form Submitted", data);
 
     const travelDetails = {
       policy_currency: selectedCurrency,
@@ -68,6 +71,7 @@ const totalPrice = priceData?.data.price_in_dollar;
       start_date: date,
       end_date: endDate,
       number_of_adults: selectedAdults,
+      travel_type: ["winter", "adventure"],
       age,
       adults: adultArray.map((adult) => ({
         name: `${adult.forename} ${adult.surname}`,
@@ -77,7 +81,7 @@ const totalPrice = priceData?.data.price_in_dollar;
         nationality: adult.nationality || "N/A",
       })),
       number_of_children: selectedChildren,
-      travel_type: ["winter", "adventure"],
+
       children: childrenArray.map((child) => ({
         name: `${child.forename} ${child.surname}`,
         forename: child.forename,
@@ -95,7 +99,7 @@ const totalPrice = priceData?.data.price_in_dollar;
       how_know: hear,
       comments: message,
       currency: selectedCurrency,
-      total_price: totalPrice || 450,
+      total_price: totalPrice,
     };
 
     try {
@@ -162,6 +166,7 @@ const totalPrice = priceData?.data.price_in_dollar;
             error={errors?.selectedCountry}
             validation={{ required: "Country is required" }}
             width="w-[300px]"
+            value={selectedCountry}
           />
         </div>
         <div className="mt-[26px]">

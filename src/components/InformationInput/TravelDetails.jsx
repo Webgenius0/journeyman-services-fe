@@ -48,8 +48,7 @@ const TravelDetails = () => {
 
   // console.log(selectedCountry, date, endDate);
 
-  const { priceLogics } = useLogicPrices();
-  console.log(priceLogics);
+  
   // by default currency is selected as british pounds
   useEffect(() => {
     if (!selectedCurrency) {
@@ -89,7 +88,6 @@ const TravelDetails = () => {
   const handleAgeChange = (value) => {
     setAge(value); 
   };
-  console.log('ageGroup', age);
   const fetchPriceList = async () => {
     try {
       setLoading(true);
@@ -123,7 +121,6 @@ const TravelDetails = () => {
   //   endDate,
   //   selectedCountry
   // );
-  console.log(selectedCurrency);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
@@ -141,8 +138,10 @@ const TravelDetails = () => {
     { value: "europe", label: "Europe Only" },
   ]);
 
+ useEffect(()=>{
   const formattedStartDate = format(date, "yyyy-MM-dd");
   setDate(formattedStartDate);
+ },[setDate,date])
 
   // end date by default +7 of todays date
   useEffect(() => {
@@ -151,7 +150,7 @@ const TravelDetails = () => {
     defaultEndDate.setDate(today.getDate() + 7);
     const formattedEndDate = format(defaultEndDate, "yyyy-MM-dd");
     setEndDate(formattedEndDate);
-  }, []);
+  }, [setEndDate]);
 
   useEffect(() => {
     if (selectedCountry) {

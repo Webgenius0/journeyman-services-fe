@@ -45,7 +45,7 @@ const DetailsField = ({ title, person, indexValue }) => {
         id: `${person}-${indexValue}`,
       };
 
-      console.log(formValues);
+      // console.log(formValues);
 
       if (formValues.person === "adults") {
         // Update the adult array
@@ -68,7 +68,7 @@ const DetailsField = ({ title, person, indexValue }) => {
     [person, indexValue, setAdultArray, setChildrenArray]
   );
 
-  console.log("from details field", adultArray, childrenArray);
+  // console.log("from details field", adultArray, childrenArray);
 
   useEffect(() => {
     if (submitForm) {

@@ -36,7 +36,7 @@ const CheckOut = () => {
   //   hear,
   // });
 
-  console.log(childrenArray);
+  console.log('party details country',selectedCountry)
   return (
     <CommonWrapper>
       <CommonPageTitle>Online travel insurance</CommonPageTitle>

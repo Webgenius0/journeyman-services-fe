@@ -1,13 +1,8 @@
 import { useTravelDetails } from "@/contexts/TravelDetailsProvider";
 
 const PolicyPrice = () => {
-  const {
-    selectedCurrency,
-    basicPremium,
-    adminCharge,
-    totalPrice,
-  } = useTravelDetails();  
-
+  const { selectedCurrency, basicPremium, adminCharge, totalPrice } =
+    useTravelDetails();
 
   return (
     <div className="border border-[#B8B6B5] rounded-md pt-6 pb-9 px-9 mt-6">
