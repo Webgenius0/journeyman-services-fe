@@ -15,7 +15,7 @@ const PriceDetails = () => {
 
   const { priceLogics } = useLogicPrices();
   const charge = priceLogics?.data?.charge;
-// console.log(priceLogics)
+  // console.log(priceLogics)
   // Using the API response to fetch prices
   const priceInGBP = priceData?.data?.price_in_pound;
   const priceInUSD = priceData?.data?.price_in_dollar;

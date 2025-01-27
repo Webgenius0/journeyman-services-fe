@@ -5,8 +5,56 @@ import FaqPdf from "../common/FaqPdf";
 import { useTravelDetails } from "@/contexts/TravelDetailsProvider";
 
 const Payment = () => {
-  const { address1, address2, zipCode, selectedCountry, city } =
-    useTravelDetails();
+  const {
+    selectedAdults,
+    selectedChildren,
+    selectedInsuranceType,
+    selectedArea,
+    selectedType,
+    selectedCountry,
+    date,
+    endDate,
+    selectedCurrency,
+    address1,
+    address2,
+    zipCode,
+    telephone,
+    email,
+    city,
+    message,
+    hear,
+    title,
+    forename,
+    surname,
+    setSurname,
+    priceData,
+    age,
+  } = useTravelDetails();
+
+  console.log("useTravelDetails", {
+    selectedAdults,
+    selectedChildren,
+    selectedInsuranceType,
+    selectedArea,
+    selectedType,
+    selectedCountry,
+    date,
+    endDate,
+    selectedCurrency,
+    address1,
+    address2,
+    zipCode,
+    telephone,
+    email,
+    city,
+    message,
+    hear,
+    title,
+    forename,
+    surname,
+    priceData,
+    age,
+  });
 
   const {
     register,
@@ -14,16 +62,44 @@ const Payment = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      address1: address1,
-      address2: address2,
-      zipCode: zipCode,
-      city: city,
-      selectedCountry: selectedCountry,
+      address1,
+      address2,
+      zipCode,
+      city,
+      selectedCountry,
     },
   });
 
+  // Consolidating the form data into an object
   const onSubmit = (data) => {
-    console.log(data);
+    console.log("Form Submitted", data); // Log submitted form data
+
+    const travelDetails = {
+      selectedAdults,
+      selectedChildren,
+      selectedInsuranceType,
+      selectedArea,
+      selectedType,
+      selectedCountry,
+      date,
+      endDate,
+      selectedCurrency,
+      address1: data.address1,
+      address2: data.address2,
+      zipCode: data.zipCode,
+      telephone,
+      email,
+      city: data.city,
+      message,
+      hear,
+      title,
+      forename,
+      surname,
+      priceData,
+      age,
+    };
+
+    console.log("Consolidated travelDetails", travelDetails); // Log travelDetails object
   };
 
   return (
@@ -89,7 +165,7 @@ const Payment = () => {
             width="w-[300px]"
           />
         </div>
-        <CommonButton linkUrl="/checkout" className="py-3 px-7 mt-[53px]">
+        <CommonButton linkUrl="" className="py-3 px-7 mt-[53px]">
           Finish and pay
         </CommonButton>
       </form>

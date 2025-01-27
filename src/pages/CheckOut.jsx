@@ -35,7 +35,7 @@ const CheckOut = () => {
   //   hear,
   // });
 
-  console.log(address1, address2);
+  console.log(selectedCountry);
   return (
     <CommonWrapper>
       <CommonPageTitle>Online travel insurance</CommonPageTitle>

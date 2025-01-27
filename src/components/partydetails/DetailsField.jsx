@@ -23,7 +23,9 @@ const DetailsField = ({ title }) => {
     setForename,
     setSurname,
     setDob,
+    setAge,
   } = useTravelDetails();
+ 
 
   const { data } = useFetchData("/country/list");
   const countries = data?.data;

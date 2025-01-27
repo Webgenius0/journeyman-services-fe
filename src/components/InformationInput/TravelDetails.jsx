@@ -40,10 +40,11 @@ const TravelDetails = () => {
     endDate,
     setEndDate,
     setPriceData,
-    priceData,
     setLoading,
   } = useTravelDetails();
   const axiosPublic = useAxiosPublic();
+
+  console.log(selectedCountry, date, endDate);
 
   const { priceLogics } = useLogicPrices();
   console.log(priceLogics);
@@ -71,14 +72,18 @@ const TravelDetails = () => {
       setPartyType("family");
     }
   }, [selectedAdults, selectedChildren]);
-  // Calculate duration between start and end dates
   const calculateDuration = () => {
     if (date && endDate) {
-      const durationInMillis = endDate - date;
+      const startDate = new Date(date);
+      const endDateObj = new Date(endDate);
+
+      // Calculate duration in milliseconds and convert to days
+      const durationInMillis = endDateObj - startDate;
       return Math.floor(durationInMillis / (1000 * 60 * 60 * 24));
     }
     return 0;
   };
+  console.log("duration", calculateDuration());
 
   console.log(partyType);
   const fetchPriceList = async () => {
@@ -132,12 +137,16 @@ const TravelDetails = () => {
     { value: "europe", label: "Europe Only" },
   ]);
 
+  const formattedStartDate = format(date, "yyyy-MM-dd");
+  setDate(formattedStartDate);
+
   // end date by default +7 of todays date
   useEffect(() => {
     const today = new Date();
     const defaultEndDate = new Date(today);
     defaultEndDate.setDate(today.getDate() + 7);
-    setEndDate(defaultEndDate);
+    const formattedEndDate = format(defaultEndDate, "yyyy-MM-dd");
+    setEndDate(formattedEndDate);
   }, []);
 
   useEffect(() => {

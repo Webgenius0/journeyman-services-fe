@@ -27,7 +27,8 @@ export const TravelDetailsProvider = ({ children }) => {
   const [surname, setSurname] = useState("");
   const [dob, setDob] = useState("");
   const [priceData, setPriceData] = useState(null);
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
+  const [age, setAge] = useState(null);
 
   return (
     <TravelDetailsContext.Provider
@@ -76,8 +77,10 @@ export const TravelDetailsProvider = ({ children }) => {
         setDob,
         priceData,
         setPriceData,
-        loading, 
+        loading,
         setLoading,
+        age,
+        setAge,
       }}
     >
       {children}
