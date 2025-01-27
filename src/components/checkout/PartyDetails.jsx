@@ -11,7 +11,7 @@ const PartyDetails = () => {
     {
       title,
       name: fullName,
-      nationality: selectedCountry || "N/A",
+      nationality: selectedCountry ,
       dob,
     },
   ];
@@ -50,7 +50,7 @@ const PartyDetails = () => {
                   {party.name || "N/A"}
                 </td>
                 <td className="py-3 px-4 sm:py-[10px] sm:px-6 text-center border border-[#B8B6B5] text-textGray">
-                  {party.nationality || "N/A"}
+                  {party.nationality }
                 </td>
                 <td className="py-3 px-4 sm:py-[10px] sm:px-6 text-center border border-[#B8B6B5] text-textGray">
                   {party.dob || "N/A"}

@@ -162,14 +162,15 @@ const PartyDetails = () => {
           </div>
           <div className="mt-3 xl:mt-[26px]">
             <CommonDropdownSelect
+              label="Nationality"
               options={countries?.map((country) => ({
-                value: country.code,
+                value: country.name,
                 label: country.name,
               }))}
-              label="Nationality"
               placeholder={selectedCountry || "Select Country"}
               defaultValue={selectedCountry}
-              onChange={(value) => setSelectedCountry(value)}
+              value={selectedCountry}
+              onChange={setSelectedCountry}
               width="w-[300px]"
             />
           </div>

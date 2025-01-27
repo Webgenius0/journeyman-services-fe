@@ -1,7 +1,7 @@
 import { useTravelDetails } from "@/contexts/TravelDetailsProvider";
 import CommonButton from "../common/CommonButton";
 import { Collapse } from "react-collapse";
-import useOtherPrices from "@/hooks/useOtherPrices";
+import useLogicPrices from "@/hooks/useLogicPrices";
 
 const PriceDetails = () => {
   const {
@@ -13,9 +13,9 @@ const PriceDetails = () => {
     loading,
   } = useTravelDetails();
 
-  const { data } = useOtherPrices();
-  const charge = data?.data?.charge;
-
+  const { priceLogics } = useLogicPrices();
+  const charge = priceLogics?.data?.charge;
+// console.log(priceLogics)
   // Using the API response to fetch prices
   const priceInGBP = priceData?.data?.price_in_pound;
   const priceInUSD = priceData?.data?.price_in_dollar;

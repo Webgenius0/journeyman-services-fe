@@ -19,6 +19,7 @@ import QuestionIcon from "@/assets/Icons/QuestionIcon";
 import useFetchData from "@/hooks/api/useFetchData";
 import { useTravelDetails } from "@/contexts/TravelDetailsProvider";
 import useAxiosPublic from "@/hooks/api/useAxiosPublic";
+import useLogicPrices from "@/hooks/useLogicPrices";
 
 const TravelDetails = () => {
   const {
@@ -44,8 +45,8 @@ const TravelDetails = () => {
   } = useTravelDetails();
   const axiosPublic = useAxiosPublic();
 
-  
-
+  const { priceLogics } = useLogicPrices();
+  console.log(priceLogics);
   // by default currency is selected as british pounds
   useEffect(() => {
     if (!selectedCurrency) {
@@ -56,8 +57,20 @@ const TravelDetails = () => {
   const [ageGroup, setAgeGroup] = useState("49");
 
   const [partyType, setPartyType] = useState("individual");
-  console.log(priceData);
 
+  useEffect(() => {
+    console.log("entered");
+    const totalPeople = parseInt(selectedAdults) + parseInt(selectedChildren);
+    console.log(totalPeople);
+
+    if (totalPeople === 1) {
+      setPartyType("individual");
+    } else if (totalPeople === 2) {
+      setPartyType("couple");
+    } else if (totalPeople >= 3) {
+      setPartyType("family");
+    }
+  }, [selectedAdults, selectedChildren]);
   // Calculate duration between start and end dates
   const calculateDuration = () => {
     if (date && endDate) {
@@ -67,6 +80,7 @@ const TravelDetails = () => {
     return 0;
   };
 
+  console.log(partyType);
   const fetchPriceList = async () => {
     try {
       setLoading(true);
@@ -276,19 +290,28 @@ const TravelDetails = () => {
                 <CommonRadioButton
                   options={[
                     {
-                      value: "summer",
+                      value: "standard",
                       label:
                         "Standard - 90 days per trip (45 days for over 74s)",
                     },
-                    { value: "winter", label: "Extended - 180 days per trip" },
+                    {
+                      value: "extended",
+                      label: "Extended - 180 days per trip",
+                    },
                   ]}
                   label="Length of trip"
                 />
                 <div className="mt-3">
                   <CommonRadioButton
                     options={[
-                      { value: "monthly", label: "Monthly" },
-                      { value: "quarterly", label: "Quarterly" },
+                      {
+                        value: "standard",
+                        label: "Standard Cover - £6,500 per person",
+                      },
+                      {
+                        value: "increased",
+                        label: "QuartIncreased Cover - £10,000 per personerly",
+                      },
                     ]}
                     label="Cancellation cover"
                   />

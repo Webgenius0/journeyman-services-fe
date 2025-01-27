@@ -25,8 +25,6 @@ const DetailsField = ({ title }) => {
     setDob,
   } = useTravelDetails();
 
- 
-  
   const { data } = useFetchData("/country/list");
   const countries = data?.data;
 
@@ -98,14 +96,15 @@ const DetailsField = ({ title }) => {
 
         <div>
           <CommonDropdownSelect
+            label="Nationality"
             options={countries?.map((country) => ({
-              value: country.code,
+              value: country.name,
               label: country.name,
             }))}
-            label="Nationality"
             placeholder={selectedCountry || "Select Country"}
             defaultValue={selectedCountry}
-            onChange={(value) => setSelectedCountry(value)}
+            value={selectedCountry}
+            onChange={setSelectedCountry}
           />
         </div>
       </div>

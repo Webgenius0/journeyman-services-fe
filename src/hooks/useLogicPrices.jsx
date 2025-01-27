@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "./api/useAxiosPublic";
 
-const useOtherPrices = () => {
+const useLogicPrices = () => {
   const axiosPublic = useAxiosPublic();
 
   const fetchData = async () => {
@@ -9,12 +9,12 @@ const useOtherPrices = () => {
     return response.data;
   };
 
-  const { data, isLoading } = useQuery({
+  const { data: priceLogics, isLoading } = useQuery({
     queryKey: ["otherPrices"],
     queryFn: fetchData,
   });
 
-  return { data, isLoading };
+  return { priceLogics, isLoading };
 };
 
-export default useOtherPrices;
+export default useLogicPrices;
