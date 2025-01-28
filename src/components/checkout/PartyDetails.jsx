@@ -1,7 +1,7 @@
 import { useTravelDetails } from "@/contexts/TravelDetailsProvider";
 
 const PartyDetails = () => {
-  const { adultArray, childrenArray } = useTravelDetails();
+  const { adultArray, childrenArray, selectedCountry } = useTravelDetails();
 
   // Combine adultArray and childrenArray into one array
   const combinedPartyArray = [...adultArray, ...childrenArray];
@@ -10,7 +10,7 @@ const PartyDetails = () => {
   const partyData = combinedPartyArray.map(person => ({
     title: person.title || "N/A",
     name: `${person.forename || "N/A"} ${person.surname || "N/A"}`,
-    nationality: person.nationality || "N/A",
+    nationality: selectedCountry || "N/A",
     birth_day: person.birth_day || "N/A",
   }));
 

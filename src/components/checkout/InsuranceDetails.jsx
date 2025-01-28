@@ -1,8 +1,15 @@
 import { useTravelDetails } from "@/contexts/TravelDetailsProvider";
 
 const InsuranceDetails = () => {
-  const { address1, address2, zipCode, selectedCountry, city, telephone } =
-    useTravelDetails();
+  const {
+    address1,
+    address2,
+    zipCode,
+    selectedCountry,
+    city,
+    telephone,
+    cancellationCover,
+  } = useTravelDetails();
   console.log(address1, address2, zipCode, city, selectedCountry);
 
   const fullAddress = `${address1} ${address2}, ${city}, ${selectedCountry}`;
@@ -33,7 +40,10 @@ const InsuranceDetails = () => {
           <h4 className="font-semibold text-textBlack2 xl:leading-[25px]">
             Extra Cover:
           </h4>
-          <p className="text-textBlack2 text-left xl:leading-[25px]">Yes</p>
+          <p className="text-textBlack2 text-left xl:leading-[25px]">
+            {" "}
+            {cancellationCover ? "Yes" : "No"}
+          </p>
         </div>
 
         <div className="flex justify-between">

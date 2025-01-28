@@ -1,7 +1,7 @@
 import { useTravelDetails } from "@/contexts/TravelDetailsProvider";
 
 const PolicyPrice = () => {
-  const { selectedCurrency, basicPremium, adminCharge, totalPrice } =
+  const { selectedCurrency, basicPremium, administrationCharge, totalPrice } =
     useTravelDetails();
 
   return (
@@ -29,9 +29,9 @@ const PolicyPrice = () => {
           </h4>
           <p className="text-textBlack2 leading-[25px]">
             {selectedCurrency === "British Pounds"
-              ? `£${adminCharge}`
+              ? `£${administrationCharge}`
               : selectedCurrency === "USD"
-              ? `$${adminCharge}`
+              ? `$${administrationCharge}`
               : ""}
           </p>
         </div>
