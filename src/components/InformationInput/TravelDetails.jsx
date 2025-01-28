@@ -88,12 +88,21 @@ const TravelDetails = () => {
   const handleAgeChange = (value) => {
     setAge(value); 
   };
+
+  const [availableAreas, setAvailableAreas] = useState([
+    { value: "worldwide", label: "Worldwide" },
+    {
+      value: "ex_usa",
+      label: "Worldwide (excluding USA, Canada & Caribbean)",
+    },
+    { value: "europe", label: "Europe Only" },
+  ]);
   const fetchPriceList = async () => {
     try {
       setLoading(true);
       const duration = calculateDuration();
       // console.log(ageGroup);
-
+console.log(selectedArea)
       const response = await axiosPublic.post("/price/list", {
         is_annual: selectedInsuranceType === "annual" ? 1 : 0,
         destination: selectedArea,
@@ -129,14 +138,7 @@ const TravelDetails = () => {
   const countries = data?.data;
   // console.log(selectedCountry);
 
-  const [availableAreas, setAvailableAreas] = useState([
-    { value: "worldwide", label: "Worldwide" },
-    {
-      value: "ex_usa",
-      label: "Worldwide (excluding USA, Canada & Caribbean)",
-    },
-    { value: "europe", label: "Europe Only" },
-  ]);
+ 
 
  useEffect(()=>{
   const formattedStartDate = format(date, "yyyy-MM-dd");
@@ -173,7 +175,7 @@ const TravelDetails = () => {
         areaOptions = [
           { value: "worldwide", label: "Worldwide" },
           {
-            value: "worlwide_ex_usa",
+            value: "ex_usa",
             label: "Worldwide (excluding USA, Canada & Caribbean)",
           },
           { value: "europe", label: "Europe Only" },
