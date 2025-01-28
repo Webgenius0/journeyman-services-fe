@@ -35,7 +35,7 @@ const Payment = () => {
     childrenArray,
     dob,
     totalPrice,
-    selectedTravelTypes
+    selectedTravelTypes,
   } = useTravelDetails();
 
   // console.log("selectedCountry from checkout", selectedCountry);

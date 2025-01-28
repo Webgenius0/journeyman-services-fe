@@ -49,6 +49,13 @@ const TravelDetails = () => {
   } = useTravelDetails();
   const axiosPublic = useAxiosPublic();
 
+  // logic prices
+
+  const { priceLogics } = useLogicPrices();
+
+  
+
+  console.log(priceLogics)
   const handleCheckboxChange = (type) => {
     if (selectedTravelTypes.includes(type)) {
       removeTravelType(type);

@@ -14,10 +14,17 @@ const PriceDetails = () => {
     setTotalPrice,
     setBasicPremium,
     setAdministrationCharge,
+    selectedTravelTypes
   } = useTravelDetails();
 
   const { priceLogics } = useLogicPrices();
+
+  // Parse prices from the API response
   const charge = parseFloat(priceLogics?.data?.charge);
+  const winterSportsPrice = parseFloat(priceLogics?.data?.winter_sprots);
+  const adventureSportsPrice = parseFloat(priceLogics?.data?.adventure_sprots_single);
+
+  // console.log('2 prices',winterSportsPrice, adventureSportsPrice);
 
   // Fetching prices based on the selected currency
   const priceInGBP = priceData?.data?.price_in_pound;
@@ -30,13 +37,24 @@ const PriceDetails = () => {
       : selectedCurrency === "USD"
       ? priceInUSD
       : 0;
+
   const adminCharge = basicPremium * (charge / 100);
-  const totalPrice = basicPremium + adminCharge;
+  let totalPrice = basicPremium + adminCharge;
+
+  // Add winter sports or adventure sports price if selected
+  if (selectedTravelTypes.includes('winter')) {
+    totalPrice *= winterSportsPrice; 
+  }
+  if (selectedTravelTypes.includes('adventure')) {
+    totalPrice *= adventureSportsPrice; 
+  }
 
   // Set the values when the price is calculated
   setBasicPremium(basicPremium);
   setAdministrationCharge(adminCharge);
   setTotalPrice(totalPrice);
+
+  console.log(totalPrice);
 
   const countriesWithNote = [
     "United Kingdom",
@@ -44,8 +62,10 @@ const PriceDetails = () => {
     "Guernsey",
     "Jersey",
   ];
+  
   const isRequiredFieldSelected =
     selectedCountry && selectedArea && selectedInsuranceType;
+  
   const showNote = countriesWithNote.includes(selectedCountry);
 
   return (
@@ -96,7 +116,7 @@ const PriceDetails = () => {
                       ? `£${adminCharge.toFixed(2)} `
                       : selectedCurrency === "USD"
                       ? `$${adminCharge.toFixed(2)} `
-                      : ""}
+                      : ""} 
                     ({charge}%)
                   </li>
                 </ul>
@@ -109,6 +129,7 @@ const PriceDetails = () => {
               </div>
             </div>
           </Collapse>
+
           <Collapse isOpened={true}>
             {showNote && (
               <div className="mt-14 border border-[#8CA2B4] py-[21px] px-[21px] rounded-[5px] xl:min-w-[400px]">
