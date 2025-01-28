@@ -35,6 +35,7 @@ const Payment = () => {
     childrenArray,
     dob,
     totalPrice,
+    selectedTravelTypes
   } = useTravelDetails();
 
   // console.log("selectedCountry from checkout", selectedCountry);
@@ -74,7 +75,7 @@ const Payment = () => {
       start_date: date,
       end_date: endDate,
       number_of_adults: selectedAdults,
-      travel_type: ["winter", "adventure"],
+      travel_type: selectedTravelTypes,
       age,
       adults: adultArray.map((adult) => ({
         name: `${adult.forename} ${adult.surname}`,

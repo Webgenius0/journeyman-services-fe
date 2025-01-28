@@ -3,6 +3,8 @@ import { CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
+import { Checkbox } from "@/components/ui/checkbox";
+
 import {
   Popover,
   PopoverContent,
@@ -41,14 +43,23 @@ const TravelDetails = () => {
     setEndDate,
     setPriceData,
     setLoading,
-    age, 
-    setAge, 
+    age,
+    setAge,
+    selectedTravelTypes, addTravelType, removeTravelType 
   } = useTravelDetails();
   const axiosPublic = useAxiosPublic();
 
+  const handleCheckboxChange = (type) => {
+    if (selectedTravelTypes.includes(type)) {
+      removeTravelType(type);
+    } else {
+      addTravelType(type);
+    }
+  };
+
+  console.log(selectedTravelTypes)
   // console.log(selectedCountry, date, endDate);
 
-  
   // by default currency is selected as GBP
   useEffect(() => {
     if (!selectedCurrency) {
@@ -56,12 +67,10 @@ const TravelDetails = () => {
     }
   }, [selectedCurrency, setSelectedCurrency]);
 
-
   const [partyType, setPartyType] = useState("individual");
 
   useEffect(() => {
     const totalPeople = parseInt(selectedAdults) + parseInt(selectedChildren);
-  
 
     if (totalPeople === 1) {
       setPartyType("individual");
@@ -84,9 +93,8 @@ const TravelDetails = () => {
   };
   // console.log("duration", calculateDuration());
 
-
   const handleAgeChange = (value) => {
-    setAge(value); 
+    setAge(value);
   };
 
   const [availableAreas, setAvailableAreas] = useState([
@@ -102,7 +110,7 @@ const TravelDetails = () => {
       setLoading(true);
       const duration = calculateDuration();
       // console.log(ageGroup);
-console.log(selectedArea)
+      console.log(selectedArea);
       const response = await axiosPublic.post("/price/list", {
         is_annual: selectedInsuranceType === "annual" ? 1 : 0,
         destination: selectedArea,
@@ -138,12 +146,10 @@ console.log(selectedArea)
   const countries = data?.data;
   // console.log(selectedCountry);
 
- 
-
- useEffect(()=>{
-  const formattedStartDate = format(date, "yyyy-MM-dd");
-  setDate(formattedStartDate);
- },[setDate,date])
+  useEffect(() => {
+    const formattedStartDate = format(date, "yyyy-MM-dd");
+    setDate(formattedStartDate);
+  }, [setDate, date]);
 
   // end date by default +7 of todays date
   useEffect(() => {
@@ -200,7 +206,6 @@ console.log(selectedArea)
   const handleChildrenChange = (value) => {
     setSelectedChildren(value);
   };
-  
 
   const modalContent = [
     {
@@ -467,23 +472,28 @@ console.log(selectedArea)
             label="What age is the oldest insured party?
 "
             width="xl:w-[200px]"
-         
             value={age}
-            onChange={handleAgeChange}  
+            onChange={handleAgeChange}
           />
         </div>
 
-        <div>
-          <CommonRadioButton
-            options={[
-              { value: "light", label: "Winter Sports?" },
-              { value: "dark", label: "Adventure Sports?" },
-            ]}
-            onChange={(value) => console.log(value)}
-            defaultValue="light"
-          />
-        </div>
+        <div className="flex flex-col space-y-4">
+      <div className="flex items-center space-x-2">
+        <Checkbox
+          checked={selectedTravelTypes.includes("winter")}
+          onCheckedChange={() => handleCheckboxChange("winter")}
+        />
+        <label htmlFor="winter-sports">Winter Sports?</label>
+      </div>
 
+      <div className="flex items-center space-x-2">
+        <Checkbox
+          checked={selectedTravelTypes.includes("adventure")}
+          onCheckedChange={() => handleCheckboxChange("adventure")}
+        />
+        <label htmlFor="adventure-sports">Adventure Sports?</label>
+      </div>
+    </div>
         <div className="flex gap-2 xl:gap-3 mt-7">
           <p className="text-textBlackV2 text-sm xl:text-base xl:leading-[25px]">
             Click here to view activities covered in the &apos;standard&apos;

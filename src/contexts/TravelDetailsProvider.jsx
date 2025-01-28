@@ -41,6 +41,16 @@ export const TravelDetailsProvider = ({ children }) => {
   const [adultArray, setAdultArray] = useState([]);
   const [childrenArray, setChildrenArray] = useState([]);
 
+  const [selectedTravelTypes, setSelectedTravelTypes] = useState([]);
+
+  const addTravelType = (type) => {
+    setSelectedTravelTypes((prev) => [...prev, type]);
+  };
+
+  const removeTravelType = (type) => {
+    setSelectedTravelTypes((prev) => prev.filter((item) => item !== type));
+  };
+
   return (
     <TravelDetailsContext.Provider
       value={{
@@ -104,6 +114,9 @@ export const TravelDetailsProvider = ({ children }) => {
         totalPrice,
         basicPremium,
         administrationCharge,
+        selectedTravelTypes,
+        addTravelType,
+        removeTravelType
       }}
     >
       {children}
