@@ -64,7 +64,7 @@ const Payment = () => {
   // console.log(priceData)
   const onSubmit = async (data) => {
     // console.log("Form Submitted", data);
-    const parsedTotalPrice = parseFloat(totalPrice);
+    const parsedTotalPrice = parseInt(totalPrice);
     const travelDetails = {
       policy_currency: selectedCurrency,
       country_of_residence: selectedCountry || "Bangladesh",
