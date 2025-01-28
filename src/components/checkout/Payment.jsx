@@ -90,7 +90,7 @@ const Payment = () => {
         name: `${child.forename} ${child.surname}`,
         forename: child.forename,
         surname: child.surname,
-        birth_day: child.dob,
+        birth_day: child.dob || "15/01/2025",
         nationality: child.nationality || "N/A",
       })),
       address_one: data.address1,
