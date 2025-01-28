@@ -45,17 +45,15 @@ const TravelDetails = () => {
     setLoading,
     age,
     setAge,
-    selectedTravelTypes, addTravelType, removeTravelType 
+    selectedTravelTypes,
+    addTravelType,
+    removeTravelType,
+    tripLength, cancellationCover, handleTripLengthChange, handleCancellationCoverChange 
   } = useTravelDetails();
   const axiosPublic = useAxiosPublic();
 
-  // logic prices
+  // console.log(tripLength, cancellationCover)
 
-  const { priceLogics } = useLogicPrices();
-
-  
-
-  console.log(priceLogics)
   const handleCheckboxChange = (type) => {
     if (selectedTravelTypes.includes(type)) {
       removeTravelType(type);
@@ -64,7 +62,7 @@ const TravelDetails = () => {
     }
   };
 
-  console.log(selectedTravelTypes)
+  console.log(selectedTravelTypes);
   // console.log(selectedCountry, date, endDate);
 
   // by default currency is selected as GBP
@@ -327,6 +325,8 @@ const TravelDetails = () => {
                     },
                   ]}
                   label="Length of trip"
+                  onChange={(value) => handleTripLengthChange(value)} 
+                  value={tripLength}  
                 />
                 <div className="mt-3">
                   <CommonRadioButton
@@ -341,6 +341,8 @@ const TravelDetails = () => {
                       },
                     ]}
                     label="Cancellation cover"
+                    onChange={(value) => handleCancellationCoverChange(value)} 
+                    value={cancellationCover} 
                   />
                 </div>
               </div>
@@ -485,22 +487,22 @@ const TravelDetails = () => {
         </div>
 
         <div className="flex flex-col space-y-4">
-      <div className="flex items-center space-x-2">
-        <Checkbox
-          checked={selectedTravelTypes.includes("winter")}
-          onCheckedChange={() => handleCheckboxChange("winter")}
-        />
-        <label htmlFor="winter-sports">Winter Sports?</label>
-      </div>
+          <div className="flex items-center space-x-2">
+            <Checkbox
+              checked={selectedTravelTypes.includes("winter")}
+              onCheckedChange={() => handleCheckboxChange("winter")}
+            />
+            <label htmlFor="winter-sports">Winter Sports?</label>
+          </div>
 
-      <div className="flex items-center space-x-2">
-        <Checkbox
-          checked={selectedTravelTypes.includes("adventure")}
-          onCheckedChange={() => handleCheckboxChange("adventure")}
-        />
-        <label htmlFor="adventure-sports">Adventure Sports?</label>
-      </div>
-    </div>
+          <div className="flex items-center space-x-2">
+            <Checkbox
+              checked={selectedTravelTypes.includes("adventure")}
+              onCheckedChange={() => handleCheckboxChange("adventure")}
+            />
+            <label htmlFor="adventure-sports">Adventure Sports?</label>
+          </div>
+        </div>
         <div className="flex gap-2 xl:gap-3 mt-7">
           <p className="text-textBlackV2 text-sm xl:text-base xl:leading-[25px]">
             Click here to view activities covered in the &apos;standard&apos;

@@ -43,6 +43,21 @@ export const TravelDetailsProvider = ({ children }) => {
 
   const [selectedTravelTypes, setSelectedTravelTypes] = useState([]);
 
+  const [tripLength, setTripLength] = useState('Standard'); // Default to Standard
+  const [cancellationCover, setCancellationCover] = useState(6500); // Default to £6,500
+
+  // Function to update the trip length
+  const handleTripLengthChange = (length) => {
+    setTripLength(length);
+  };
+
+  // Function to update cancellation cover (can be any amount)
+  const handleCancellationCoverChange = (cover) => {
+    setCancellationCover(cover);
+  };
+
+  
+
   const addTravelType = (type) => {
     setSelectedTravelTypes((prev) => [...prev, type]);
   };
@@ -50,6 +65,8 @@ export const TravelDetailsProvider = ({ children }) => {
   const removeTravelType = (type) => {
     setSelectedTravelTypes((prev) => prev.filter((item) => item !== type));
   };
+
+
 
   return (
     <TravelDetailsContext.Provider
@@ -116,7 +133,11 @@ export const TravelDetailsProvider = ({ children }) => {
         administrationCharge,
         selectedTravelTypes,
         addTravelType,
-        removeTravelType
+        removeTravelType,
+        tripLength,
+        cancellationCover,
+        handleTripLengthChange,
+        handleCancellationCoverChange,
       }}
     >
       {children}

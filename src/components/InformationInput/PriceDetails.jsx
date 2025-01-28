@@ -14,7 +14,9 @@ const PriceDetails = () => {
     setTotalPrice,
     setBasicPremium,
     setAdministrationCharge,
-    selectedTravelTypes
+    selectedTravelTypes,
+    tripLength,
+    cancellationCover,
   } = useTravelDetails();
 
   const { priceLogics } = useLogicPrices();
@@ -22,9 +24,22 @@ const PriceDetails = () => {
   // Parse prices from the API response
   const charge = parseFloat(priceLogics?.data?.charge);
   const winterSportsPrice = parseFloat(priceLogics?.data?.winter_sprots);
-  const adventureSportsPrice = parseFloat(priceLogics?.data?.adventure_sprots_single);
+  const adventureSportsPrice = parseFloat(
+    priceLogics?.data?.adventure_sprots_single
+  );
 
-  // console.log('2 prices',winterSportsPrice, adventureSportsPrice);
+  const multiTripStandardPrice = parseFloat(
+    priceLogics?.data?.multi_trip_standard
+  );
+  const multiTripExtendedPrice = parseFloat(
+    priceLogics?.data?.multi_trip_extended
+  );
+  const cancellationCoverageStandardPrice = parseFloat(
+    priceLogics?.data?.cancellation_coverage_standard
+  );
+  const cancellationCoverageIncreasedPrice = parseFloat(
+    priceLogics?.data?.cancellation_coverage_increased
+  );
 
   // Fetching prices based on the selected currency
   const priceInGBP = priceData?.data?.price_in_pound;
@@ -42,11 +57,25 @@ const PriceDetails = () => {
   let totalPrice = basicPremium + adminCharge;
 
   // Add winter sports or adventure sports price if selected
-  if (selectedTravelTypes.includes('winter')) {
-    totalPrice *= winterSportsPrice; 
+  if (selectedTravelTypes.includes("winter")) {
+    totalPrice *= winterSportsPrice;
   }
-  if (selectedTravelTypes.includes('adventure')) {
-    totalPrice *= adventureSportsPrice; 
+  if (selectedTravelTypes.includes("adventure")) {
+    totalPrice *= adventureSportsPrice;
+  }
+
+  // Apply trip length multiplier
+  if (tripLength === "standard") {
+    totalPrice *= multiTripStandardPrice;
+  } else if (tripLength === "extended") {
+    totalPrice *= multiTripExtendedPrice;
+  }
+
+  // Apply cancellation cover multiplier
+  if (cancellationCover === "standard") {
+    totalPrice *= cancellationCoverageStandardPrice;
+  } else if (cancellationCover === "increased") {
+    totalPrice *= cancellationCoverageIncreasedPrice;
   }
 
   // Set the values when the price is calculated
@@ -54,18 +83,16 @@ const PriceDetails = () => {
   setAdministrationCharge(adminCharge);
   setTotalPrice(totalPrice);
 
-  console.log(totalPrice);
-
   const countriesWithNote = [
     "United Kingdom",
     "Isle of Man",
     "Guernsey",
     "Jersey",
   ];
-  
+
   const isRequiredFieldSelected =
     selectedCountry && selectedArea && selectedInsuranceType;
-  
+
   const showNote = countriesWithNote.includes(selectedCountry);
 
   return (
@@ -116,7 +143,7 @@ const PriceDetails = () => {
                       ? `£${adminCharge.toFixed(2)} `
                       : selectedCurrency === "USD"
                       ? `$${adminCharge.toFixed(2)} `
-                      : ""} 
+                      : ""}
                     ({charge}%)
                   </li>
                 </ul>
