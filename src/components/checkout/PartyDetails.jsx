@@ -7,7 +7,7 @@ const PartyDetails = () => {
   const combinedPartyArray = [...adultArray, ...childrenArray];
 
   // Format the party data
-  const partyData = combinedPartyArray.map(person => ({
+  const partyData = combinedPartyArray.map((person) => ({
     title: person.title || "N/A",
     name: `${person.forename || "N/A"} ${person.surname || "N/A"}`,
     nationality: selectedCountry || "N/A",

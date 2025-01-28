@@ -53,7 +53,7 @@ const TravelDetails = () => {
   const axiosPublic = useAxiosPublic();
 
   // console.log(tripLength, cancellationCover)
-
+console.log(date, endDate)
   const handleCheckboxChange = (type) => {
     if (selectedTravelTypes.includes(type)) {
       removeTravelType(type);

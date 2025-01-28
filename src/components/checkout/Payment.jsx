@@ -5,7 +5,6 @@ import FaqPdf from "../common/FaqPdf";
 import { useTravelDetails } from "@/contexts/TravelDetailsProvider";
 import useAxiosPublic from "@/hooks/api/useAxiosPublic";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
 
 const Payment = () => {
   const {
@@ -42,7 +41,7 @@ const Payment = () => {
 
   const axiosPublic = useAxiosPublic();
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   // console.log(adultArray);
 

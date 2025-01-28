@@ -21,7 +21,7 @@ const DetailsField = ({ title, person, indexValue }) => {
     setAdultArray,
     setChildrenArray,
   } = useTravelDetails();
-
+  const [selectedTitle, setSelectedTitle] = useState("Mr");
   const {
     register,
     handleSubmit,
@@ -36,7 +36,7 @@ const DetailsField = ({ title, person, indexValue }) => {
     setDob(formattedDate);
   };
 
-  console.log(dob);
+  // console.log(dob);
   // entire submit function
   const onSubmit = useCallback(
     (data) => {
@@ -44,6 +44,7 @@ const DetailsField = ({ title, person, indexValue }) => {
         ...data,
         person: person,
         id: `${person}-${indexValue}`,
+        title: selectedTitle,
       };
 
       // console.log(formValues);
@@ -66,10 +67,10 @@ const DetailsField = ({ title, person, indexValue }) => {
         });
       }
     },
-    [person, indexValue, setAdultArray, setChildrenArray]
+    [person, indexValue, setAdultArray, setChildrenArray, selectedTitle ]
   );
 
-  // console.log("from details field", adultArray, childrenArray);
+   console.log("from details field", adultArray);
 
   useEffect(() => {
     if (submitForm) {
@@ -97,7 +98,7 @@ const DetailsField = ({ title, person, indexValue }) => {
             ]}
             label="Title"
             placeholder="Mr."
-            onChange={(value) => setTitle(value)}
+            onChange={(value) => setSelectedTitle(value)}
           />
         </div>
 
