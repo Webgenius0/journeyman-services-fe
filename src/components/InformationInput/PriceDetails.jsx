@@ -2,6 +2,7 @@ import { useTravelDetails } from "@/contexts/TravelDetailsProvider";
 import CommonButton from "../common/CommonButton";
 import { Collapse } from "react-collapse";
 import useLogicPrices from "@/hooks/useLogicPrices";
+import { useEffect } from "react";
 
 const PriceDetails = () => {
   const {
@@ -17,6 +18,9 @@ const PriceDetails = () => {
     selectedTravelTypes,
     tripLength,
     cancellationCover,
+    setEndDate,
+    date,
+    endDate,
   } = useTravelDetails();
 
   const { priceLogics } = useLogicPrices();
@@ -41,11 +45,11 @@ const PriceDetails = () => {
     priceLogics?.data?.cancellation_coverage_increased
   );
 
-  // Fetching prices based on the selected currency
+  //  prices based on the selected currency
   const priceInGBP = priceData?.data?.price_in_pound;
   const priceInUSD = priceData?.data?.price_in_dollar;
 
-  // Calculate basic premium and total price based on the selected currency
+  //  basic premium and total price based on the selected currency
   const basicPremium =
     selectedCurrency === "British Pounds"
       ? priceInGBP
@@ -71,14 +75,14 @@ const PriceDetails = () => {
     totalPrice *= multiTripExtendedPrice;
   }
 
-  // Apply cancellation cover multiplier
+  //  cancellation cover multiplier
   if (cancellationCover === "standard") {
     totalPrice *= cancellationCoverageStandardPrice;
   } else if (cancellationCover === "increased") {
     totalPrice *= cancellationCoverageIncreasedPrice;
   }
 
-  // Set the values when the price is calculated
+  //  the values when the price is calculated
   setBasicPremium(basicPremium);
   setAdministrationCharge(adminCharge);
   setTotalPrice(totalPrice);
