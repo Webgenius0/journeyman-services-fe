@@ -10,11 +10,13 @@ import PrivacyStatement from "@/pages/PrivacyStatement";
 import Signin from "@/pages/Signin";
 import PartyDetails from "@/pages/PartyDetails";
 import CheckOut from "@/pages/CheckOut";
+import ErrorPage from "@/pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
+    errorElement:<ErrorPage/>,
     children: [
       {
         path: "/",
