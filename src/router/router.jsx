@@ -11,6 +11,7 @@ import Signin from "@/pages/Signin";
 import PartyDetails from "@/pages/PartyDetails";
 import CheckOut from "@/pages/CheckOut";
 import ErrorPage from "@/pages/ErrorPage";
+import Success from "@/pages/Success";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: "/checkout",
         element: <CheckOut />,
+      },
+      {
+        path: "/success",
+        element: <Success />,
       },
     ],
   },

@@ -40,7 +40,7 @@ const PartyDetails = () => {
   // Handle form submission
   const onSubmit = (data) => {
     // Store data in TravelDetailsProvider context
-    setSelectedCountry(data.country || selectedCountry );
+    setSelectedCountry(data.country || selectedCountry);
     setAddress1(data.address1);
     setAddress2(data.address2);
     setCity(data.townCity);
@@ -81,8 +81,7 @@ const PartyDetails = () => {
 
   // submitting all the form togeter
 
-
-  console.log('party details country',selectedCountry)
+  console.log("party details country", selectedCountry);
 
   return (
     <CommonWrapper>
@@ -296,7 +295,12 @@ const PartyDetails = () => {
 
           {/* Checkbox */}
           <div className="flex items-center space-x-2">
-            <Checkbox id="terms" />
+            <Checkbox
+              id="terms"
+              {...register("terms", {
+                required: "You must accept the terms and conditions to proceed",
+              })}
+            />
             <label
               htmlFor="terms"
               className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -306,6 +310,11 @@ const PartyDetails = () => {
               declarations above. I am happy to proceed on this understanding.
             </label>
           </div>
+
+          {/* Display error message */}
+          {errors?.terms && (
+            <p className="text-red-500 text-sm">{errors.terms.message}</p>
+          )}
 
           <div className="flex gap-3 mt-7">
             <p className="text-textBlackV2 leading-[25px]">
