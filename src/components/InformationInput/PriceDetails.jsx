@@ -1,8 +1,9 @@
+import { useState, useEffect } from "react";
 import { useTravelDetails } from "@/contexts/TravelDetailsProvider";
 import CommonButton from "../common/CommonButton";
 import { Collapse } from "react-collapse";
 import useLogicPrices from "@/hooks/useLogicPrices";
-import { useEffect } from "react";
+import LoadingComponent from "../loaders/LoadingComponent";
 
 const PriceDetails = () => {
   const {
@@ -11,7 +12,6 @@ const PriceDetails = () => {
     selectedInsuranceType,
     priceData,
     selectedCurrency,
-    loading,
     setTotalPrice,
     setBasicPremium,
     setAdministrationCharge,
@@ -24,6 +24,16 @@ const PriceDetails = () => {
   } = useTravelDetails();
 
   const { priceLogics } = useLogicPrices();
+
+  // Local state for loading
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (priceLogics && priceData) {
+      // If priceLogics and priceData are loaded, set loading to false
+      setLoading(false);
+    }
+  }, [priceLogics, priceData]);
 
   // Parse prices from the API response
   const charge = parseFloat(priceLogics?.data?.charge);
@@ -117,40 +127,48 @@ const PriceDetails = () => {
         </div>
       ) : (
         <div>
+          {/* Loading check */}
+
           <Collapse isOpened={true}>
             <div className="mt-[30px] border border-[#8CA2B4] py-[21px] px-[21px] rounded-[5px] xl:min-w-[400px]">
               <div>
                 <h3 className="xl:text-lg font-bold text-textBlackV2 xl:leading-[30px] border-b border-[#8CA2B4] text-center mb-[26px]">
                   Price Details
                 </h3>
-                <p className="text-center xl:text-left mb-[7px] text-textBlackV2 text-xl xl:text-2xl">
-                  <span className="font-bold">Price:</span>{" "}
-                  {selectedCurrency === "British Pounds"
-                    ? `£${totalPrice.toFixed(2)}`
-                    : selectedCurrency === "USD"
-                    ? `$${totalPrice.toFixed(2)}`
-                    : ""}
-                </p>
-
-                <ul className="text-center xl:text-left leading-[25px]">
-                  <li>
-                    Basic premium:{" "}
-                    {selectedCurrency === "British Pounds"
-                      ? `£${priceInGBP}`
-                      : selectedCurrency === "USD"
-                      ? `$${priceInUSD}`
-                      : ""}
-                  </li>
-                  <li>
-                    An administration charge of{" "}
-                    {selectedCurrency === "British Pounds"
-                      ? `£${adminCharge.toFixed(2)} `
-                      : selectedCurrency === "USD"
-                      ? `$${adminCharge.toFixed(2)} `
-                      : ""}
-                    ({charge}%)
-                  </li>
-                </ul>
+                {loading ? (
+                  <LoadingComponent />
+                ) : (
+                  <div>
+                    {" "}
+                    <p className="text-center xl:text-left mb-[7px] text-textBlackV2 text-xl xl:text-2xl">
+                      <span className="font-bold">Price:</span>{" "}
+                      {selectedCurrency === "British Pounds"
+                        ? `£${totalPrice.toFixed(2)}`
+                        : selectedCurrency === "USD"
+                        ? `$${totalPrice.toFixed(2)}`
+                        : ""}
+                    </p>
+                    <ul className="text-center xl:text-left leading-[25px]">
+                      <li>
+                        Basic premium:{" "}
+                        {selectedCurrency === "British Pounds"
+                          ? `£${priceInGBP}`
+                          : selectedCurrency === "USD"
+                          ? `$${priceInUSD}`
+                          : ""}
+                      </li>
+                      <li>
+                        An administration charge of{" "}
+                        {selectedCurrency === "British Pounds"
+                          ? `£${adminCharge.toFixed(2)} `
+                          : selectedCurrency === "USD"
+                          ? `$${adminCharge.toFixed(2)} `
+                          : ""}
+                        ({charge}%)
+                      </li>
+                    </ul>{" "}
+                  </div>
+                )}
                 <div className="flex justify-between mt-3 xl:mt-[21px]">
                   <CommonButton linkUrl="/party-details" className="px-7 py-3">
                     Continue
