@@ -44,7 +44,7 @@ const Payment = () => {
 
   const navigate = useNavigate();
 
-  console.log(adultArray);
+  // console.log(adultArray);
 
   const {
     register,
@@ -64,7 +64,7 @@ const Payment = () => {
   // console.log(priceData)
   const onSubmit = async (data) => {
     // console.log("Form Submitted", data);
-
+    const parsedTotalPrice = parseFloat(totalPrice);
     const travelDetails = {
       policy_currency: selectedCurrency,
       country_of_residence: selectedCountry || "Bangladesh",
@@ -103,7 +103,7 @@ const Payment = () => {
       how_know: hear,
       comments: message,
       currency: selectedCurrency == "British Pounds" ? "GBP" : "USD",
-      total_price: totalPrice,
+      total_price: parsedTotalPrice,
     };
 
     try {
