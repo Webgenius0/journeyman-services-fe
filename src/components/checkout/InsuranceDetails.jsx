@@ -14,7 +14,8 @@ const InsuranceDetails = () => {
     endDate,
     email,
   } = useTravelDetails();
-  console.log(address1, address2, zipCode, city, selectedCountry);
+
+  console.log(date, endDate);
 
   const fullAddress = `${address1} ${address2}, ${city}, ${zipCode}, ${selectedCountry}`;
 
@@ -24,12 +25,12 @@ const InsuranceDetails = () => {
         Insurance Details
       </h3>
       <div className="mt-6 xl:max-w-[722px] space-y-3">
-      <div className="flex justify-between">
+        <div className="flex justify-between">
           <h4 className="font-semibold text-textBlack2 xl:leading-[25px]">
             Insurance Type:
           </h4>
           <p className="text-textBlack2 xl:leading-[25px]">
-           {selectedInsuranceType}
+            {selectedInsuranceType}
           </p>
         </div>
         <div className="flex justify-between">

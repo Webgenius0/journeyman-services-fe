@@ -48,12 +48,15 @@ const TravelDetails = () => {
     selectedTravelTypes,
     addTravelType,
     removeTravelType,
-    tripLength, cancellationCover, handleTripLengthChange, handleCancellationCoverChange 
+    tripLength,
+    cancellationCover,
+    handleTripLengthChange,
+    handleCancellationCoverChange,
   } = useTravelDetails();
   const axiosPublic = useAxiosPublic();
 
   // console.log(tripLength, cancellationCover)
-console.log(date, endDate)
+  console.log(date, endDate);
   const handleCheckboxChange = (type) => {
     if (selectedTravelTypes.includes(type)) {
       removeTravelType(type);
@@ -325,8 +328,8 @@ console.log(date, endDate)
                     },
                   ]}
                   label="Length of trip"
-                  onChange={(value) => handleTripLengthChange(value)} 
-                  value={tripLength}  
+                  onChange={(value) => handleTripLengthChange(value)}
+                  value={tripLength}
                 />
                 <div className="mt-3">
                   <CommonRadioButton
@@ -341,8 +344,8 @@ console.log(date, endDate)
                       },
                     ]}
                     label="Cancellation cover"
-                    onChange={(value) => handleCancellationCoverChange(value)} 
-                    value={cancellationCover} 
+                    onChange={(value) => handleCancellationCoverChange(value)}
+                    value={cancellationCover}
                   />
                 </div>
               </div>

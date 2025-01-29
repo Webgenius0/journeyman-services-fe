@@ -92,6 +92,12 @@ const PriceDetails = () => {
     totalPrice *= cancellationCoverageIncreasedPrice;
   }
 
+  if (selectedCountry === "United Kingdom") {
+    const taxUK = parseFloat(priceLogics?.data?.tax);
+    const taxAmount = (totalPrice * taxUK) / 100;
+    totalPrice += taxAmount;
+  }
+
   //  the values when the price is calculated
   setBasicPremium(basicPremium);
   setAdministrationCharge(adminCharge);
@@ -159,6 +165,17 @@ const PriceDetails = () => {
                           ? `$${priceInUSD}`
                           : ""}
                       </li>
+                      {selectedCountry === "United Kingdom" && (
+                        <li>
+                          Insurance premium tax of £
+                          {(
+                            basicPremium *
+                            (parseFloat(priceLogics?.data?.tax) / 100)
+                          ).toFixed(2)}{" "}
+                          ({parseFloat(priceLogics?.data?.tax)}%)
+                        </li>
+                      )}
+
                       <li>
                         An administration charge of{" "}
                         {selectedCurrency === "British Pounds"
