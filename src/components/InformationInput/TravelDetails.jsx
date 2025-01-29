@@ -56,7 +56,7 @@ const TravelDetails = () => {
   const axiosPublic = useAxiosPublic();
 
   // console.log(tripLength, cancellationCover)
-  console.log(date, endDate);
+  // console.log(date, endDate);
   const handleCheckboxChange = (type) => {
     if (selectedTravelTypes.includes(type)) {
       removeTravelType(type);
@@ -65,7 +65,7 @@ const TravelDetails = () => {
     }
   };
 
-  console.log(selectedTravelTypes);
+  // console.log(selectedTravelTypes);
   // console.log(selectedCountry, date, endDate);
 
   // by default currency is selected as GBP
@@ -99,7 +99,7 @@ const TravelDetails = () => {
     }
     return 0;
   };
-  console.log("duration", calculateDuration());
+  // console.log("duration", calculateDuration());
 
   const handleAgeChange = (value) => {
     setAge(value);
@@ -171,7 +171,7 @@ const TravelDetails = () => {
   // Handle end date selection
   const handleEndDateSelect = (selectedDate) => {
     if (selectedDate) {
-      const formattedEndDate = format(selectedDate, "yyyy-MM-dd"); 
+      const formattedEndDate = format(selectedDate, "yyyy-MM-dd");
       setEndDate(formattedEndDate);
     }
   };

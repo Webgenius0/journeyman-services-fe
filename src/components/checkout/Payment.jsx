@@ -5,10 +5,13 @@ import FaqPdf from "../common/FaqPdf";
 import { useTravelDetails } from "@/contexts/TravelDetailsProvider";
 import useAxiosPublic from "@/hooks/api/useAxiosPublic";
 import toast from "react-hot-toast";
+import CommonDropdownSelect from "../common/CommonDropdownSelect";
+import useFetchData from "@/hooks/api/useFetchData";
 
 const Payment = () => {
   const {
     selectedAdults,
+    setSelectedCountry,
     selectedChildren,
     selectedInsuranceType,
     selectedArea,
@@ -53,6 +56,9 @@ const Payment = () => {
       selectedCountry,
     },
   });
+
+  const { data } = useFetchData("/country/list");
+  const countries = data?.data;
 
   console.log(totalPrice);
   // console.log(priceData)
@@ -157,16 +163,22 @@ const Payment = () => {
           />
         </div>
         <div className="mt-[26px]">
-          <FlexibleInput
-            label="Country/Region"
-            type="text"
-            name="selectedCountry"
-            register={register}
-            error={errors?.selectedCountry}
-            validation={{ required: "Country is required" }}
-            width="w-[300px]"
-            value={selectedCountry}
-          />
+          <div>
+            <CommonDropdownSelect
+              label="Nationality"
+              options={countries?.map((country) => ({
+                value: country.name,
+                label: country.name,
+              }))}
+              placeholder={selectedCountry || "Select Country"}
+              defaultValue={selectedCountry}
+              value={selectedCountry}
+              onChange={(value) => {
+                setSelectedCountry(value);
+              }}
+              width="w-[300px]"
+            />
+          </div>
         </div>
         <div className="mt-[26px]">
           <FlexibleInput

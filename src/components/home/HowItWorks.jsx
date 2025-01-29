@@ -7,9 +7,9 @@ const HowItWorks = () => {
   const { data } = useFetchData("/page/home");
   const howitworksImage = data?.data?.cms?.how_it_work?.image;
   const howitworksData = data?.data?.cms?.how_it_works;
-  console.log(howitworksData);
+  // console.log(howitworksData);
 
-  console.log(howitworksData);
+  // console.log(howitworksData);
 
   return (
     <section>
