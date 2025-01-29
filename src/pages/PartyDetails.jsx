@@ -19,6 +19,8 @@ const PartyDetails = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
   const {
+    adultArray,
+    childrenArray,
     selectedAdults,
     selectedChildren,
     selectedCountry,
@@ -33,6 +35,7 @@ const PartyDetails = () => {
     hear,
     setHear,
     setSubmitForm,
+    dob,
   } = useTravelDetails();
   const { data } = useFetchData("/country/list");
   const countries = data?.data;

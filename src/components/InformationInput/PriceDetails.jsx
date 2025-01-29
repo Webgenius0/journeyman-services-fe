@@ -88,20 +88,20 @@ const PriceDetails = () => {
   }
 
   // Apply trip length multiplier and set end date
-  useEffect(() => {
-    if (date) {
-      const newEndDate = new Date(date);
-      if (tripLength === "standard") {
-        newEndDate.setDate(newEndDate.getDate() + 90);
-      } else if (tripLength === "extended") {
-        newEndDate.setDate(newEndDate.getDate() + 180);
-      }
+  // useEffect(() => {
+  //   if (date) {
+  //     const newEndDate = new Date(date);
+  //     if (tripLength === "standard") {
+  //       newEndDate.setDate(newEndDate.getDate() + 90);
+  //     } else if (tripLength === "extended") {
+  //       newEndDate.setDate(newEndDate.getDate() + 180);
+  //     }
 
-      const formattedEndDate = newEndDate.toISOString().split("T")[0];
+  //     const formattedEndDate = newEndDate.toISOString().split("T")[0];
 
-      setEndDate(formattedEndDate);
-    }
-  }, [date, tripLength, setEndDate]);
+  //     setEndDate(formattedEndDate);
+  //   }
+  // }, [date, tripLength, setEndDate]);
 
   console.log("from price page", date, endDate);
   //  cancellation cover multiplier

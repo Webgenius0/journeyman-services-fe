@@ -4,6 +4,8 @@ import FlexibleInput from "../common/FlexibleInput";
 import { useTravelDetails } from "@/contexts/TravelDetailsProvider";
 import useFetchData from "@/hooks/api/useFetchData";
 import { useCallback, useEffect, useRef, useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const DetailsField = ({ title, person, indexValue }) => {
   const {
@@ -22,36 +24,24 @@ const DetailsField = ({ title, person, indexValue }) => {
     setChildrenArray,
   } = useTravelDetails();
   const [selectedTitle, setSelectedTitle] = useState("Mr");
+  const [birthdate, setBirthDate] = useState(dob ? new Date(dob) : null);
   const {
     register,
     handleSubmit,
     formState: { errors },
     setValue,
+    trigger,
   } = useForm();
 
-  const handleDateChange = (e) => {
-    const selectedDate = e.target.value;
-    const [year, month, day] = selectedDate.split("-");
-    const formattedDate = `${day}/${month}/${year}`;
+  const handleDateChange = (date) => {
+    setBirthDate(date);
+    const formattedDate = date.toLocaleDateString("en-GB");
     setDob(formattedDate);
+    setValue("birth_day", formattedDate);
+    trigger("birth_day");
   };
+  console.log(dob);
 
-
-  const validateAdultAge = (date) => {
-    if (person === "adults") {
-      const today = new Date();
-      const birthDate = new Date(date);
-      let age = today.getFullYear() - birthDate.getFullYear();
-      const monthDifference = today.getMonth() - birthDate.getMonth();
-      if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
-        age--;
-      }
-      return age >= 16 || "Adults must be at least 16 years old.";
-    }
-    return true;
-  };
-  // console.log(dob);
-  // entire submit function
   const onSubmit = useCallback(
     (data) => {
       const formValues = {
@@ -61,10 +51,7 @@ const DetailsField = ({ title, person, indexValue }) => {
         title: selectedTitle,
       };
 
-      // console.log(formValues);
-
       if (formValues.person === "adults") {
-        // Update the adult array
         setAdultArray((prevArray) => {
           const filteredArray = prevArray.filter(
             (item) => item.id !== formValues.id
@@ -72,7 +59,6 @@ const DetailsField = ({ title, person, indexValue }) => {
           return [...filteredArray, formValues];
         });
       } else {
-        // Update the children array
         setChildrenArray((prevArray) => {
           const filteredArray = prevArray.filter(
             (item) => item.id !== formValues.id
@@ -84,15 +70,11 @@ const DetailsField = ({ title, person, indexValue }) => {
     [person, indexValue, setAdultArray, setChildrenArray, selectedTitle]
   );
 
-  console.log("from details field", adultArray);
-
   useEffect(() => {
     if (submitForm) {
       handleSubmit(onSubmit)();
     }
   }, [submitForm, handleSubmit, onSubmit]);
-
-
 
   const { data } = useFetchData("/country/list");
   const countries = data?.data;
@@ -153,18 +135,30 @@ const DetailsField = ({ title, person, indexValue }) => {
         </div>
 
         <div>
-          <FlexibleInput
-            label="Date of Birth"
-            type="date"
-            name="birth_day"
-            register={register}
-            error={errors?.birth_day}
-            validation={{
-              required: "Date of Birth is required",
-            }}
-            width="w-full"
+          <label className="block text-sm font-medium text-gray-700">
+            Date of Birth
+          </label>
+          <DatePicker
+            selected={birthdate}
             onChange={handleDateChange}
+            dateFormat="dd/MM/yyyy"
+            className="w-full p-2 border border-gray-300 rounded-md"
+            showYearDropdown
+            dropdownMode="select"
+            maxDate={person === "children" ? new Date() : null}
+            minDate={
+              person === "adults"
+                ? new Date(
+                    new Date().setFullYear(new Date().getFullYear() - 100)
+                  )
+                : null
+            }
           />
+          {errors.birth_day && (
+            <p className="text-red-500 text-sm mt-1">
+              {errors.birth_day.message}
+            </p>
+          )}
         </div>
 
         <div>
@@ -183,14 +177,6 @@ const DetailsField = ({ title, person, indexValue }) => {
             }}
           />
         </div>
-
-        {/* Submit button */}
-        {/* <button
-          type="submit"
-          className="bg-blue-500 text-white py-2 px-4 rounded-md"
-        >
-          Submit
-        </button> */}
       </div>
     </form>
   );
