@@ -16,9 +16,9 @@ const PolicyPrice = () => {
           </h4>
           <p className="text-textBlack2 leading-[25px]">
             {selectedCurrency === "British Pounds"
-              ? `£${basicPremium}`
+              ? `£${basicPremium.toFixed(2)}`
               : selectedCurrency === "USD"
-              ? `$${basicPremium}`
+              ? `$${basicPremium.toFixed(2)}`
               : ""}
           </p>
         </div>
@@ -29,9 +29,9 @@ const PolicyPrice = () => {
           </h4>
           <p className="text-textBlack2 leading-[25px]">
             {selectedCurrency === "British Pounds"
-              ? `£${administrationCharge}`
+              ? `£${administrationCharge.toFixed(2)}`
               : selectedCurrency === "USD"
-              ? `$${administrationCharge}`
+              ? `$${administrationCharge.toFixed(2)}`
               : ""}
           </p>
         </div>

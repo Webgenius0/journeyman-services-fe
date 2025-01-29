@@ -189,10 +189,15 @@ const PriceDetails = () => {
                   </div>
                 )}
                 <div className="flex justify-between mt-3 xl:mt-[21px]">
-                  <CommonButton linkUrl="/party-details" className="px-3 py-2 xl:px-7 xl:py-3">
+                  <CommonButton
+                    linkUrl="/party-details"
+                    className="px-3 py-2 xl:px-7 xl:py-3"
+                  >
                     Continue
                   </CommonButton>
-                  <CommonButton className="px-3 py-2 xl:px-7 xl:py-3">Save Quote</CommonButton>
+                  <CommonButton className="px-3 py-2 xl:px-7 xl:py-3">
+                    Save Quote
+                  </CommonButton>
                 </div>
               </div>
             </div>
