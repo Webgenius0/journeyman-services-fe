@@ -6,6 +6,8 @@ const PartyDetails = () => {
   // Combine adultArray and childrenArray into one array
   const combinedPartyArray = [...adultArray, ...childrenArray];
 
+
+  console.log(combinedPartyArray)
   // Format the party data
   const partyData = combinedPartyArray.map((person) => ({
     title: person.title || "N/A",
@@ -51,7 +53,7 @@ const PartyDetails = () => {
                   {party.nationality}
                 </td>
                 <td className="py-3 px-4 sm:py-[10px] sm:px-6 text-center border border-[#B8B6B5] text-textGray">
-                  {party.dob}
+                  {party.birth_day}
                 </td>
               </tr>
             ))}

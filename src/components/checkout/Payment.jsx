@@ -25,14 +25,9 @@ const Payment = () => {
     city,
     message,
     hear,
-    title,
-    forename,
-    surname,
-    priceData,
     age,
     adultArray,
     childrenArray,
-    dob,
     totalPrice,
     selectedTravelTypes,
   } = useTravelDetails();
@@ -77,7 +72,7 @@ const Payment = () => {
       travel_type: selectedTravelTypes,
       age,
       adults: adultArray.map((adult) => ({
-        name: `${adult.forename} ${adult.surname}`,
+        name: `${adult.title} ${adult.forename} ${adult.surname}`,
         forename: adult.forename,
         surname: adult.surname,
         birth_day: adult.dob || "15/01/2025",
@@ -110,7 +105,7 @@ const Payment = () => {
         "/booking/form/submit",
         travelDetails
       );
-      console.log("Response:", response.data.data);
+      // console.log("Response:", response.data.data);
       toast.success("Payment submitted successfully!");
       window.location.href = response.data.data;
     } catch (error) {
