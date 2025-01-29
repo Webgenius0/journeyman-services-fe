@@ -99,7 +99,7 @@ const TravelDetails = () => {
     }
     return 0;
   };
-  // console.log("duration", calculateDuration());
+  console.log("duration", calculateDuration());
 
   const handleAgeChange = (value) => {
     setAge(value);
@@ -167,6 +167,14 @@ const TravelDetails = () => {
     const formattedEndDate = format(defaultEndDate, "yyyy-MM-dd");
     setEndDate(formattedEndDate);
   }, [setEndDate]);
+
+  // Handle end date selection
+  const handleEndDateSelect = (selectedDate) => {
+    if (selectedDate) {
+      const formattedEndDate = format(selectedDate, "yyyy-MM-dd"); 
+      setEndDate(formattedEndDate);
+    }
+  };
 
   useEffect(() => {
     if (selectedCountry) {
@@ -427,8 +435,8 @@ const TravelDetails = () => {
               <PopoverContent className="w-auto p-0">
                 <Calendar
                   mode="single"
-                  selected={endDate}
-                  onSelect={setEndDate}
+                  selected={endDate ? new Date(endDate) : undefined}
+                  onSelect={handleEndDateSelect}
                   minDate={new Date()}
                   initialFocus
                 />
