@@ -104,6 +104,8 @@ const PriceDetails = () => {
     "Jersey",
   ];
 
+  // const count
+
   const isRequiredFieldSelected =
     selectedCountry && selectedArea && selectedInsuranceType;
 

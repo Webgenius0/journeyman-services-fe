@@ -36,6 +36,20 @@ const DetailsField = ({ title, person, indexValue }) => {
     setDob(formattedDate);
   };
 
+
+  const validateAdultAge = (date) => {
+    if (person === "adults") {
+      const today = new Date();
+      const birthDate = new Date(date);
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const monthDifference = today.getMonth() - birthDate.getMonth();
+      if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+      return age >= 16 || "Adults must be at least 16 years old.";
+    }
+    return true;
+  };
   // console.log(dob);
   // entire submit function
   const onSubmit = useCallback(
@@ -67,16 +81,18 @@ const DetailsField = ({ title, person, indexValue }) => {
         });
       }
     },
-    [person, indexValue, setAdultArray, setChildrenArray, selectedTitle ]
+    [person, indexValue, setAdultArray, setChildrenArray, selectedTitle]
   );
 
-   console.log("from details field", adultArray);
+  console.log("from details field", adultArray);
 
   useEffect(() => {
     if (submitForm) {
       handleSubmit(onSubmit)();
     }
   }, [submitForm, handleSubmit, onSubmit]);
+
+
 
   const { data } = useFetchData("/country/list");
   const countries = data?.data;

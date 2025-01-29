@@ -9,10 +9,14 @@ const InsuranceDetails = () => {
     city,
     telephone,
     cancellationCover,
+    selectedInsuranceType,
+    date,
+    endDate,
+    email,
   } = useTravelDetails();
   console.log(address1, address2, zipCode, city, selectedCountry);
 
-  const fullAddress = `${address1} ${address2}, ${city}, ${selectedCountry}`;
+  const fullAddress = `${address1} ${address2}, ${city}, ${zipCode}, ${selectedCountry}`;
 
   return (
     <div className="border border-[#B8B6B5] rounded-md px-4 py-4 xl:pt-6 xl:pb-9 xl:px-6 mt-6">
@@ -20,6 +24,14 @@ const InsuranceDetails = () => {
         Insurance Details
       </h3>
       <div className="mt-6 xl:max-w-[722px] space-y-3">
+      <div className="flex justify-between">
+          <h4 className="font-semibold text-textBlack2 xl:leading-[25px]">
+            Insurance Type:
+          </h4>
+          <p className="text-textBlack2 xl:leading-[25px]">
+           {selectedInsuranceType}
+          </p>
+        </div>
         <div className="flex justify-between">
           <h4 className="font-semibold text-textBlack2 xl:leading-[25px]">
             Area:
@@ -33,7 +45,13 @@ const InsuranceDetails = () => {
           <h4 className="font-semibold text-textBlack2 xl:leading-[25px]">
             Start Date:
           </h4>
-          <p className="text-textBlack2 leading-[25px]">01/01/2025</p>
+          <p className="text-textBlack2 leading-[25px]">{date}</p>
+        </div>
+        <div className="flex justify-between">
+          <h4 className="font-semibold text-textBlack2 xl:leading-[25px]">
+            End Date:
+          </h4>
+          <p className="text-textBlack2 leading-[25px]">{endDate}</p>
         </div>
 
         <div className="flex justify-between">
@@ -57,7 +75,9 @@ const InsuranceDetails = () => {
           <h4 className="font-semibold text-textBlack2 leading-[25px]">
             Contact Details:
           </h4>
-          <p className="text-textBlack2 leading-[25px}">{telephone}</p>
+          <p className="text-textBlack2 leading-[25px}">
+            Telephone:{telephone}, Email:{email}
+          </p>
         </div>
       </div>
     </div>

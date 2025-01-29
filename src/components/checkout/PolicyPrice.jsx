@@ -7,7 +7,7 @@ const PolicyPrice = () => {
   return (
     <div className="border border-[#B8B6B5] rounded-md pt-6 pb-9 px-9 mt-6">
       <h3 className="text-lg font-bold text-textBlack2 leading-[30px]">
-        Party Details
+        Policy Price
       </h3>
       <div className="mt-6 max-w-[722px] space-y-3">
         <div className="flex justify-between">
@@ -42,9 +42,9 @@ const PolicyPrice = () => {
           </h4>
           <p className="text-textBlack2 text-left leading-[25px]">
             {selectedCurrency === "British Pounds"
-              ? `£${totalPrice}`
+              ? `£${totalPrice.toFixed(2)}`
               : selectedCurrency === "USD"
-              ? `$${totalPrice}`
+              ? `$${totalPrice.toFixed(2)}`
               : ""}
           </p>
         </div>
