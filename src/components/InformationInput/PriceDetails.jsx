@@ -118,9 +118,9 @@ const PriceDetails = () => {
   const showNote = countriesWithNote.includes(selectedCountry);
 
   return (
-    <div className="xl:max-w-[400px]">
+    <div className="xl:static xl:max-w-[400px] fixed bottom-0 left-0 right-0 bg-white">
       {!isRequiredFieldSelected ? (
-        <div className="mt-[30px] border border-[#8CA2B4] py-[21px] px-[21px] rounded-[5px] max-h-[200px]">
+        <div className="mt-[30px] border border-[#8CA2B4] py-4 px-4 xl:py-[21px] xl:px-[21px] rounded-[5px] xl:max-h-[200px]">
           <h3 className="xl:text-lg font-bold text-textBlackV2 xl:leading-[30px] border-b border-[#8CA2B4] text-center mb-[7px]">
             Your Quote
           </h3>
@@ -140,7 +140,7 @@ const PriceDetails = () => {
           <Collapse isOpened={true}>
             <div className="mt-[30px] border border-[#8CA2B4] py-[21px] px-[21px] rounded-[5px] xl:min-w-[400px]">
               <div>
-                <h3 className="xl:text-lg font-bold text-textBlackV2 xl:leading-[30px] border-b border-[#8CA2B4] text-center mb-[26px]">
+                <h3 className="xl:text-lg font-bold text-textBlackV2 xl:leading-[30px] border-b border-[#8CA2B4] text-center mb-3 xl:mb-[26px]">
                   Price Details
                 </h3>
                 {loading ? (
@@ -148,7 +148,7 @@ const PriceDetails = () => {
                 ) : (
                   <div>
                     {" "}
-                    <p className="text-center xl:text-left mb-[7px] text-textBlackV2 text-xl xl:text-2xl">
+                    <p className="text-center xl:text-left mb-[7px] text-textBlackV2 xl:text-2xl">
                       <span className="font-bold">Price:</span>{" "}
                       {selectedCurrency === "British Pounds"
                         ? `£${totalPrice.toFixed(2)}`
@@ -156,7 +156,7 @@ const PriceDetails = () => {
                         ? `$${totalPrice.toFixed(2)}`
                         : ""}
                     </p>
-                    <ul className="text-center xl:text-left leading-[25px]">
+                    <ul className="text-center xl:text-left xl:leading-[25px]">
                       <li>
                         Basic premium:{" "}
                         {selectedCurrency === "British Pounds"
@@ -189,10 +189,10 @@ const PriceDetails = () => {
                   </div>
                 )}
                 <div className="flex justify-between mt-3 xl:mt-[21px]">
-                  <CommonButton linkUrl="/party-details" className="px-7 py-3">
+                  <CommonButton linkUrl="/party-details" className="px-3 py-2 xl:px-7 xl:py-3">
                     Continue
                   </CommonButton>
-                  <CommonButton className="px-7 py-3">Save Quote</CommonButton>
+                  <CommonButton className="px-3 py-2 xl:px-7 xl:py-3">Save Quote</CommonButton>
                 </div>
               </div>
             </div>
@@ -200,11 +200,11 @@ const PriceDetails = () => {
 
           <Collapse isOpened={true}>
             {showNote && (
-              <div className="mt-14 border border-[#8CA2B4] py-[21px] px-[21px] rounded-[5px] xl:min-w-[400px]">
-                <h3 className="text-lg font-bold text-textBlackV2 leading-[30px] border-b border-[#8CA2B4] text-center mb-[7px]">
+              <div className="mt-4 xl:mt-14 border border-[#8CA2B4] py-4 px-4 xl:py-[21px] xl:px-[21px] rounded-[5px] xl:min-w-[400px]">
+                <h3 className="xl:text-lg font-bold text-textBlackV2 xl:leading-[30px] border-b border-[#8CA2B4] text-center mb-1 xl:mb-[7px]">
                   Please note
                 </h3>
-                <p className="text-center xl:text-left mb-[7px] text-textBlackV2 text-sm xl:text-base xl:leading-[25px]">
+                <p className="text-center xl:text-left xl:mb-[7px] text-textBlackV2 text-[12px] xl:text-base xl:leading-[25px]">
                   Pre-existing conditions are not covered under the terms and
                   conditions of Journeyman policies. If you are seeking travel
                   insurance that would provide cover for a pre-existing

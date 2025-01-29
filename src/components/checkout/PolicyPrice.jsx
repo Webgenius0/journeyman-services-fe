@@ -42,7 +42,7 @@ const PolicyPrice = () => {
           </h4>
           <p className="text-textBlack2 text-left leading-[25px]">
             {selectedCurrency === "British Pounds"
-              ? `£${totalPrice.toFixed(2)}`
+              ? `£${totalPrice.toFixed(2)} `
               : selectedCurrency === "USD"
               ? `$${totalPrice.toFixed(2)}`
               : ""}
