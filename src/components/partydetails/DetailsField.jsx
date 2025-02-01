@@ -144,7 +144,7 @@ const DetailsField = ({ title, person, indexValue }) => {
                 selected={birthdate}
                 onChange={handleDateChange}
                 dateFormat="dd/MM/yyyy"
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full p-1.5 border border-[#8CA2B4] rounded-md"
                 showYearDropdown
                 dropdownMode="select"
                 maxDate={

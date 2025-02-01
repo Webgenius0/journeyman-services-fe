@@ -21,7 +21,7 @@ export default function CommonDropdownSelect({
       <p className="mb-3">{label}</p>
       <Select onValueChange={onChange} value={value}>
         <SelectTrigger
-          className={`w-full text-sm xl:text-base xl:py-[23px] px-6 rounded-lg border-[#BABABA] focus:ring-0 text-[#6B6B6B] ${width}`}
+          className={`w-full text-sm xl:text-base  px-6 rounded-lg border-[#BABABA] focus:ring-0 text-[#6B6B6B] ${width}`}
         >
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
