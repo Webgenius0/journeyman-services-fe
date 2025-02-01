@@ -60,7 +60,7 @@ const PriceDetails = () => {
   const priceInUSD = priceData?.data?.price_in_dollar;
 
   //  basic premium and total price based on the selected currency
-  const basicPremium =
+  let basicPremium =
     selectedCurrency === "British Pounds"
       ? priceInGBP
       : selectedCurrency === "USD"
@@ -69,14 +69,16 @@ const PriceDetails = () => {
 
   const adminCharge = basicPremium * (charge / 100);
   let totalPrice = basicPremium + adminCharge;
-
+  console.log('basicPremium', basicPremium)
   // Add winter sports or adventure sports price if selected
   if (selectedTravelTypes.includes("winter")) {
-    totalPrice *= winterSportsPrice;
+    basicPremium *= winterSportsPrice;
   }
   if (selectedTravelTypes.includes("adventure")) {
-    totalPrice *= adventureSportsPrice;
+    basicPremium *= adventureSportsPrice;
   }
+
+  totalPrice = totalPrice + basicPremium;
 
   // Apply trip length multiplier
   if (tripLength === "standard") {

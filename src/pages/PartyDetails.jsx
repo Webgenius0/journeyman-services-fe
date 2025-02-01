@@ -40,8 +40,19 @@ const PartyDetails = () => {
   const { data } = useFetchData("/country/list");
   const countries = data?.data;
 
+
+  console.log(dob)
   // Handle form submission
   const onSubmit = (data) => {
+    let hasErrors = false;
+
+    if (!dob) {
+      setError("dob", {
+        type: "manual",
+        message: "Date of Birth is required",
+      });
+      hasErrors = true;
+    }
     if (!data.terms) {
       setError("terms", {
         type: "manual",
