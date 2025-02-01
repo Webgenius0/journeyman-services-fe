@@ -135,30 +135,42 @@ const DetailsField = ({ title, person, indexValue }) => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Date of Birth
-          </label>
-          <DatePicker
-            selected={birthdate}
-            onChange={handleDateChange}
-            dateFormat="dd/MM/yyyy"
-            className="w-full p-2 border border-gray-300 rounded-md"
-            showYearDropdown
-            dropdownMode="select"
-            maxDate={person === "children" ? new Date() : null}
-            minDate={
-              person === "adults"
-                ? new Date(
-                    new Date().setFullYear(new Date().getFullYear() - 100)
-                  )
-                : null
-            }
-          />
-          {errors.birth_day && (
-            <p className="text-red-500 text-sm mt-1">
-              {errors.birth_day.message}
-            </p>
-          )}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-4">
+              Date of Birth
+            </label>
+            <div>
+              <DatePicker
+                selected={birthdate}
+                onChange={handleDateChange}
+                dateFormat="dd/MM/yyyy"
+                className="w-full p-2 border border-gray-300 rounded-md"
+                showYearDropdown
+                dropdownMode="select"
+                maxDate={
+                  person === "adults"
+                    ? new Date(
+                        new Date().setFullYear(new Date().getFullYear() - 16)
+                      )
+                    : new Date()
+                }
+                minDate={
+                  person === "childrens"
+                    ? new Date(
+                        new Date().setFullYear(new Date().getFullYear() - 15)
+                      )
+                    : new Date(
+                        new Date().setFullYear(new Date().getFullYear() - 100)
+                      )
+                }
+              />
+              {errors.birth_day && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.birth_day.message}
+                </p>
+              )}
+            </div>
+          </div>
         </div>
 
         <div>
