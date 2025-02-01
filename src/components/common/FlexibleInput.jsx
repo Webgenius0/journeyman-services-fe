@@ -12,7 +12,7 @@ const FlexibleInput = ({
   required,
   underText,
   textarea,
-  onChange
+  onChange,
 }) => {
   return (
     <div className={`${containerClass}`}>

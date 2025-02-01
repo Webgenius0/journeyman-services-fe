@@ -11,7 +11,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useTravelDetails } from "@/contexts/TravelDetailsProvider";
 import useFetchData from "@/hooks/api/useFetchData";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 const PartyDetails = () => {
@@ -42,6 +42,14 @@ const PartyDetails = () => {
 
   // Handle form submission
   const onSubmit = (data) => {
+    if (!data.terms) {
+      setError("terms", {
+        type: "manual",
+        message: "You must accept the terms and conditions to proceed",
+      });
+      return;
+    }
+
     // Store data in TravelDetailsProvider context
     setSelectedCountry(data.country || selectedCountry);
     setAddress1(data.address1);
@@ -80,9 +88,11 @@ const PartyDetails = () => {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
+    control,
   } = useForm();
 
-  // submitting all the form togeter
+  // submitting all the form together
 
   console.log("party details country", selectedCountry);
 
@@ -296,13 +306,21 @@ const PartyDetails = () => {
             </h3>
           </div>
 
-          {/* Checkbox */}
           <div className="flex items-center space-x-2">
-            <Checkbox
-              id="terms"
-              {...register("terms", {
+            <Controller
+              name="terms"
+              control={control}
+              defaultValue={false}
+              rules={{
                 required: "You must accept the terms and conditions to proceed",
-              })}
+              }}
+              render={({ field }) => (
+                <Checkbox
+                  id="terms"
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              )}
             />
             <label
               htmlFor="terms"
@@ -315,10 +333,11 @@ const PartyDetails = () => {
           </div>
 
           {/* Display error message */}
-          {errors?.terms && (
+          {errors.terms && (
             <p className="text-red-500 text-sm">{errors.terms.message}</p>
           )}
 
+          {/* Important Information */}
           <div className="flex gap-3 mt-7">
             <p className="text-textBlackV2 leading-[25px]">
               Important Information

@@ -5,19 +5,17 @@ import InformationInput from "@/pages/InformationInput";
 import AboutUs from "@/pages/AboutUs";
 import ContactUs from "@/pages/ContactPage";
 import Profile from "@/pages/Profile";
-import TermsAndCondition from "@/pages/TermsAndCondition";
-import PrivacyStatement from "@/pages/PrivacyStatement";
-import Signin from "@/pages/Signin";
 import PartyDetails from "@/pages/PartyDetails";
 import CheckOut from "@/pages/CheckOut";
 import ErrorPage from "@/pages/ErrorPage";
 import Success from "@/pages/Success";
+import DynamicPage from "@/pages/DynamicPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-    errorElement:<ErrorPage/>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -36,14 +34,6 @@ const router = createBrowserRouter([
         element: <Profile />,
       },
       {
-        path: "terms",
-        element: <TermsAndCondition />,
-      },
-      {
-        path: "privacy",
-        element: <PrivacyStatement />,
-      },
-      {
         path: "/travel-insurance",
         element: <InformationInput />,
       },
@@ -58,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: "/success",
         element: <Success />,
+      },
+      {
+        path: "page/:id",
+        element: <DynamicPage />,
       },
     ],
   },
