@@ -14,7 +14,7 @@ export default function CommonDropdownSelect({
   placeholder,
   label,
   width,
-  underText, 
+  underText,
 }) {
   return (
     <div>
@@ -25,7 +25,7 @@ export default function CommonDropdownSelect({
         >
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className="max-h-80 overflow-y-auto">
           <SelectGroup>
             {options?.map((option) => (
               <SelectItem key={option.value} value={option.value}>

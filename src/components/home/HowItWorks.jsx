@@ -18,7 +18,7 @@ const HowItWorks = () => {
           {/* img */}
           <div>
             <CommonTitle>How it works?</CommonTitle>
-            <div className="w-[550px] lg:h-[400px] xl:h-[600px] flex-1 overflow-hidden mt-4 xl:mt-0">
+            <div className=" lg:h-[400px] xl:h-[600px] flex-1 overflow-hidden mt-4 xl:mt-0">
               <img
                 src={howitworksImage}
                 alt="person-example"
