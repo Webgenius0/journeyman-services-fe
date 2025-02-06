@@ -4,6 +4,7 @@ import CommonButton from "../common/CommonButton";
 import { Collapse } from "react-collapse";
 import useLogicPrices from "@/hooks/useLogicPrices";
 import LoadingComponent from "../loaders/LoadingComponent";
+import QuoteModal from "../common/QuoteModal";
 
 const PriceDetails = () => {
   const {
@@ -27,6 +28,13 @@ const PriceDetails = () => {
 
   // Local state for loading
   const [loading, setLoading] = useState(true);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleSaveQuote = () => {
+    console.log("Opening Modal");
+    setIsModalOpen(true);
+  };
 
   useEffect(() => {
     if (priceLogics && priceData) {
@@ -69,7 +77,7 @@ const PriceDetails = () => {
 
   const adminCharge = basicPremium * (charge / 100);
   let totalPrice = basicPremium + adminCharge;
-  console.log('basicPremium', basicPremium)
+  console.log("basicPremium", basicPremium);
   // Add winter sports or adventure sports price if selected
   if (selectedTravelTypes.includes("winter")) {
     basicPremium *= winterSportsPrice;
@@ -216,9 +224,13 @@ const PriceDetails = () => {
                   >
                     Continue
                   </CommonButton>
-                  <CommonButton className="px-3 py-2 xl:px-7 xl:py-3">
+                  <CommonButton type='submit'
+                    onClick={handleSaveQuote}
+                    className="px-3 py-2 xl:px-7 xl:py-3"
+                  >
                     Save Quote
                   </CommonButton>
+
                 </div>
               </div>
             </div>
@@ -243,6 +255,13 @@ const PriceDetails = () => {
               </div>
             )}
           </Collapse>
+
+          {isModalOpen && (
+            <QuoteModal
+              isOpen={isModalOpen}
+              onClose={() => setIsModalOpen(false)}
+            />
+          )}
         </div>
       )}
     </div>

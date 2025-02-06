@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const CommonButton = ({ type, children, linkUrl = "/", icon, className = "", onClick }) => {
+const CommonButton = ({ type, children, linkUrl, icon, className = "", onClick }) => {
   if (type === 'submit') {
     return (
       <button

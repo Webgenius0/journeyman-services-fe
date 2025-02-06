@@ -1,0 +1,65 @@
+/* Reset some styles for better email compatibility */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.quote-container {
+  max-width: 595px;
+  padding: 36px 21px 44px 50px;
+  background-color: #ffffff;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.logo-container {
+  display: flex;
+  justify-content: center;
+}
+.quote-heading {
+  margin-top: 24px;
+}
+.quote-title {
+    font-weight: 700;
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.quote-message {
+  font-size: 16px;
+  color: #666;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.quote-summary {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.quote-summary h4 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.quote-summary p {
+  font-size: 14px;
+  color: #555;
+}
+
+.quote-footer {
+  font-size: 14px;
+}
+
+.quote-footer p {
+  color: #008484;
+  text-decoration: none;
+}
+
+.quote-footer a:hover {
+  text-decoration: underline;
+}

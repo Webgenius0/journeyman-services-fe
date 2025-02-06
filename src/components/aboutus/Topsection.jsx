@@ -11,7 +11,7 @@ const Topsection = () => {
     <div className="flex flex-col xlg:flex-row gap-8">
       {/* img */}
       <div className="w-full lg:w-[652px] mx-auto">
-        <img src={articledata.image} alt="" className="rounded-[14px]" />
+        <img src={articledata?.image} alt="" className="rounded-[14px]" />
       </div>
       {/* content */}
       <div className="w-full xl:w-[622px] space-y-2 xl:space-y-[15px]">

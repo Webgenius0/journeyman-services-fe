@@ -2,6 +2,7 @@ import CommonTitle from "@/components/common/CommonTitle";
 import CommonWrapper from "@/components/common/CommonWrapper";
 import ContactForm from "@/components/contactus/ContactForm";
 import ContactUs from "@/components/contactus/ContactUs";
+import Quote from "@/components/InformationInput/Quote";
 import LoadingComponent from "@/components/loaders/LoadingComponent";
 import useFetchData from "@/hooks/api/useFetchData";
 
@@ -18,6 +19,8 @@ const ContactPage = () => {
         <ContactUs />
         <ContactForm />
       </div>
+
+      <Quote/>
     </CommonWrapper>
   );
 };
