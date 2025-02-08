@@ -22,7 +22,7 @@ const PartyDetails = () => {
   const [searchParams] = useSearchParams();
   const brokerCode = searchParams.get("code");
   const [broker, setBroker] = useState(null);
-  const axiosPublic = useAxiosPublic()
+  const axiosPublic = useAxiosPublic();
   const {
     adultArray,
     childrenArray,
@@ -44,11 +44,11 @@ const PartyDetails = () => {
   } = useTravelDetails();
   const { data } = useFetchData("/country/list");
   const countries = data?.data;
- 
+
   useEffect(() => {
     if (brokerCode) {
-      setLoading(true);
-      axiosPublic.get(`/broker/${brokerCode}`)
+      axiosPublic
+        .get(`/broker/${brokerCode}`)
         .then((response) => {
           if (response.data.status) {
             setBroker(response.data.data);
@@ -56,13 +56,12 @@ const PartyDetails = () => {
             setError("Failed to fetch broker details");
           }
         })
-        .catch(() => setError("Error fetching broker details"))
-        .finally(() => setLoading(false));
+        .catch(() => setError("Error fetching broker details"));
     }
   }, [brokerCode]);
 
   // console.log(dob)
-  console.log(broker)
+  console.log(broker);
   // Handle form submission
   const onSubmit = (data) => {
     let hasErrors = false;
@@ -299,6 +298,17 @@ const PartyDetails = () => {
               textarea
             />
           </div>
+          {broker && (
+            <div className="mt-3 xl:mt-[26px]">
+              <FlexibleInput
+                label="Broker"
+                type="text"
+                name="message"
+                value={broker.company}
+                width="xl:w-[300px]"
+              />
+            </div>
+          )}
           {/* Policy Information */}
           <div className="py-4 xl:py-[26px]">
             <h3 className="text-textBlackV2">
