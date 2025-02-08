@@ -8,6 +8,7 @@ import CoreValues from "@/components/aboutus/CoreValues";
 import Topsection from "@/components/aboutus/Topsection";
 import useFetchData from "@/hooks/api/useFetchData";
 import LoadingComponent from "@/components/loaders/LoadingComponent";
+import BrokerDetails from "@/components/BrokerDetails/BrokerDetails";
 
 const AboutUs = () => {
   const { isLoading } = useFetchData("/page/about");
@@ -29,6 +30,8 @@ const AboutUs = () => {
       <TestimonialArea />
       <FaqArea />
       <TrustSection />
+
+      <BrokerDetails/>
     </div>
   );
 };

@@ -224,13 +224,13 @@ const PriceDetails = () => {
                   >
                     Continue
                   </CommonButton>
-                  <CommonButton type='submit'
+                  <CommonButton
+                    type="submit"
                     onClick={handleSaveQuote}
                     className="px-3 py-2 xl:px-7 xl:py-3"
                   >
                     Save Quote
                   </CommonButton>
-
                 </div>
               </div>
             </div>

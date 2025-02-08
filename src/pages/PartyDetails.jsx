@@ -9,15 +9,20 @@ import FlexibleInput from "@/components/common/FlexibleInput";
 import DetailsField from "@/components/partydetails/DetailsField";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useTravelDetails } from "@/contexts/TravelDetailsProvider";
+import useAxiosPublic from "@/hooks/api/useAxiosPublic";
 import useFetchData from "@/hooks/api/useFetchData";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const PartyDetails = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
+  const [searchParams] = useSearchParams();
+  const brokerCode = searchParams.get("code");
+  const [broker, setBroker] = useState(null);
+  const axiosPublic = useAxiosPublic()
   const {
     adultArray,
     childrenArray,
@@ -39,9 +44,25 @@ const PartyDetails = () => {
   } = useTravelDetails();
   const { data } = useFetchData("/country/list");
   const countries = data?.data;
+ 
+  useEffect(() => {
+    if (brokerCode) {
+      setLoading(true);
+      axiosPublic.get(`/broker/${brokerCode}`)
+        .then((response) => {
+          if (response.data.status) {
+            setBroker(response.data.data);
+          } else {
+            setError("Failed to fetch broker details");
+          }
+        })
+        .catch(() => setError("Error fetching broker details"))
+        .finally(() => setLoading(false));
+    }
+  }, [brokerCode]);
 
-
-  console.log(dob)
+  // console.log(dob)
+  console.log(broker)
   // Handle form submission
   const onSubmit = (data) => {
     let hasErrors = false;
