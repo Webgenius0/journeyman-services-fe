@@ -32,7 +32,6 @@ const PriceDetails = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSaveQuote = () => {
-    console.log("Opening Modal");
     setIsModalOpen(true);
   };
 
@@ -77,7 +76,7 @@ const PriceDetails = () => {
 
   const adminCharge = basicPremium * (charge / 100);
   let totalPrice = basicPremium + adminCharge;
-  console.log("basicPremium", basicPremium);
+  // console.log("basicPremium", basicPremium);
   // Add winter sports or adventure sports price if selected
   if (selectedTravelTypes.includes("winter")) {
     basicPremium *= winterSportsPrice;
@@ -113,7 +112,7 @@ const PriceDetails = () => {
   //   }
   // }, [date, tripLength, setEndDate]);
 
-  console.log("from price page", date, endDate);
+  // console.log("from price page", date, endDate);
   //  cancellation cover multiplier
   if (cancellationCover === "standard") {
     totalPrice *= cancellationCoverageStandardPrice;

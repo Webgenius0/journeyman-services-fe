@@ -19,10 +19,7 @@ const PartyDetails = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
-  const [searchParams] = useSearchParams();
-  const brokerCode = searchParams.get("code");
-  const [broker, setBroker] = useState(null);
-  const axiosPublic = useAxiosPublic();
+
   const {
     adultArray,
     childrenArray,
@@ -41,27 +38,15 @@ const PartyDetails = () => {
     setHear,
     setSubmitForm,
     dob,
+    broker
   } = useTravelDetails();
   const { data } = useFetchData("/country/list");
   const countries = data?.data;
 
-  useEffect(() => {
-    if (brokerCode) {
-      axiosPublic
-        .get(`/broker/${brokerCode}`)
-        .then((response) => {
-          if (response.data.status) {
-            setBroker(response.data.data);
-          } else {
-            setError("Failed to fetch broker details");
-          }
-        })
-        .catch(() => setError("Error fetching broker details"));
-    }
-  }, [brokerCode]);
+ console.log('broker details', broker)
 
   // console.log(dob)
-  console.log(broker);
+
   // Handle form submission
   const onSubmit = (data) => {
     let hasErrors = false;
@@ -125,7 +110,7 @@ const PartyDetails = () => {
 
   // submitting all the form together
 
-  console.log("party details country", selectedCountry);
+  // console.log("party details country", selectedCountry);
 
   return (
     <CommonWrapper>
