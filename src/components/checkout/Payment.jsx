@@ -36,13 +36,31 @@ const Payment = () => {
     broker,
   } = useTravelDetails();
 
-  // console.log("selectedCountry from checkout", selectedCountry);
-
   const axiosPublic = useAxiosPublic();
 
-  // const navigate = useNavigate();
-
-  // console.log(adultArray);
+  // console.log("selectedAdults:", selectedAdults);
+  // console.log("selectedCountry:", selectedCountry);
+  // console.log("selectedChildren:", selectedChildren);
+  // console.log("selectedInsuranceType:", selectedInsuranceType);
+  // console.log("selectedArea:", selectedArea);
+  // console.log("selectedType:", selectedType);
+  // console.log("date:", date);
+  // console.log("endDate:", endDate);
+  // console.log("selectedCurrency:", selectedCurrency);
+  // console.log("address1:", address1);
+  // console.log("address2:", address2);
+  // console.log("zipCode:", zipCode);
+  // console.log("telephone:", telephone);
+  // console.log("email:", email);
+  // console.log("city:", city);
+  // console.log("message:", message);
+  // console.log("hear:", hear);
+  // console.log("age:", age);
+  // console.log("adultArray:", adultArray);
+  // console.log("childrenArray:", childrenArray);
+  // console.log("totalPrice:", totalPrice);
+  // console.log("selectedTravelTypes:", selectedTravelTypes);
+  // console.log("broker:", broker);
 
   const {
     register,

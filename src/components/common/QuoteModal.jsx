@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import CrossIcon from "@/assets/Icons/CrossIcon";
 import CommonButton from "./CommonButton";
@@ -12,7 +12,7 @@ const QuoteModal = ({ isOpen, onClose }) => {
     handleSubmit,
     formState: { errors },
     reset,
-    setValue, // to set default value for the checkbox
+    setValue,
   } = useForm();
 
   const {
@@ -29,8 +29,8 @@ const QuoteModal = ({ isOpen, onClose }) => {
   const axiosPublic = useAxiosPublic();
 
   // Set default value for contact checkbox to true
-  React.useEffect(() => {
-    setValue("contact", true); // Checkbox is checked by default
+  useEffect(() => {
+    setValue("contact", true);
   }, [setValue]);
 
   const onSubmit = (data) => {
@@ -49,8 +49,7 @@ const QuoteModal = ({ isOpen, onClose }) => {
       start_date: date,
       end_date: endDate,
       total_price: totalPrice,
-      if_contact: data.contact ? true : false, 
-    
+      if_contact: data.contact ? true : false,
     };
     console.log(requestData);
 

@@ -39,9 +39,9 @@ const CoreValues = () => {
           {mappedCoreValues?.map((value, index) => (
             <CoreValueList
               key={index}
-              icon={value.icon}
-              title={value.title}
-              description={value.description}
+              icon={value?.icon}
+              title={value?.title}
+              description={value?.description}
             />
           ))}
         </div>

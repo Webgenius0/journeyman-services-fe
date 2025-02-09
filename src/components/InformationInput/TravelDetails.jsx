@@ -91,7 +91,7 @@ const TravelDetails = () => {
     }
   };
   console.log("quoteData", quoteData);
-  // console.log(tripLength, cancellationCover)
+  console.log(tripLength, cancellationCover)
   // console.log(date, endDate);
   const handleCheckboxChange = (type) => {
     if (selectedTravelTypes.includes(type)) {
