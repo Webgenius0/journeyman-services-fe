@@ -12,6 +12,7 @@ const QuoteModal = ({ isOpen, onClose }) => {
     handleSubmit,
     formState: { errors },
     reset,
+    setValue, // to set default value for the checkbox
   } = useForm();
 
   const {
@@ -25,11 +26,15 @@ const QuoteModal = ({ isOpen, onClose }) => {
     cancellationCover,
     tripLength,
   } = useTravelDetails();
-  console.log(cancellationCover);
   const axiosPublic = useAxiosPublic();
 
+  // Set default value for contact checkbox to true
+  React.useEffect(() => {
+    setValue("contact", true); // Checkbox is checked by default
+  }, [setValue]);
+
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
 
     const requestData = {
       email: data.email,
@@ -44,7 +49,10 @@ const QuoteModal = ({ isOpen, onClose }) => {
       start_date: date,
       end_date: endDate,
       total_price: totalPrice,
+      if_contact: data.contact ? true : false, 
+    
     };
+    console.log(requestData);
 
     // POST the data to the server
     axiosPublic

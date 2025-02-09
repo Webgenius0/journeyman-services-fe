@@ -22,8 +22,12 @@ import useFetchData from "@/hooks/api/useFetchData";
 import { useTravelDetails } from "@/contexts/TravelDetailsProvider";
 import useAxiosPublic from "@/hooks/api/useAxiosPublic";
 import useLogicPrices from "@/hooks/useLogicPrices";
+import { useSearchParams } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const TravelDetails = () => {
+  const [searchParams] = useSearchParams();
+  const [quoteData, setQuoteData] = useState(null);
   const {
     selectedAdults,
     setSelectedAdults,
@@ -55,6 +59,38 @@ const TravelDetails = () => {
   } = useTravelDetails();
   const axiosPublic = useAxiosPublic();
 
+  // for retriving the quote data
+  useEffect(() => {
+    const quoteId = searchParams.get("id");
+
+    if (quoteId) {
+      fetchQuote(quoteId);
+    } else {
+      setLoading(false);
+    }
+  }, []);
+
+  const fetchQuote = async (quoteId) => {
+    try {
+      const response = await axiosPublic.get(`/booking/form/show/${quoteId}`);
+      if (response.data.status) {
+        setQuoteData(response.data.data);
+        setSelectedCountry(response.data.data.country_of_residence);
+        setSelectedInsuranceType(response.data.data.insurance_type);
+        setSelectedArea(response.data.data.area_of_travel);
+        setSelectedAdults(response.data.data.number_of_adults);
+        setSelectedChildren(response.data.data.number_of_children);
+        setAge(response.data.data.age);
+        setSelectedCurrency(response.data.data.policy_currency);
+        toast.success("Quote retrieved successfully!");
+      } else {
+        toast.error("Quote not found!");
+      }
+    } catch (error) {
+      toast.error("Error retrieving quote. Please try again.");
+    }
+  };
+  console.log("quoteData", quoteData);
   // console.log(tripLength, cancellationCover)
   // console.log(date, endDate);
   const handleCheckboxChange = (type) => {

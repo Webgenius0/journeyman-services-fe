@@ -68,7 +68,7 @@ const Payment = () => {
     const parsedTotalPrice = parseInt(totalPrice);
     const travelDetails = {
       policy_currency: selectedCurrency,
-      country_of_residence: selectedCountry || "Bangladesh",
+      country_of_residence: selectedCountry,
       insurance_type: selectedInsuranceType,
       policy_type: selectedType,
       coverage_type: "standard",
@@ -105,7 +105,7 @@ const Payment = () => {
       comments: message,
       currency: selectedCurrency == "British Pounds" ? "GBP" : "USD",
       total_price: parsedTotalPrice,
-      broker_id: broker.id,
+      ...(broker && { broker_id: broker.id }),
     };
 
     try {
