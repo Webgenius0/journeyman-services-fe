@@ -39,12 +39,6 @@ const Layout = () => {
         <div className="sticky top-0 z-50">
           <Navbar />
         </div>
-
-        {loading && (
-          <p className="text-center text-blue-500">Loading broker details...</p>
-        )}
-        {error && <p className="text-center text-red-500">{error}</p>}
-
         <Outlet />
         <Footer />
         <ScrollRestoration />

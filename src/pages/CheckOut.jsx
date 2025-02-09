@@ -19,7 +19,8 @@ const CheckOut = () => {
     city,
     message,
     hear,
-    childrenArray
+    childrenArray,
+    
   } = useTravelDetails();
 
   // console.log({
@@ -36,7 +37,7 @@ const CheckOut = () => {
   //   hear,
   // });
 
-  console.log('party details country',selectedCountry)
+  console.log("party details country", selectedCountry);
   return (
     <CommonWrapper>
       <CommonPageTitle>Online travel insurance</CommonPageTitle>

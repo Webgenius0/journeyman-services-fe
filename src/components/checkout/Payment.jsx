@@ -33,6 +33,7 @@ const Payment = () => {
     childrenArray,
     totalPrice,
     selectedTravelTypes,
+    broker,
   } = useTravelDetails();
 
   // console.log("selectedCountry from checkout", selectedCountry);
@@ -104,6 +105,7 @@ const Payment = () => {
       comments: message,
       currency: selectedCurrency == "British Pounds" ? "GBP" : "USD",
       total_price: parsedTotalPrice,
+      broker_id: broker.id,
     };
 
     try {

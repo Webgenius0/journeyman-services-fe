@@ -38,12 +38,13 @@ const PartyDetails = () => {
     setHear,
     setSubmitForm,
     dob,
-    broker
+    setBroker,
+    broker,
   } = useTravelDetails();
   const { data } = useFetchData("/country/list");
   const countries = data?.data;
 
- console.log('broker details', broker)
+  console.log("broker details", broker);
 
   // console.log(dob)
 
@@ -285,15 +286,21 @@ const PartyDetails = () => {
           </div>
           {broker && (
             <div className="mt-3 xl:mt-[26px]">
-              <FlexibleInput
-                label="Broker"
-                type="text"
-                name="message"
-                value={broker.company}
-                width="xl:w-[300px]"
-              />
+              <div className="mb-3 flex flex-col">
+                <label className="text-sm mb-4 text-textBlack leading-[25px] xlg:text-base">
+                  Broker
+                </label>
+                <input
+                  value={broker.company_name}
+                  onChange={(e) =>
+                    setBroker({ ...broker, company_name: e.target.value })
+                  }
+                  className="xl:w-[300px] rounded-[5px] border border-[#8CA2B4] px-4 py-2 text-sm text-textGrayV2 focus:outline-none xlg:px-[6px] xlg:py-[6px] xlg:text-base"
+                />
+              </div>
             </div>
           )}
+
           {/* Policy Information */}
           <div className="py-4 xl:py-[26px]">
             <h3 className="text-textBlackV2">
