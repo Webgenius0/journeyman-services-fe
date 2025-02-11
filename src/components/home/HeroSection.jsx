@@ -59,7 +59,7 @@ const HeroSection = () => {
         </div>
 
         {/* Banner Images */}
-        <div className="flex justify-center items-center gap-6">
+        <div className="flex flex-col lg:flex-row justify-center items-center gap-6">
           {/* Left side: two images (top and bottom) */}
           <div className="flex flex-col gap-6">
             <div className="">

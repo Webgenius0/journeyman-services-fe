@@ -26,11 +26,11 @@ const Navbar = () => {
     <>
       {/* Navbar */}
       <div
-        className={`w-full z-50 ${
+        className={`container w-full z-50 ${
           scrolled ? "bg-white shadow-md" : "bg-transparent"
         } transition-all`}
       >
-        <div className="flex justify-between items-center px-6 lg:px-16 py-4">
+        <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <Link to="/">
             <img src={logo} alt="logo" className="h-10 md:h-12" />
