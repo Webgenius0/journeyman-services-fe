@@ -44,8 +44,8 @@ export const TravelDetailsProvider = ({ children }) => {
 
   const [selectedTravelTypes, setSelectedTravelTypes] = useState([]);
 
-  const [tripLength, setTripLength] = useState("Standard");
-  const [cancellationCover, setCancellationCover] = useState("Standard");
+  const [tripLength, setTripLength] = useState("");
+  const [cancellationCover, setCancellationCover] = useState("");
 
   // Function to update the trip length
   const handleTripLengthChange = (length) => {

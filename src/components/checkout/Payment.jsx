@@ -7,6 +7,8 @@ import useAxiosPublic from "@/hooks/api/useAxiosPublic";
 import toast from "react-hot-toast";
 import CommonDropdownSelect from "../common/CommonDropdownSelect";
 import useFetchData from "@/hooks/api/useFetchData";
+import { useState } from "react";
+import Loader from "../loaders/Loader";
 
 const Payment = () => {
   const {
@@ -38,32 +40,11 @@ const Payment = () => {
     tripLength,
   } = useTravelDetails();
 
-  const axiosPublic = useAxiosPublic();
+  console.log(broker)
 
-  console.log("selectedAdults:", selectedAdults);
-  console.log("selectedCountry:", selectedCountry);
-  console.log("selectedChildren:", selectedChildren);
-  console.log("selectedInsuranceType:", selectedInsuranceType);
-  console.log("selectedArea:", selectedArea);
-  console.log("policy_type:", tripLength);
-  console.log("coverage_type", cancellationCover);
-  console.log("date:", date);
-  console.log("endDate:", endDate);
-  console.log("selectedCurrency:", selectedCurrency);
-  console.log("address1:", address1);
-  console.log("address2:", address2);
-  console.log("zipCode:", zipCode);
-  console.log("telephone:", telephone);
-  console.log("email:", email);
-  console.log("city:", city);
-  console.log("message:", message);
-  console.log("hear:", hear);
-  console.log("age:", age);
-  console.log("adultArray:", adultArray);
-  console.log("childrenArray:", childrenArray);
-  console.log("totalPrice:", totalPrice);
-  console.log("selectedTravelTypes:", selectedTravelTypes);
-  console.log("broker:", broker);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const axiosPublic = useAxiosPublic();
 
   const {
     register,
@@ -85,6 +66,7 @@ const Payment = () => {
   console.log(totalPrice);
   // console.log(priceData)
   const onSubmit = async (data) => {
+    setIsLoading(true);
     // console.log("Form Submitted", data);
     const parsedTotalPrice = parseInt(totalPrice);
     const travelDetails = {
@@ -141,6 +123,7 @@ const Payment = () => {
       console.error("Error submitting payment:", error);
       toast.error("Failed to submit payment. Please try again.");
     }
+    setIsLoading(false);
     console.log(travelDetails);
   };
 
@@ -215,7 +198,7 @@ const Payment = () => {
           />
         </div>
         <CommonButton type="submit" linkUrl="" className="py-3 px-7 mt-[53px]">
-          Finish and pay
+          {isLoading ? <Loader /> : "Finish and pay"}
         </CommonButton>
       </form>
       <FaqPdf />

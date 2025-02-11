@@ -44,7 +44,7 @@ const PartyDetails = () => {
   const { data } = useFetchData("/country/list");
   const countries = data?.data;
 
-  // console.log("broker details", broker);
+  console.log("broker details", broker);
 
   // console.log(dob)
 
@@ -261,11 +261,11 @@ const PartyDetails = () => {
           <div className="mt-3 xl:mt-[26px]">
             <CommonDropdownSelect
               options={[
-                { value: "0", label: "Search Engine" },
-                { value: "1", label: "Agent-Broker-Intermediary" },
-                { value: "2", label: "Employer-Colleague-Friend" },
-                { value: "3", label: "Advertisement-Leaflet" },
-                { value: "4", label: "Other..." },
+                { value: "Search Engine", label: "Search Engine" },
+                { value: "Agent-Broker-Intermediary", label: "Agent-Broker-Intermediary" },
+                { value: "Employer-Colleague-Friend", label: "Employer-Colleague-Friend" },
+                { value: "Advertisement-Leaflet", label: "Advertisement-Leaflet" },
+                { value: "others", label: "Other..." },
               ]}
               label="How did you hear about Journeyman ?"
               placeholder={"Select"}

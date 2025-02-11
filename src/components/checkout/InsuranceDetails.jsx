@@ -15,7 +15,7 @@ const InsuranceDetails = () => {
     email,
   } = useTravelDetails();
 
-  console.log(date, endDate);
+  console.log(cancellationCover)
 
   const fullAddress = `${address1} ${address2}, ${city}, ${zipCode}, ${selectedCountry}`;
 
@@ -30,9 +30,12 @@ const InsuranceDetails = () => {
             Insurance Type:
           </h4>
           <p className="text-textBlack2 xl:leading-[25px]">
-            {selectedInsuranceType}
+            {selectedInsuranceType === "multi-trip"
+              ? "Annual Multi Trip"
+              : "Single Trip"}
           </p>
         </div>
+
         <div className="flex justify-between">
           <h4 className="font-semibold text-textBlack2 xl:leading-[25px]">
             Area:
@@ -48,12 +51,14 @@ const InsuranceDetails = () => {
           </h4>
           <p className="text-textBlack2 leading-[25px]">{date}</p>
         </div>
-        <div className="flex justify-between">
-          <h4 className="font-semibold text-textBlack2 xl:leading-[25px]">
-            End Date:
-          </h4>
-          <p className="text-textBlack2 leading-[25px]">{endDate}</p>
-        </div>
+        {selectedInsuranceType == "single-trip" && (
+          <div className="flex justify-between">
+            <h4 className="font-semibold text-textBlack2 xl:leading-[25px]">
+              End Date:
+            </h4>
+            <p className="text-textBlack2 leading-[25px]">{endDate}</p>
+          </div>
+        )}
 
         <div className="flex justify-between">
           <h4 className="font-semibold text-textBlack2 xl:leading-[25px]">
