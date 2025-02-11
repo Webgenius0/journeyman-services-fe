@@ -90,8 +90,8 @@ const TravelDetails = () => {
       toast.error("Error retrieving quote. Please try again.");
     }
   };
-  console.log("quoteData", quoteData);
-  console.log(tripLength, cancellationCover)
+  // console.log("quoteData", quoteData);
+  // console.log(tripLength, cancellationCover)
   // console.log(date, endDate);
   const handleCheckboxChange = (type) => {
     if (selectedTravelTypes.includes(type)) {
@@ -154,7 +154,7 @@ const TravelDetails = () => {
       setLoading(true);
       const duration = calculateDuration();
       // console.log(ageGroup);
-      console.log(selectedArea);
+      // console.log(selectedArea);
       const response = await axiosPublic.post("/price/list", {
         is_annual: selectedInsuranceType === "annual" ? 1 : 0,
         destination: selectedArea,

@@ -44,7 +44,7 @@ const PartyDetails = () => {
   const { data } = useFetchData("/country/list");
   const countries = data?.data;
 
-  console.log("broker details", broker);
+  // console.log("broker details", broker);
 
   // console.log(dob)
 

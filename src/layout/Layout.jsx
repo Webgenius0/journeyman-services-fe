@@ -39,7 +39,9 @@ const Layout = () => {
         <div className="sticky top-0 z-50">
           <Navbar />
         </div>
-        <Outlet />
+      <div>
+      <Outlet />
+      </div>
         <Footer />
         <ScrollRestoration />
         <Toaster />
