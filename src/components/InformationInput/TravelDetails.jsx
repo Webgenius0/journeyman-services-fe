@@ -349,7 +349,7 @@ const TravelDetails = () => {
           >
             <CommonRadioButton
               options={[
-                { value: "annual", label: "Annual multi-trip" },
+                { value: "multi-trip", label: "Annual multi-trip" },
                 { value: "single-trip", label: "Single trip" },
               ]}
               onChange={handleInsuranceTypeChange}
@@ -357,7 +357,7 @@ const TravelDetails = () => {
             />
 
             {/* Nested Fields only for "Annual multi-trip" */}
-            <Collapse isOpened={selectedInsuranceType === "annual"}>
+            <Collapse isOpened={selectedInsuranceType === "multi-trip"}>
               <div className="ml-4 mt-3 border p-4 rounded-md ">
                 <CommonRadioButton
                   options={[

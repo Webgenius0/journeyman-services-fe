@@ -57,7 +57,7 @@ const QuoteModal = ({ isOpen, onClose }) => {
     axiosPublic
       .post("/booking/form/quote", requestData)
       .then((response) => {
-        console.log("Quote saved successfully:", response.data);
+        // console.log("Quote saved successfully:", response.data);
         toast.success(`Thank you for saving your travel insurance quote from Journeyman.
 We have sent you an email to ${data.email}`);
         reset();

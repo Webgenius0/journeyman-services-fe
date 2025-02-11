@@ -34,33 +34,36 @@ const Payment = () => {
     totalPrice,
     selectedTravelTypes,
     broker,
+    cancellationCover,
+    tripLength,
   } = useTravelDetails();
 
   const axiosPublic = useAxiosPublic();
 
-  // console.log("selectedAdults:", selectedAdults);
-  // console.log("selectedCountry:", selectedCountry);
-  // console.log("selectedChildren:", selectedChildren);
-  // console.log("selectedInsuranceType:", selectedInsuranceType);
-  // console.log("selectedArea:", selectedArea);
-  // console.log("selectedType:", selectedType);
-  // console.log("date:", date);
-  // console.log("endDate:", endDate);
-  // console.log("selectedCurrency:", selectedCurrency);
-  // console.log("address1:", address1);
-  // console.log("address2:", address2);
-  // console.log("zipCode:", zipCode);
-  // console.log("telephone:", telephone);
-  // console.log("email:", email);
-  // console.log("city:", city);
-  // console.log("message:", message);
-  // console.log("hear:", hear);
-  // console.log("age:", age);
-  // console.log("adultArray:", adultArray);
-  // console.log("childrenArray:", childrenArray);
-  // console.log("totalPrice:", totalPrice);
-  // console.log("selectedTravelTypes:", selectedTravelTypes);
-  // console.log("broker:", broker);
+  console.log("selectedAdults:", selectedAdults);
+  console.log("selectedCountry:", selectedCountry);
+  console.log("selectedChildren:", selectedChildren);
+  console.log("selectedInsuranceType:", selectedInsuranceType);
+  console.log("selectedArea:", selectedArea);
+  console.log("policy_type:", tripLength);
+  console.log("coverage_type", cancellationCover);
+  console.log("date:", date);
+  console.log("endDate:", endDate);
+  console.log("selectedCurrency:", selectedCurrency);
+  console.log("address1:", address1);
+  console.log("address2:", address2);
+  console.log("zipCode:", zipCode);
+  console.log("telephone:", telephone);
+  console.log("email:", email);
+  console.log("city:", city);
+  console.log("message:", message);
+  console.log("hear:", hear);
+  console.log("age:", age);
+  console.log("adultArray:", adultArray);
+  console.log("childrenArray:", childrenArray);
+  console.log("totalPrice:", totalPrice);
+  console.log("selectedTravelTypes:", selectedTravelTypes);
+  console.log("broker:", broker);
 
   const {
     register,
@@ -89,7 +92,7 @@ const Payment = () => {
       country_of_residence: selectedCountry,
       insurance_type: selectedInsuranceType,
       policy_type: selectedType,
-      coverage_type: "standard",
+      coverage_type: cancellationCover,
       area_of_travel: selectedArea,
       start_date: date,
       end_date: endDate,
@@ -100,8 +103,8 @@ const Payment = () => {
         name: `${adult.title} ${adult.forename} ${adult.surname}`,
         forename: adult.forename,
         surname: adult.surname,
-        birth_day: adult.dob || "15/01/2025",
-        nationality: adult.nationality || "N/A",
+        birth_day: adult.birth_day,
+        nationality: adult.nationality,
       })),
       number_of_children: selectedChildren,
 
@@ -109,8 +112,8 @@ const Payment = () => {
         name: `${child.forename} ${child.surname}`,
         forename: child.forename,
         surname: child.surname,
-        birth_day: child.dob || "15/01/2025",
-        nationality: child.nationality || "N/A",
+        birth_day: child.birth_day,
+        nationality: child.nationality,
       })),
       address_one: data.address1,
       address_two: data.address2,

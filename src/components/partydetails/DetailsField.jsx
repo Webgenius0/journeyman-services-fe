@@ -49,6 +49,7 @@ const DetailsField = ({ title, person, indexValue }) => {
         person: person,
         id: `${person}-${indexValue}`,
         title: selectedTitle,
+        nationality: selectedCountry,
       };
 
       if (formValues.person === "adults") {

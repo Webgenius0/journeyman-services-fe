@@ -11,6 +11,7 @@ export const TravelDetailsProvider = ({ children }) => {
   const [selectedArea, setSelectedArea] = useState("");
   const [selectedType, setSelectedType] = useState("");
   const [selectedCountry, setSelectedCountry] = useState("");
+  const [selectedNationality, setSelectedNationality] = useState("");
   const [date, setDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
   const [selectedCurrency, setSelectedCurrency] = useState("British Pounds");
@@ -138,6 +139,8 @@ export const TravelDetailsProvider = ({ children }) => {
         handleCancellationCoverChange,
         broker,
         setBroker,
+        setSelectedNationality,
+        selectedNationality,
       }}
     >
       {children}
