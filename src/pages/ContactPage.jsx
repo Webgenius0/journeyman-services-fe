@@ -20,7 +20,6 @@ const ContactPage = () => {
         <ContactForm />
       </div>
 
-      <Quote/>
     </CommonWrapper>
   );
 };
