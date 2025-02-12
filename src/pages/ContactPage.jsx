@@ -18,7 +18,6 @@ const ContactPage = () => {
         <ContactUs />
         <ContactForm />
       </div>
-
     </CommonWrapper>
   );
 };

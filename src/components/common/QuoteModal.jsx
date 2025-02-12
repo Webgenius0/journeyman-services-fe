@@ -39,8 +39,7 @@ const QuoteModal = ({ isOpen, onClose }) => {
     const requestData = {
       email: data.email,
       name: data.name,
-      policy_currency:
-        selectedCurrency == "GBP" ? "British Pounds" : "US Dollar",
+      policy_currency: selectedCurrency,
       currency: selectedCurrency == "British Pounds" ? "GBP" : "USD",
       country_of_residence: selectedCountry,
       insurance_type: selectedInsuranceType,
@@ -66,9 +65,7 @@ We have sent you an email to ${data.email}`);
       })
       .catch((error) => {
         console.error("Error saving quote:", error);
-        onClose();
         toast.error("Something went wrong!");
-        
       });
   };
 
