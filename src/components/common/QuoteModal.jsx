@@ -39,7 +39,7 @@ const QuoteModal = ({ isOpen, onClose }) => {
     const requestData = {
       email: data.email,
       name: data.name,
-      policy_currency: selectedCurrency,
+      policy_currency: selectedCurrency == "GBP" ? "British Pounds" : "US Dollar",
       currency: selectedCurrency == "British Pounds" ? "GBP" : "USD",
       country_of_residence: selectedCountry,
       insurance_type: selectedInsuranceType,
@@ -61,9 +61,11 @@ const QuoteModal = ({ isOpen, onClose }) => {
         toast.success(`Thank you for saving your travel insurance quote from Journeyman.
 We have sent you an email to ${data.email}`);
         reset();
+        onClose()
       })
       .catch((error) => {
         console.error("Error saving quote:", error);
+        toast.error('Something went wrong!')
       });
   };
 
