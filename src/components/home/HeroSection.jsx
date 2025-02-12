@@ -7,7 +7,7 @@ import useFetchData from "@/hooks/api/useFetchData";
 
 const HeroSection = () => {
   const { data } = useFetchData("/page/home");
-  console.log(data);
+  // console.log(data);
   const heroSectionData = data?.data?.cms?.home_banner;
   const bannerImages = data?.data?.cms?.home_banners;
   // console.log('heroSectionData', heroSectionData);
