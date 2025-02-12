@@ -8,10 +8,6 @@ import useFetchData from "@/hooks/api/useFetchData";
 const ReviewComponent = ({ info }) => {
   const metadata = JSON.parse(info.metadata || "{}");
   const rating = metadata.rating ? parseInt(metadata.rating, 10) : 0;
-
-  return (
-  footer
-  );
 };
 
 ReviewComponent.propTypes = {
