@@ -13,6 +13,8 @@ const HeroSection = () => {
   // console.log('heroSectionData', heroSectionData);
   // console.log("images", bannerImages);
 
+  console.log(heroSectionData.btn_link)
+
   return (
     <CommonWrapper>
       <div className="flex flex-col xlg:flex-row xlg:items-center 2xl:items-start gap-[60px] 2xl:gap-[202px]">

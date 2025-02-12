@@ -17,6 +17,7 @@ ReviewComponent.propTypes = {
 const TestimonialArea = () => {
   const { data } = useFetchData("/page/home");
   const reviews = data?.data?.cms?.testimonial || [];
+  console.log(reviews)
   return (
     <section>
       <CommonWrapper noContainer>
